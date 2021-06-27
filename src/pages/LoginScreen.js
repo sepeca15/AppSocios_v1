@@ -57,7 +57,6 @@ const LoginScreen = () => {
                     </form>
                 </div>
             </div>
-
         </div>
     );
 };
