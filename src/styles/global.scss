@@ -9,11 +9,74 @@ body,html{
 $red: #F64E60;
 $blue: #3699FF;
 $green: #65DF74;
+$greenBlack:#0a7917;
+$greenLight:#77bd7f;
 $yellow: #E8EB62;
 $gray: #C4C4C4;
 $fondogray: #F3F6F9;
 $texto:#B5B5C3;
+$grayBlack:#4c4d4f;
 /* $fondo: bg-gradient-to-r from-green-300 via-blue-500 to-purple-600; */
 
 
 
+.rec-dot{
+    outline: none;
+    width: 15px!important;
+    height:15px!important;
+    background:$green!important;
+    border: 4px solid #0a7917!important;
+    box-shadow: none!important;
+    &:active{
+        outline: none;
+    }
+}
+.rec-dot_active{
+    outline: none;
+    width: 15px!important;
+    height:15px!important;
+    background:#0a7917!important;
+    border: 4px solid #0a7917!important;
+    box-shadow: none!important;
+    &:active{
+        outline: none;
+    }
+}
+
+.welcome{
+    background-image: url("https://wallpaperaccess.com/full/2040033.jpg");
+    background-attachment: 100% 100%;
+    background-size: cover;
+}
+
+.buttonIndex {
+    color: white;
+    background-color: $greenLight;
+    margin: 10px auto;
+    border:4px solid $greenBlack ;
+    transition: all 300ms ease;
+    border-radius: 20px;
+    &:hover{
+    background-color: transparent;
+    color: white;
+    border:4px solid $green ;
+    }
+}
+
+button{
+    outline: none;
+    &:focus{
+        outline: none;
+    }
+}
+
+
+.formgroup{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-items: center;
+    margin: 12px auto;
+}
