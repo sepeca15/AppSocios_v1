@@ -31,10 +31,12 @@ const AdminPageScreen = () => {
                 </div>
 
                 <div className='p-2 flex flex-nowrap flex-grow md:flex-col w-6/12 md:w-full mt-2 heightvh overflow-x-auto md:overflow-y-auto '>
-                    <div className="md:w-full inline-block md:flex justify-between  px-2 py-1 itemRow md:px-10 flex-col md:flex-row shadow-md">
+                    {/* Map aqui */}
+                     
+                    <div className="bg-gray-200 md:w-full inline-block md:flex justify-between  px-2 py-1 itemRow md:px-10 flex-col md:flex-row shadow-md">
                         <div className="flex my-3 md:my-0 lg:w-1/12 justify-between items-center">
                             <img className="relative z-30 inline object-cover w-12 h-12 border-2 border-white rounded-full" src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Profile image" />
-                            <label className="mr-5">Tata</label>
+                            <label>Tata</label>
                         </div>
                         <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
                             <label className="text-xs">martin.coimbra.212@gmail.com <br /> 09209884 </label>
@@ -59,38 +61,20 @@ const AdminPageScreen = () => {
                             <button className="bg-green text-xs ml-1 text-white font-bold py-2 px-4 rounded">Ver más</button>
                         </div>
                     </div>
-                    <div className="bg-gray1 md:w-full inline-block md:flex justify-between  px-2 py-1 itemRow md:px-10 flex-col md:flex-row shadow-md">
-                        <div className="flex my-3 md:my-0 lg:w-1/12 justify-between items-center">
-                            <img className="relative z-30 inline object-cover w-12 h-12 border-2 border-white rounded-full" src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Profile image" />
-                            <label className="mr-5">Tata</label>
-                        </div>
-                        <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
-                            <label className="text-xs">martin.coimbra.212@gmail.com <br /> 09209884 </label>
-                        </div>
-                        <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-                            <label className="text-xs">San José <br /> 22 de agosto 123 </label>
-                        </div>
-                        <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-                            <label className="text-xs">100</label>
-                        </div>
-                        <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-                            <label className="text-xs">S.R.L</label>
-                        </div>
-                        <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
-                            <label className="text-xs">123456789012</label>
-                        </div>
-                        <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-                            <label className="text-xs">✅</label>
-                        </div>
-                        <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
-                            <button className="bg-danger text-xs mr-1 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-                            <button className="bg-green text-xs ml-1 text-white font-bold py-2 px-4 rounded">Ver más</button>
-                        </div>
-                    </div>
-                    
-
+              
                 </div>
 
+                <div className="flex justify-around">
+                    <button className="bg-blue text-xs text-white font-bold py-3 px-4 rounded">
+                        Agregar nueva empresa
+                    </button>
+                    <button className="bg-blue text-xs text-white font-bold py-3 px-4 rounded">
+                        Agregar Localidad
+                    </button>
+                    <button className="bg-blue text-xs text-white font-bold py-3 px-4 rounded">
+                        Agregar nueva empresa
+                    </button>
+                </div>
             </div>
         </div >
     )
