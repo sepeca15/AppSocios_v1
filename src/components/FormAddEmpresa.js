@@ -5,7 +5,7 @@ const FormAddEmpresa = () => {
         <div className="w-full h-full bg-white">
             <form className="" /* onSubmit={handelSumit} */>
                 <div className="w-10/12 flex flex-col items-center my-4 mx-auto">
-                    <p className="text-gray-800 text-center text-3x1 font-semibold">Datos de la empresa</p>
+                    <p className="text-gray-800 text-center text-3x1 font-semibold">Rellena los campos para añadir una Empresa</p>
                 </div>
                 <div className="md:flex md:flex-row mx-auto">
                     <div className="md:w-6/12 h-full flex flex-col items-center px-6 my-4 mx-auto">
@@ -204,7 +204,6 @@ const FormAddEmpresa = () => {
                             />
                         </div>
                         <div className="flex justify-end content-end py-8 w-full">
-                            
                             <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
                         </div>
                     </div>

@@ -13,6 +13,7 @@ import WelcomeScreen from '../pages/WelcomeScreen';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
 
+import AddEmpresa from '../pages/AddEmpresa';/* test */
 
 const RouterApp = () => {
     const uid = "das";
@@ -21,6 +22,7 @@ const RouterApp = () => {
             <div className="w-full flex flex-col h-screen  max-h-screen overflow-auto">
                 {/* {(!!uid) && <NavBar />} */}
                 <Switch className="flex-grow">
+                    <PublicRouter exact path="/test" isAuth={!!uid} component={AddEmpresa} ></PublicRouter>
                     <PublicRouter exact path="/login" isAuth={!!uid} component={LoginScreen} ></PublicRouter>
                     <PublicRouter exact path="/welcome" isAuth={!!uid} component={WelcomeScreen} ></PublicRouter>
                     <PublicRouter exact path="/resetpassword" isAuth={!!uid} component={ResetPassword} ></PublicRouter>
