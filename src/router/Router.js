@@ -9,6 +9,7 @@ import HomePageScreen from '../pages/HomePageScreen';
 import LoginScreen from '../pages/LoginScreen';
 import RegisterPage from '../pages/RegisterPage';
 import ResetPassword from '../pages/ResetPasswordScreen';
+import SelectEmpresa from '../pages/SelectEmpresa';
 import WelcomeScreen from '../pages/WelcomeScreen';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
@@ -24,6 +25,8 @@ const RouterApp = () => {
                     <PublicRouter exact path="/welcome" isAuth={!!uid} component={WelcomeScreen} ></PublicRouter>
                     <PublicRouter exact path="/resetpassword" isAuth={!!uid} component={ResetPassword} ></PublicRouter>
                     <PublicRouter exact path="/register" isAuth={!!uid} component={RegisterPage} ></PublicRouter>
+                    <PublicRouter exact path="/register/selectEmpresa" isAuth={!!uid} component={SelectEmpresa} ></PublicRouter>
+
                     {/* <PrivateRoute exact path="/" isAuth={!!uid} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!uid} component={JournalScreen} ></PrivateRoute> */}
                     <Redirect to="/login"></Redirect>

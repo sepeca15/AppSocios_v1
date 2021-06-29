@@ -80,3 +80,19 @@ button{
     justify-items: center;
     margin: 12px auto;
 }
+
+.heightvh{
+height: 63vh;
+}
+.itemRow{
+    margin: 0px;
+}
+/* Using plain CSS */
+@media (max-width: 768px) {
+    .heightvh{
+        height: auto;
+    }
+    .itemRow{
+        margin: auto 8px;
+    }
+}
