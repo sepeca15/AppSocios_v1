@@ -18,6 +18,21 @@ $texto:#B5B5C3;
 $grayBlack:#4c4d4f;
 /* $fondo: bg-gradient-to-r from-green-300 via-blue-500 to-purple-600; */
 
+.heightvh{
+    height: 63vh;
+}
+.itemRow{
+    margin: 0px;
+}
+/* Using plain CSS */
+@media (max-width: 768px) {
+    .heightvh{
+        height: auto;
+    }
+    .itemRow{
+        margin: auto 8px;
+    }
+}
 
 
 .rec-dot{
