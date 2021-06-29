@@ -29,7 +29,7 @@ const RouterApp = () => {
                     <PublicRouter exact path="/register" isAuth={!!uid} component={RegisterPage} ></PublicRouter>
                     
                    {/* <PublicRouter exact path="/admin" isAuth={!!uid} component={AdminPageScreen} ></PublicRouter>  */}
-                   {/* <PublicRouter exact path="/test" isAuth={!!uid} component={InfoPageEmpleado} ></PublicRouter>  */}
+                   <PublicRouter exact path="/test" isAuth={!!uid} component={InfoPageEmpleado} ></PublicRouter> 
                     {/* <PrivateRoute exact path="/" isAuth={!!uid} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!uid} component={JournalScreen} ></PrivateRoute> */}
                      <Redirect to="/login"></Redirect> 

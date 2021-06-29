@@ -18,7 +18,7 @@ const customStyles = {
     },
 };
 
-const AddEmpleadoModal = (props) => {
+const EditEmpleadoModal = (props) => {
     
     return (
         <div className="z-auto">
@@ -31,7 +31,7 @@ const AddEmpleadoModal = (props) => {
                 preventScroll={true}
                 style={customStyles}
             >
-                <p className="text-gray-800 text-center text-3x1 font-semibold">Agregar Empleado</p>
+                <p className="text-gray-800 text-center text-3x1 font-semibold">Editar datos Empleado</p>
                 <form className="" /* onSubmit={} */>
                     <div className="form-group my-6">
                         <label>Nombre</label>
@@ -105,9 +105,9 @@ const AddEmpleadoModal = (props) => {
     )
 }
 
-export default AddEmpleadoModal
+export default EditEmpleadoModal
 
-AddEmpleadoModal.propTypes = {
+EditEmpleadoModal.propTypes = {
     modalIsOpen: PropTypes.bool,
     closeModal: PropTypes.func
 };

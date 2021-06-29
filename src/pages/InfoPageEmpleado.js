@@ -1,10 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PortadaLogoNombre from '../components/PortadaLogoNombre'
 import * as Icon from 'react-feather';
 import AddInfoEmpleado from '../components/AddInfoEmpleado'
+import AddEmpleadoModal from '../components/AddEmpleadoModal'
+import EditEmpleadoModal from '../components/EditEmpleadoModal';
+
 const InfoPageEmpleado = () => {
+
+    /* AddEmpleadoModal */
+    const [modalAddEmpleadoIsOpen, setIsAddEmpleadoOpen] = useState(false);
+
+    function openModalAddEmpleado() {
+        setIsAddEmpleadoOpen(true);
+    }
+
+    function closeModalAddEmpleado() {
+        setIsAddEmpleadoOpen(false);
+    }
+    /* AddEmpleadoModal */
+
+
+    const [modalEditEmpresaIsOpen, setIsEditEmpresaOpen] = useState(false);
+
+    function openModalEditEmpresa() {
+        setIsEditEmpresaOpen(true);
+    }
+
+    function closeModalEditEmpresa() {
+        setIsEditEmpresaOpen(false);
+    }
+
     return (
         <>
+          <AddEmpleadoModal modalIsOpen={modalAddEmpleadoIsOpen} closeModal={closeModalAddEmpleado}/>  
+          <EditEmpleadoModal modalIsOpen={modalEditEmpresaIsOpen} closeModal={closeModalEditEmpresa}/>
           <PortadaLogoNombre />
 
           <div className="">
@@ -16,7 +45,7 @@ const InfoPageEmpleado = () => {
                     <input className="shadow appearance-none border rounded w-4/6 md:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="¿Estás buscando algún empleado?" />
                 </div>
                 <div className="max-w-full lg:w-4/12 xl:w-3/12 flex items-center  justify-center">
-                    <button className="bg-blue1 text-white font-bold ml-3 py-2 px-4 rounded">
+                    <button className="bg-blue1 text-white font-bold ml-3 py-2 px-4 rounded" onClick={openModalAddEmpleado}>
                         Agregar un empleado
                     </button>
                 </div>
@@ -48,7 +77,7 @@ const InfoPageEmpleado = () => {
                             estado={} 
                         /> 
                     */}
-                    <AddInfoEmpleado />
+                    <AddInfoEmpleado openModal={openModalEditEmpresa} />
                 </div>
 
 
