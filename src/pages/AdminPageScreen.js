@@ -1,4 +1,5 @@
 import React from 'react'
+import * as Icon from 'react-feather';
 
 const AdminPageScreen = () => {
     return (
@@ -11,7 +12,7 @@ const AdminPageScreen = () => {
                     <input className="shadow appearance-none border rounded w-4/6 md:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="¿Estás buscando algún socio?" />
                 </div>
                 <div className=" max-w-full lg:w-4/12 xl:w-3/12 flex items-center  justify-center">
-                    <button className="bg-blue text-white font-bold ml-3 py-2 px-4 rounded">
+                    <button className="bg-blue1 text-white font-bold ml-3 py-2 px-4 rounded">
                         Agregar una empresa
                     </button>
                 </div>
@@ -19,26 +20,26 @@ const AdminPageScreen = () => {
 
             <div className=" flex md:block flex-row">
 
-                <div className="bg-gray-200 md:w-full inline-block md:flex justify-between  pb-2 pt-3  text-black rounded flex-col md:flex-row ">
-                    <label className="flex py-2 md:p-0 lg:w-1/12 justify-center md:text-center">Nombre</label>
-                    <label className="flex py-2 md:p-0 lg:w-2/12 justify-center md:text-center">Contacto</label>
-                    <label className="flex py-2 md:p-0 lg:w-1/12 justify-center md:text-center">Direccion</label>
-                    <label className="flex py-2 md:p-0 lg:w-1/12 justify-center md:text-center">Empleados</label>
-                    <label className="flex py-2 md:p-0 lg:w-1/12 justify-center md:text-center">Razon social</label>
-                    <label className="flex py-2 md:p-0 lg:w-2/12 justify-center md:text-center">Numero RUT</label>
-                    <label className="flex py-2 md:p-0 lg:w-1/12 justify-center md:text-center">Estado</label>
-                    <label className="flex py-2 md:p-0 lg:w-2/12 justify-center md:text-center"></label>
+                <div className="bg-gray-200 md:w-full inline-block md:flex justify-between pb-2 pt-3 text-black rounded flex-col md:flex-row ">
+                    <label className="flex p-2 md:p-0 lg:w-1/12 justify-center md:text-center">Nombre</label>
+                    <label className="flex p-2 md:p-0 lg:w-2/12 justify-center md:text-center">Contacto</label>
+                    <label className="flex p-2 md:p-0 lg:w-1/12 justify-center md:text-center">Direccion</label>
+                    <label className="flex p-2 md:p-0 lg:w-1/12 justify-center md:text-center">Empleados</label>
+                    <label className="flex p-2 md:p-0 lg:w-1/12 justify-center md:text-center">Razon social</label>
+                    <label className="flex p-2 md:p-0 lg:w-2/12 justify-center md:text-center">Numero RUT</label>
+                    <label className="flex p-2 md:p-0 lg:w-1/12 justify-center md:text-center">Estado</label>
+                    <label className="flex p-2 md:p-0 lg:w-2/12 justify-center md:text-center"></label>
                 </div>
 
-                <div className='p-2 flex flex-nowrap flex-grow md:flex-col w-6/12 md:w-full mt-2 heightvh overflow-x-auto md:overflow-y-auto '>
+                <div className='flex flex-nowrap flex-grow md:flex-col w-6/12 md:w-full heightvh overflow-x-auto md:overflow-y-auto '>
                     {/* Map aqui */}
                      
-                    <div className="bg-gray-200 md:w-full inline-block md:flex justify-between  px-2 py-1 itemRow md:px-10 flex-col md:flex-row shadow-md">
-                        <div className="flex my-3 md:my-0 lg:w-1/12 justify-between items-center">
+                    <div className="bg-gray-200 md:w-full inline-block md:flex justify-between px-2 py-1 itemRow md:px-10 flex-col md:flex-row shadow-md">
+                        <div className="flex my-3 md:my-0 lg:w-1/12 justify-around items-center">
                             <img className="relative z-30 inline object-cover w-12 h-12 border-2 border-white rounded-full" src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Profile image" />
                             <label>Tata</label>
                         </div>
-                        <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
+                        <div className="flex my-2 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
                             <label className="text-xs">martin.coimbra.212@gmail.com <br /> 09209884 </label>
                         </div>
                         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
@@ -58,23 +59,27 @@ const AdminPageScreen = () => {
                         </div>
                         <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
                             <button className="bg-danger text-xs mr-1 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-                            <button className="bg-green text-xs ml-1 text-white font-bold py-2 px-4 rounded">Ver más</button>
+                            <button className="bg-green1 text-xs ml-1 text-white font-bold py-2 px-4 rounded">Ver más</button>
                         </div>
                     </div>
               
                 </div>
 
-                <div className="flex justify-around">
-                    <button className="bg-blue text-xs text-white font-bold py-3 px-4 rounded">
-                        Agregar nueva empresa
+
+            </div>
+            <div className="flex justify-center">
+                    <button className="flex justify-center items-center bg-blue1 my-1 mx-2 text-xs text-white font-bold px-3 py-2 rounded-full">
+                        <Icon.PlusCircle className="mr-2"/>
+                        Rubro
                     </button>
-                    <button className="bg-blue text-xs text-white font-bold py-3 px-4 rounded">
-                        Agregar Localidad
+                    <button className="flex justify-center items-center bg-blue1 my-1 mx-2 text-xs text-white font-bold px-3 py-2 rounded-full">
+                        <Icon.PlusCircle className="mr-2"/>
+                        Rubro
                     </button>
-                    <button className="bg-blue text-xs text-white font-bold py-3 px-4 rounded">
-                        Agregar nueva empresa
+                    <button className="flex justify-center items-center bg-blue1 my-1 mx-2 text-xs text-white font-bold px-3 py-2 rounded-full">
+                        <Icon.PlusCircle className="mr-2"/>
+                        Rubro
                     </button>
-                </div>
             </div>
         </div >
     )

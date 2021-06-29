@@ -3,14 +3,17 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      colors:{
-        red: "#F64E60",
-        fondogray: "#F3F6F9",
-        blue: "#3699FF",
-        green: "#65DF74",
-        yellow: "#E8EB62",
+      colors: {
+        red1: "#F64E60",
+        fondogray1: "#F3F6F9",
+        blue1: "#3699FF",
+        green1: "#65DF74",
+        greenLight1: "#77bd7f",
+        greenBlack1: "#0a7917",
+        yellow1: "#E8EB62",
         gray1: "#C4C4C4",
-        texto:"#B5B5C3"
+        grayBlack1: "#4c4d4f",
+        texto1: "#B5B5C3"
       },
     },
     backgroundColor: theme => ({
