@@ -5,7 +5,9 @@ import {
     BrowserRouter as Router,
     Redirect
 } from 'react-router-dom';
+import AdminPageScreen from '../pages/AdminPageScreen';
 import HomePageScreen from '../pages/HomePageScreen';
+import InfoPageEmpleado from '../pages/InfoPageEmpleado';
 import LoginScreen from '../pages/LoginScreen';
 import RegisterPage from '../pages/RegisterPage';
 import ResetPassword from '../pages/ResetPasswordScreen';
@@ -13,6 +15,7 @@ import SelectEmpresa from '../pages/SelectEmpresa';
 import WelcomeScreen from '../pages/WelcomeScreen';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
+
 
 const RouterApp = () => {
     const uid = "das";

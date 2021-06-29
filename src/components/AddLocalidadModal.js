@@ -44,25 +44,25 @@ const AddLocalidadModal = () => {
                     <div className="form-group my-6">
                         <label htmlFor="departamento">Departamento</label>
                         <select className="form-control" id="departamento">
-                            <option>Artigas</option>
-                            <option>Canelones</option>
-                            <option>Cerro Largo</option>
-                            <option>Colonia</option>
-                            <option>Durazno</option>
-                            <option>Flores</option>
-                            <option>Florida</option>
-                            <option>Lavalleja</option>
-                            <option>Maldonado</option>
-                            <option>Montevideo</option>
-                            <option>Paysandú</option>
-                            <option>Río Negro</option>
-                            <option>Rivera</option>
-                            <option>Rocha</option>
-                            <option>Salto</option>
-                            <option>San José</option>
-                            <option>Soriano</option>
-                            <option>Tacuarembó</option>
-                            <option>Treinta y Tres</option>
+                            <option value="Artigas">Artigas</option>
+                            <option value="Canelones">Canelones</option>
+                            <option value="Cerro Largo">Cerro Largo</option>
+                            <option value="Colonia">Colonia</option>
+                            <option value="Durazno">Durazno</option>
+                            <option value="Flores">Flores</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Lavalleja">Lavalleja</option>
+                            <option value="Maldonado">Maldonado</option>
+                            <option value="Montevideo">Montevideo</option>
+                            <option value="Paysandú">Paysandú</option>
+                            <option value="Río Negro">Río Negro</option>
+                            <option value="Rivera">Rivera</option>
+                            <option value="Rocha">Rocha</option>
+                            <option value="Salto">Salto</option>
+                            <option value="San José">San José</option>
+                            <option value="Soriano">Soriano</option>
+                            <option value="Tacuarembó">Tacuarembó</option>
+                            <option value="Treinta y Tres">Treinta y Tres</option>
                         </select>
                     </div>
                     <div className="form-group my-6">
@@ -77,7 +77,7 @@ const AddLocalidadModal = () => {
                         />
                     </div>
                     <div className="flex justify-end">
-                    <button className="bg-green text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
+                    <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
                     <button className="bg-danger text-white font-bold py-2 px-4 mx-2 rounded" onClick={closeModal}>Cancelar</button>
                     </div>
                 </form>
