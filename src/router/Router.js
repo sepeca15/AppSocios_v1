@@ -25,7 +25,7 @@ const RouterApp = () => {
                     <PublicRouter exact path="/welcome" isAuth={!!uid} component={WelcomeScreen} ></PublicRouter>
                     <PublicRouter exact path="/resetpassword" isAuth={!!uid} component={ResetPassword} ></PublicRouter>
                     <PublicRouter exact path="/register" isAuth={!!uid} component={RegisterPage} ></PublicRouter>
-                    {/* <PublicRouter exact path="/admin" isAuth={!!uid} component={AdminPageScreen} ></PublicRouter> */}
+                   <PublicRouter exact path="/admin" isAuth={!!uid} component={AdminPageScreen} ></PublicRouter> 
                     {/* <PrivateRoute exact path="/" isAuth={!!uid} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!uid} component={JournalScreen} ></PrivateRoute> */}
                      <Redirect to="/login"></Redirect> 

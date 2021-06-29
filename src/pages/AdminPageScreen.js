@@ -35,6 +35,17 @@ const AdminPageScreen = () => {
                 <div className='flex flex-nowrap flex-grow md:flex-col w-6/12 md:w-full heightvh overflow-x-auto md:overflow-y-auto '>
                     {/* Map aqui */}
                      <AddInfoEmpresa />
+                     {/* 
+                        <AddInfoEmpresa 
+                            name={} 
+                            email={} 
+                            celular={} 
+                            empleados={} 
+                            razonsocial={} 
+                            rut={} 
+                            estado={} 
+                        /> 
+                    */}
                 </div>
 
 
