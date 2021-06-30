@@ -1,5 +1,9 @@
 import React from 'react'
 import PropTypes from "prop-types";
+import {
+    Link 
+} from 'react-router-dom'; 
+import Swal from 'sweetalert2';
 
 const AddInfoEmpresa = (props) => {
     return (
@@ -28,8 +32,20 @@ const AddInfoEmpresa = (props) => {
                             <label className="text-xs">✅</label>
                         </div>
                         <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
-                            <button className="bg-danger text-xs mr-1 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-                            <button className="bg-green1 text-xs ml-1 text-white font-bold py-2 px-4 rounded">Ver más</button>
+                            <button onClick={()=>{
+                                 Swal.fire({
+                                    title: '¿Está seguro que desea eliminar esta empresa?',
+                                    text: "¡No podrás recuperar los datos!",
+                                    type: 'warning',
+                                    showCloseButton: true,
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#F64E60',
+                                    cancelButtonColor: '#C4C4C4',
+                                    confirmButtonText: 'Sí, eliminarlo!',
+                                    cancelButtonText: 'Cancelar',
+                                })
+                            }} className="bg-danger text-xs mr-1 text-white font-bold py-2 px-4 rounded">Eliminar</button>
+                            <Link to="/adminglobal/infoempresa"><button className="bg-green1 text-xs ml-1 text-white font-bold py-2 px-4 rounded">Ver más</button></Link>
                         </div>
                     </div>
                 

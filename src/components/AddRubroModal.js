@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
+import PropTypes from "prop-types";
 
 const customStyles = {
     overlay: {
@@ -18,26 +19,15 @@ const customStyles = {
 
 };
 
-const AddRubroModal = () => {
-    const [modalIsOpen, setIsOpen] = useState(false);
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
-
+const AddRubroModal = (props) => {
     return (
         <div>
-            <button onClick={openModal}>Open Modal AddRubroModal</button>
             <div>
                 <Modal className="w-4/5 sm:max-w-xl bg-white p-6"
                     /* overlayClassName="Overlay" */
-                    isOpen={modalIsOpen}
+                    isOpen={props.modalIsOpen}
                     closeTimeout={200}
-                    onRequestClase={closeModal}
+                    onRequestClase={props.closeModal}
                     contentLabel=""
                     preventScroll={true}
                     style={customStyles}
@@ -57,7 +47,7 @@ const AddRubroModal = () => {
                         </div>
                         <div className="flex justify-end">
                             <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
-                            <button className="bg-danger text-white font-bold py-2 px-4 mx-2 rounded" onClick={closeModal}>Cancelar</button>
+                            <button className="bg-danger text-white font-bold py-2 px-4 mx-2 rounded" onClick={props.closeModal}>Cancelar</button>
                         </div>
                     </form>
 
@@ -68,3 +58,8 @@ const AddRubroModal = () => {
 }
 
 export default AddRubroModal
+
+AddRubroModal.propTypes = {
+    modalIsOpen: PropTypes.bool,
+    closeModal: PropTypes.func
+};

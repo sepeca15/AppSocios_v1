@@ -21,8 +21,8 @@ const customStyles = {
 const AddEmpleadoModal = (props) => {
     
     return (
-        <div className="z-auto">
-            <Modal className="w-4/5 sm:max-w-xl bg-white  p-6"
+        <div className="z-auto overflow-x-auto">
+            <Modal className="w-4/5 sm:max-w-xl bg-white  p-6 "
                 /* overlayClassName="Overlay" */
                 isOpen={props.modalIsOpen}
                 closeTimeout={200}
@@ -85,6 +85,48 @@ const AddEmpleadoModal = (props) => {
                         value={ } */
                         />
                         <label>Direccion</label>
+                        <input
+                            autoComplete="off"
+                            type="text"
+                            className="form-control py-2 mb-4"
+                            placeholder="Ingrese una Direccion"
+                            name="Direccion"
+                        /* onChange={ }
+                        value={ } */
+                        />
+                        <label htmlFor="departamento">Departamento</label>
+                        <select className="form-control  py-2 mb-4" id="departamento">
+                            <option value="Artigas">Artigas</option>
+                            <option value="Canelones">Canelones</option>
+                            <option value="Cerro Largo">Cerro Largo</option>
+                            <option value="Colonia">Colonia</option>
+                            <option value="Durazno">Durazno</option>
+                            <option value="Flores">Flores</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Lavalleja">Lavalleja</option>
+                            <option value="Maldonado">Maldonado</option>
+                            <option value="Montevideo">Montevideo</option>
+                            <option value="Paysandú">Paysandú</option>
+                            <option value="Río Negro">Río Negro</option>
+                            <option value="Rivera">Rivera</option>
+                            <option value="Rocha">Rocha</option>
+                            <option value="Salto">Salto</option>
+                            <option value="San José">San José</option>
+                            <option value="Soriano">Soriano</option>
+                            <option value="Tacuarembó">Tacuarembó</option>
+                            <option value="Treinta y Tres">Treinta y Tres</option>
+                        </select>
+                         <label>Localidad</label>
+                        <input
+                            autoComplete="off"
+                            type="text"
+                            className="form-control py-2 mb-4"
+                            placeholder="Ingrese una Direccion"
+                            name="Direccion"
+                        /* onChange={ }
+                        value={ } */
+                        />
+                         <label>Cargo</label>
                         <input
                             autoComplete="off"
                             type="text"
