@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from "prop-types";
+import {
+    Link 
+} from 'react-router-dom'; 
 
 const AddInfoEmpresa = (props) => {
     return (
@@ -29,7 +32,7 @@ const AddInfoEmpresa = (props) => {
                         </div>
                         <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
                             <button className="bg-danger text-xs mr-1 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-                            <button className="bg-green1 text-xs ml-1 text-white font-bold py-2 px-4 rounded">Ver más</button>
+                            <Link to="/adminglobal/infoempresa"><button className="bg-green1 text-xs ml-1 text-white font-bold py-2 px-4 rounded">Ver más</button></Link>
                         </div>
                     </div>
                 
