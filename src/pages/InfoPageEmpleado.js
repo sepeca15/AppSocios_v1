@@ -3,7 +3,6 @@ import PortadaLogoNombre from '../components/PortadaLogoNombre'
 import * as Icon from 'react-feather';
 import AddInfoEmpleado from '../components/AddInfoEmpleado'
 import AddEmpleadoModal from '../components/AddEmpleadoModal'
-import EditEmpleadoModal from '../components/EditEmpleadoModal';
 
 const InfoPageEmpleado = () => {
 
@@ -20,20 +19,10 @@ const InfoPageEmpleado = () => {
     /* AddEmpleadoModal */
 
 
-    const [modalEditEmpresaIsOpen, setIsEditEmpresaOpen] = useState(false);
-
-    function openModalEditEmpresa() {
-        setIsEditEmpresaOpen(true);
-    }
-
-    function closeModalEditEmpresa() {
-        setIsEditEmpresaOpen(false);
-    }
 
     return (
         <>
           <AddEmpleadoModal modalIsOpen={modalAddEmpleadoIsOpen} closeModal={closeModalAddEmpleado}/>  
-          <EditEmpleadoModal modalIsOpen={modalEditEmpresaIsOpen} closeModal={closeModalEditEmpresa}/>
           <PortadaLogoNombre />
 
           <div className="">
@@ -77,7 +66,7 @@ const InfoPageEmpleado = () => {
                             estado={} 
                         /> 
                     */}
-                    <AddInfoEmpleado openModal={openModalEditEmpresa} />
+                    <AddInfoEmpleado />
                 </div>
 
 
