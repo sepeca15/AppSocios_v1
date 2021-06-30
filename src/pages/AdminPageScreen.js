@@ -65,6 +65,7 @@ const AdminPageScreen = () => {
                     </button>
             </div>
         </div >
+    
     )
 }
 

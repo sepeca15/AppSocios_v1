@@ -18,6 +18,12 @@ $texto:#B5B5C3;
 $grayBlack:#4c4d4f;
 /* $fondo: bg-gradient-to-r from-green-300 via-blue-500 to-purple-600; */
 
+.portada{
+    background-image: url("https://image.freepik.com/vector-gratis/fondo-degradado-tonos-verdes_23-2148368468.jpg");
+    background-attachment: 100% 100%;
+    background-size: cover;
+}
+
 .heightvh{
     height: 63vh;
 }

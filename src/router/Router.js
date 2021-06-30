@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'; 
 import AdminPageScreen from '../pages/AdminPageScreen';
 import HomePageScreen from '../pages/HomePageScreen';
+import InfoPageEmpleado from '../pages/InfoPageEmpleado';
 import LoginScreen from '../pages/LoginScreen';
 import RegisterPage from '../pages/RegisterPage';
 import ResetPassword from '../pages/ResetPasswordScreen';
@@ -26,7 +27,9 @@ const RouterApp = () => {
                     <PublicRouter exact path="/welcome" isAuth={!!uid} component={WelcomeScreen} ></PublicRouter>
                     <PublicRouter exact path="/resetpassword" isAuth={!!uid} component={ResetPassword} ></PublicRouter>
                     <PublicRouter exact path="/register" isAuth={!!uid} component={RegisterPage} ></PublicRouter>
-                   <PublicRouter exact path="/admin" isAuth={!!uid} component={AdminPageScreen} ></PublicRouter> 
+                    
+                   {/* <PublicRouter exact path="/admin" isAuth={!!uid} component={AdminPageScreen} ></PublicRouter>  */}
+                   {/* <PublicRouter exact path="/test" isAuth={!!uid} component={InfoPageEmpleado} ></PublicRouter>  */}
                     {/* <PrivateRoute exact path="/" isAuth={!!uid} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!uid} component={JournalScreen} ></PrivateRoute> */}
                      <Redirect to="/login"></Redirect> 
