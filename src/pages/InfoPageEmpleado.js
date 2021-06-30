@@ -39,7 +39,7 @@ const InfoPageEmpleado = () => {
           <div className="">
             <div className="flex justify-around flex-col text-center bg-gray-100 md:flex-row mb-2 ">
                 <div className="max-w-full lg:w-3/12 xl:w-2/12 flex items-center justify-center text-lg lg:text-left sm:text-base">
-                    <label>Centro comercial San Jose <br /> <span className="text-gray">Datos de las empresas </span></label>
+                    <label>Centro comercial San Jose <br /> <span className="text-gray">Datos de los empleados </span></label>
                 </div>
                 <div className="max-w-full lg:w-5/12 xl:w-6/12 my-3 md:my-0 flex items-center justify-center">
                     <input className="shadow appearance-none border rounded w-4/6 md:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="¿Estás buscando algún empleado?" />
