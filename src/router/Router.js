@@ -16,26 +16,25 @@ import RegisterPage from '../pages/RegisterPage';
 import ResetPassword from '../pages/ResetPasswordScreen';
 import SelectEmpresa from '../pages/SelectEmpresa';
 import WelcomeScreen from '../pages/WelcomeScreen';
-import { setUser } from '../store/actions/auth';
+import { clearUser, setUser } from '../store/actions/auth';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
 
 
 const RouterApp = () => {
-    const state = useSelector(state => state.auth)
+    const state = useSelector(state => state.auth.user)
     const dispatch = useDispatch();
     const [auth, setAuth] = useState(null);
     useEffect(() => {
         (async function validarToken() {
             const resp = await fetchSinToken("http://localhost:5000/user/validarToken/" + localStorage.getItem("token"));
             const body = await resp.json();
-            console.log(body)
             setAuth(body.ok);
             if (body.ok) {
                 dispatch(setUser(body.usuario))
             }
         })()
-    }, [localStorage.getItem("token")])
+    }, [setUser, clearUser, dispatch, localStorage.getItem("token"), state?.id])
     if (auth == null) {
         return <p className="text-center text-xl">Espere por favor.....</p>
     }

@@ -41,7 +41,7 @@ const LoginScreen = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         if (form.email.trim() != "" && form.password.trim() != "") {
-            dispatch(signInBackend(form, router))
+            dispatch(signInBackend(form))
         }
     }
 

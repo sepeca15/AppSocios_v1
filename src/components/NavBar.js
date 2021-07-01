@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Bell, LogOut } from 'react-feather';
 import { clearUser } from '../store/actions/auth';
-import { Router } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 const NavBar = () => {
     const rotuer = useHistory();
@@ -15,8 +14,9 @@ const NavBar = () => {
     }
     const handleLoggout = () => {
         localStorage.clear()
-        dispatch(clearUser())
         rotuer.push("/login")
+        dispatch(clearUser())
+
     }
     return (
         <div className=" w-full mx-auto bg-white   h-auto transition-all duration-500 mb-2 border shadow-md border-grayBlack1">
