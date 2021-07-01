@@ -19,7 +19,7 @@ const customStyles = {
 };
 
 const AddRubroModal = () => {
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(true);
 
     function openModal() {
         setIsOpen(true);
@@ -31,7 +31,6 @@ const AddRubroModal = () => {
 
     return (
         <div>
-            <button onClick={openModal}>Open Modal AddRubroModal</button>
             <div>
                 <Modal className="w-4/5 sm:max-w-xl bg-white p-6"
                     /* overlayClassName="Overlay" */

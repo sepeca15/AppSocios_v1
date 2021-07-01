@@ -41,6 +41,8 @@ $grayBlack:#4c4d4f;
 }
 
 
+
+
 .rec-dot{
     outline: none;
     width: 15px!important;
@@ -91,6 +93,10 @@ button{
     }
 }
 
+
+.anima{
+    transition: all 1s ease;
+}
 
 .formgroup{
     width: 100%;

@@ -18,7 +18,7 @@ const customStyles = {
 };
 
 const AddLocalidadModal = () => {
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(true);
 
     function openModal() {
         setIsOpen(true);
@@ -29,7 +29,6 @@ const AddLocalidadModal = () => {
     }
     return (
         <>
-            <button onClick={openModal}>Open Modal AddLocalidadModal</button>
             <Modal className="w-4/5 sm:max-w-xl bg-white p-6"
                 /* overlayClassName="Overlay" */
                 isOpen={modalIsOpen}
@@ -77,8 +76,8 @@ const AddLocalidadModal = () => {
                         />
                     </div>
                     <div className="flex justify-end">
-                    <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
-                    <button className="bg-danger text-white font-bold py-2 px-4 mx-2 rounded" onClick={closeModal}>Cancelar</button>
+                        <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
+                        <button className="bg-danger text-white font-bold py-2 px-4 mx-2 rounded" onClick={closeModal}>Cancelar</button>
                     </div>
                 </form>
             </Modal>

@@ -4,6 +4,9 @@ import { List, Shield, CheckCircle } from 'react-feather';
 
 
 const SelectEmpresa = () => {
+
+
+
     return (
         <div className="w-full h-full flex flex-row items-center justify-center">
             <div className=" bg-gradient-to-r from-green-500 via-green-400 to-green-300 w-full h-full flex items-center justify-center ">
