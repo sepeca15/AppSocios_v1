@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     Switch,
     BrowserRouter as Router,
-    Redirect
+    Redirect,
+    useLocation
 } from 'react-router-dom';
 import AddEmpresa from '../pages/AddEmpresa';
 import NavBar from '../components/NavBar';
@@ -20,12 +21,13 @@ import WelcomeScreen from '../pages/WelcomeScreen';
 import { clearUser, setUser } from '../store/actions/auth';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
-
+import UpdateData from '../pages/UpdateData';
 
 const RouterApp = () => {
     const state = useSelector(state => state.auth.user)
     const dispatch = useDispatch();
     const [auth, setAuth] = useState(null);
+
     useEffect(() => {
         (async function validarToken() {
             const resp = await fetchSinToken("http://localhost:5000/user/validarToken/" + localStorage.getItem("token"));
@@ -36,16 +38,31 @@ const RouterApp = () => {
             }
         })()
     }, [setUser, clearUser, dispatch, localStorage.getItem("token"), state?.id])
+
+    const handleChangeData = () => {
+        return (
+            <div className="w-full h-full">
+
+                <Redirect to="/updatedata"></Redirect>
+            </div>
+        )
+    }
     if (auth == null) {
-        return <p className="text-center text-xl">Espere por favor.....</p>
+        return <p className="text-center text-red-500 text-xl">Espere por favor.....</p>
     }
     return (
         < Router >
             <div className=" w-full flex flex-col h-screen   max-h-screen overflow-y-scroll">
                 <div className="w-full h-full min-h-screen flex flex-col items-center mb-20 md:mb-0 ">
-                    {auth && <NavBar />}
-                    {/* {(!!auth) && <NavBar />} */}
+                    {
+                        (state && ((state?.name_user != null && !state?.esemprendedor != null && !state?.telefono != null && state.localidad != null) && <NavBar />))
+                    }
                     <Switch className="flex-grow ">
+                        <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
+                        {
+                            (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
+                        }
+
                         <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>
                         <PublicRouter exact path="/welcome" isAuth={auth} component={WelcomeScreen} ></PublicRouter>
                         <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
