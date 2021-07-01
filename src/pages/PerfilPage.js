@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 const PerfilPage = () => {
+
+  const [editar, setEditar]= useState("hidden")
+
   return (
     <>
       <div className="flex items-center w-full justify-center">
@@ -19,7 +22,7 @@ const PerfilPage = () => {
                 <input
                   autoComplete="off"
                   type="text"
-                  className="form-control w-2/12 mb-2"
+                  className={"form-control w-6/12 sm:w-3/12 mb-2 mr-1 " + editar}
                   placeholder="Nombre"
                   name="Cargo"
                   /* onChange={}
@@ -28,7 +31,7 @@ const PerfilPage = () => {
                 <input
                   autoComplete="off"
                   type="text"
-                  className="form-control w-2/12"
+                  className={"form-control w-6/12 sm:w-3/12 mb-2 mr-1 " + editar}
                   placeholder="Apellido"
                   name="apellido"
                   /* onChange={}
@@ -42,7 +45,7 @@ const PerfilPage = () => {
                 <input
                   autoComplete="off"
                   type="text"
-                  className="form-control w-4/12"
+                  className={"form-control w-full sm:w-6/12 " + editar}
                   placeholder="Cargo"
                   name="Cargo"
                   /* onChange={}
@@ -50,38 +53,50 @@ const PerfilPage = () => {
                 />
                 {/* <p>Full stack</p> */}
               </div>
-              <table className="text-xs my-3">
-                <tbody>
-                  <tr>
-                    <td className="px-2 py-2 text-gray-500 font-semibold">
-                      Address
-                    </td>
-                    <td className="px-2 py-2">
-                      Chatakpur-3, Dhangadhi Kailali
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-2 py-2 text-gray-500 font-semibold">
-                      Phone
-                    </td>
-                    <td className="px-2 py-2">+977 9955221114</td>
-                  </tr>
-                  <tr>
-                    <td className="px-2 py-2 text-gray-500 font-semibold">
-                      Email
-                    </td>
-                    <td className="px-2 py-2">john@exmaple.com</td>
-                  </tr>
-                </tbody>
-              </table>
-
+              <div className="flex justify-center text-gray-400 text-xs font-semibold">
+                {/* <p>Email: asdasdasdasdasdasdas</p> */}
+                <input
+                  autoComplete="off"
+                  type="text"
+                  className={"form-control my-2 w-full sm:w-6/12 " + editar}
+                  placeholder="Email"
+                  name="email"
+                  /* onChange={}
+                         value={} */
+                />
+              </div>
+              <div className="flex justify-center text-gray-400 text-xs font-semibold">
+                {/* <p>Email: asdasdasdasdasdasdas</p> */}
+                <input
+                  autoComplete="off"
+                  type="text"
+                  className={"form-control mb-2 w-full sm:w-6/12 " + editar}
+                  placeholder="Celular"
+                  name="celular"
+                  /* onChange={}
+                         value={} */
+                />
+              </div>
+              <div className="flex justify-center text-gray-400 text-xs font-semibold">
+                {/* <p>Empresa: asdasdasdasdasdasdas</p> */}
+                <input
+                  autoComplete="off"
+                  type="text"
+                  className={"form-control w-full sm:w-6/12 " + editar}
+                  placeholder="Empresa"
+                  name="empresa"
+                  /* onChange={}
+                         value={} */
+                />
+              </div>
+           
               <div className="text-center my-3">
-                <a
-                  className="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
+                <button
+                  className="text-xs text-white bg-yellow1 hover:bg-yellow-300 py-2 px-4 rounded-full font-bold"
                   href="#"
                 >
-                  View Profile
-                </a>
+                  Editar
+                </button>
               </div>
             </div>
           </div>
