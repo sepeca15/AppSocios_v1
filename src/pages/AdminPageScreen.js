@@ -1,9 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as Icon from 'react-feather';
+import {
+    Link
+} from 'react-router-dom';
 import AddInfoEmpresa from '../components/AddInfoEmpresa'
 import QueDeseaAgregarModal from '../components/QueDeseaAgregarModal';
+import AddLocalidadModal from '../components/AddLocalidadModal'
+import AddRubroModal from '../components/AddRubroModal'
+import AddCargoModal from '../components/AddCargoModal'
+import AddEmpresa from '../pages/AddEmpresa'
 
 const AdminPageScreen = () => {
+
+    /* addRubro */
+    const [modalAddRubroIsOpen, setAddRubroIsOpen] = useState(false);
+
+    function openAddRubroModal() {
+        setAddRubroIsOpen(true);
+    }
+
+    function closeAddRubroModal() {
+        setAddRubroIsOpen(false);
+    }
+    /* addRubro */
+
+    /* addlocalidad */
+    const [modalAddLocalidadIsOpen, setAddLocalidadIsOpen] = useState(false);
+
+    function openAddLocalidadModal() {
+        setAddLocalidadIsOpen(true);
+    }
+
+    function closeAddLocalidadModal() {
+        setAddLocalidadIsOpen(false);
+    }
+    /* addlocalidad */
+
     return (
         <div className=" relative w-full h-full ">
             <div className="flex justify-around flex-col text-center bg-gray-100 md:flex-row mb-2 py-4 ">
@@ -49,20 +81,7 @@ const AdminPageScreen = () => {
 
 
             </div>
-            <div className=" relative flex-row  flex justify-around md:1/2 w-full m-auto">
-                <div className="flex text-center flex-col my-4  items-center bg-blue1    text-xs text-white font-bold px-4 py-2 rounded-full">
-                    <Icon.PlusCircle className="" />
-                    <p className="text-center">Empresa</p>
-                </div>
-                <div className="flex text-center flex-col my-4 items-center bg-blue1  text-xs text-white font-bold px-4 py-2 rounded-full">
-                    <Icon.PlusCircle className="" />
-                    <p className="text-center">Localidad</p>
-                </div>
-                <div className="flex text-center flex-col my-4  items-center bg-blue1  text-xs text-white font-bold px-4 py-2 rounded-full">
-                    <Icon.PlusCircle className="" />
-                    <p className="text-center">Rubro</p>
-                </div>
-            </div>
+
         </div >
 
     )

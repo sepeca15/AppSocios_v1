@@ -5,6 +5,7 @@ import {
     BrowserRouter as Router,
     Redirect
 } from 'react-router-dom';
+import AddEmpresa from '../pages/AddEmpresa';
 import NavBar from '../components/NavBar';
 import { fetchSinToken } from '../helpers/fetch';
 import AdminPageScreen from '../pages/AdminPageScreen';
@@ -51,6 +52,10 @@ const RouterApp = () => {
                         <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                         <PrivateRouter exact path="/register/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
                         <PrivateRouter exact path="/admin" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
+                        <PrivateRouter exact path="/test" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                        <PrivateRouter exact path="/adminglobal" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
+                        <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                        <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
                         <PrivateRouter exact path="/test" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                         {/* <PrivateRoute exact path="/" isAuth={!!auth} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!auth} component={JournalScreen} ></PrivateRoute> */}

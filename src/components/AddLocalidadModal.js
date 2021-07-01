@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
+import PropTypes from "prop-types";
 
 const customStyles = {
     overlay: {
@@ -86,3 +87,8 @@ const AddLocalidadModal = () => {
 }
 
 export default AddLocalidadModal
+
+AddLocalidadModal.propTypes = {
+    modalIsOpen: PropTypes.bool,
+    closeModal: PropTypes.func
+};
