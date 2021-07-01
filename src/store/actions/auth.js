@@ -47,7 +47,6 @@ const signInWithG = (user) => {
         try {
             const res = await fetchSinToken("http://localhost:5000/user/signInWithG", { email: user.email }, "POST");
             const body = await res.json();
-            console.log(body)
             if (body.ok) {
                 dispatch(setUser(body))
             } else {
@@ -65,12 +64,9 @@ const signUpBackend = (user) => {
         try {
             const res = await fetchSinToken("http://localhost:5000/user", { ...user, estado: true, rol: 2, localidad: 2, esemprendedor: (user.esemprendedor == "true") }, "POST");
             const body = await res.json();
-            console.log(body)
             if (body.ok) {
                 Swal.fire("Usuario Registrado correctamente", "Se inserto correctamente el usuario", "success");
-                delete user.password
-                delete user.password1
-                delete user.password2
+                localStorage.setItem("token", user?.token)
                 dispatch(signUp(user))
             } else {
                 Swal.fire("Usuario No Registrado", "No se pudo insertar el usuario", "error");
@@ -87,8 +83,10 @@ const signInBackend = (user) => {
         try {
             const resp = await fetchSinToken("http://localhost:5000/user/login", { ...user }, "POST");
             const body = await resp.json();
-            console.log(body)
             if (body.ok) {
+                delete user.password
+                delete user.password1
+                delete user.password2
                 delete body.ok
                 dispatch(setUser(body))
             } else {
@@ -103,17 +101,17 @@ const signInBackend = (user) => {
 }
 
 const signUp = (user) => {
-    console.log(user)
     return (dispatch) => {
         auth
             .createUserWithEmailAndPassword(user.email, user.password)
             .then(async (userCredential) => {
                 if (userCredential.user.uid) {
+
                     dispatch(signInBackend(user))
+
                 }
             })
             .catch((error) => {
-                console.log(error)
                 return { error };
             });
     }
@@ -122,13 +120,12 @@ const signUp = (user) => {
 //---------------------Actions Redux ------------------------
 
 const setUser = (user) => {
-    (user.token) && localStorage.setItem("token", user.token)
     return {
         type: types.setUser,
         payload: user
     }
 }
-const clearUser = (user) => {
+const clearUser = () => {
     localStorage.clear()
     return {
         type: types.loggout
