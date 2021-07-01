@@ -30,7 +30,7 @@ const UpdateData = () => {
     })
     useEffect(() => {
         (async function loadInputsDepandLoc() {
-            const departamentosAll = await loadDepartamentos();
+            const departamentosAll = await loadDepartamentos(state?.id);
             if (departamentosAll?.ok) {
                 setDepartamentos(departamentosAll.departamentos)
                 if (departamentosAll.dptoUser) {
@@ -79,11 +79,12 @@ const UpdateData = () => {
             setLocalidades([]);
         }
     }
-    if (departamento == null) {
-        return <div className="text-center ">Espere por favor...</div>
-    }
+
     if (state?.name_user != null && !state?.esemprendedor != null && !state?.telefono != null && state.localidad != null) {
         return <Redirect to="/admin" />
+    }
+    if (departamento == null) {
+        return <div className="text-center ">Espere por favor...</div>
     }
     return (
         <div className="w-full h-full flex flex-row items-center justify-center">

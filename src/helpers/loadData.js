@@ -2,10 +2,11 @@ import Swal from "sweetalert2";
 import { fetchConToken, fetchSinToken } from "./fetch";
 
 
-export const loadDepartamentos = async () => {
+export const loadDepartamentos = async (id) => {
     try {
-        const resp = await fetchConToken("http://localhost:5000/departamentos/");
+        const resp = await fetchConToken("http://localhost:5000/departamentos/dpto/", { id }, "POST");
         const body = await resp.json();
+        console.log(body)
         if (body.ok) {
             return { ok: true, departamentos: body.departamentos, dptoUser: body?.departamentoUser }
         } else {
