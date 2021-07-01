@@ -10,6 +10,7 @@ import AdminPageScreen from '../pages/AdminPageScreen';
 import HomePageScreen from '../pages/HomePageScreen';
 import InfoPageEmpleado from '../pages/InfoPageEmpleado';
 import LoginScreen from '../pages/LoginScreen';
+import PerfilPage from '../pages/PerfilPage';
 import RegisterPage from '../pages/RegisterPage';
 import ResetPassword from '../pages/ResetPasswordScreen';
 import WelcomeScreen from '../pages/WelcomeScreen';
@@ -32,7 +33,8 @@ const RouterApp = () => {
                    <PublicRouter exact path="/adminglobal" isAuth={!!uid} component={AdminPageScreen} ></PublicRouter>
                    <PublicRouter exact path="/adminglobal/infoempresa" isAuth={!!uid} component={InfoPageEmpleado} ></PublicRouter> 
                    <PublicRouter exact path="/adminglobal/addempresa" isAuth={!!uid} component={AddEmpresa} ></PublicRouter> 
-                   <PublicRouter exact path="/test" isAuth={!!uid} component={InfoPageEmpleado} ></PublicRouter> 
+                   
+                   <PublicRouter exact path="/test" isAuth={!!uid} component={PerfilPage} ></PublicRouter> 
                     {/* <PrivateRoute exact path="/" isAuth={!!uid} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!uid} component={JournalScreen} ></PrivateRoute> */}
                      <Redirect to="/login"></Redirect> 
