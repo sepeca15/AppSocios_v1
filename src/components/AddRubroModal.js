@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
 import PropTypes from "prop-types";
-
 const customStyles = {
     overlay: {
         backgroundColor: '#0000007e',
@@ -20,14 +19,24 @@ const customStyles = {
 };
 
 const AddRubroModal = (props) => {
+    const [modalIsOpen, setIsOpen] = useState(true);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
     return (
         <div>
             <div>
                 <Modal className="w-4/5 sm:max-w-xl bg-white p-6"
                     /* overlayClassName="Overlay" */
-                    isOpen={props.modalIsOpen}
+                    isOpen={modalIsOpen}
                     closeTimeout={200}
-                    onRequestClase={props.closeModal}
+                    onRequestClase={closeModal}
                     contentLabel=""
                     preventScroll={true}
                     style={customStyles}

@@ -41,6 +41,8 @@ $grayBlack:#4c4d4f;
 }
 
 
+
+
 .rec-dot{
     outline: none;
     width: 15px!important;
@@ -92,6 +94,10 @@ button{
 }
 
 
+.anima{
+    transition: all 1s ease;
+}
+
 .formgroup{
     width: 100%;
     height: auto;
@@ -100,4 +106,20 @@ button{
     align-items: flex-start;
     justify-items: center;
     margin: 12px auto;
+}
+
+.heightvh{
+height: 63vh;
+}
+.itemRow{
+    margin: 0px;
+}
+/* Using plain CSS */
+@media (max-width: 768px) {
+    .heightvh{
+        height: auto;
+    }
+    .itemRow{
+        margin: auto 8px;
+    }
 }

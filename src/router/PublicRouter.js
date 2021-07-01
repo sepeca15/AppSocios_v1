@@ -7,10 +7,10 @@ export const PublicRouter = ({ isAuth, component: Component, ...rest }) => {
             {...rest}
             component={
                 (props) => (
-                    (isAuth) ?
+                    (isAuth == false) ?
                         <Component {...props} />
                         :
-                        <Redirect to="/" />
+                        <Redirect to="/admin" />
                 )
             }
         />
