@@ -9,14 +9,15 @@ const NavBar = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state?.auth?.user)
     const [onActive, setOnActive] = useState(false)
-    if (!user) {
-        return <div className="m-auto text-center"> Espere por favor...</div>
-    }
+
     const handleLoggout = () => {
         localStorage.clear()
         rotuer.push("/login")
         dispatch(clearUser())
 
+    }
+    if (!user) {
+        return <div className="m-auto text-center text-red-500"> Espere por favor...</div>
     }
     return (
         <div className=" w-full mx-auto bg-white   h-auto transition-all duration-500 mb-2 border shadow-md border-grayBlack1">

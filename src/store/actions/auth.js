@@ -27,7 +27,7 @@ const signInWithGoogle = () => {
 const signUpWithG = (user) => {
     return async (dispatch) => {
         try {
-            const res = await fetchSinToken("http://localhost:5000/user/signUpWithG", { ...user, estado: true, rol: 2, localidad: 2 }, "POST");
+            const res = await fetchSinToken("http://localhost:5000/user/signUpWithG", { ...user, estado: true, rol: 2 }, "POST");
             const body = await res.json();
             if (body.ok == true) {
                 dispatch(signInWithG(user))
@@ -47,6 +47,7 @@ const signInWithG = (user) => {
         try {
             const res = await fetchSinToken("http://localhost:5000/user/signInWithG", { email: user.email }, "POST");
             const body = await res.json();
+            console.log(body)
             if (body.ok) {
                 dispatch(setUser(body))
             } else {
@@ -62,7 +63,7 @@ const signInWithG = (user) => {
 const signUpBackend = (user) => {
     return async (dispatch) => {
         try {
-            const res = await fetchSinToken("http://localhost:5000/user", { ...user, estado: true, rol: 2, localidad: 2, esemprendedor: (user.esemprendedor == "true") }, "POST");
+            const res = await fetchSinToken("http://localhost:5000/user", { ...user, estado: true, rol: 2, localidad: user.localidad, esemprendedor: user.esemprendedor }, "POST");
             const body = await res.json();
             if (body.ok) {
                 Swal.fire("Usuario Registrado correctamente", "Se inserto correctamente el usuario", "success");
@@ -91,6 +92,27 @@ const signInBackend = (user) => {
                 dispatch(setUser(body))
             } else {
                 Swal.fire("Credenciales", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+
+    }
+}
+
+
+
+const updateUser = (user) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/user/" + user.id, { ...user }, "PUT");
+            const body = await resp.json();
+            if (body.ok) {
+                console.log(body)
+                dispatch(setUser(body.newUser))
+            } else {
+                Swal.fire("Error", body.msg, "error");
             }
         } catch (error) {
             console.log(error);
@@ -133,5 +155,5 @@ const clearUser = () => {
 }
 
 export {
-    signUp, signInWithGoogle, signUpBackend, signInBackend, setUser, clearUser
+    updateUser, signUp, signInWithGoogle, signUpBackend, signInBackend, setUser, clearUser
 }
