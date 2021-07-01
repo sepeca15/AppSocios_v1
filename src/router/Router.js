@@ -16,6 +16,7 @@ import LoginScreen from '../pages/LoginScreen';
 import RegisterPage from '../pages/RegisterPage';
 import ResetPassword from '../pages/ResetPasswordScreen';
 import SelectEmpresa from '../pages/SelectEmpresa';
+import PerfilPage from '../pages/PerfilPage';
 import WelcomeScreen from '../pages/WelcomeScreen';
 import { clearUser, setUser } from '../store/actions/auth';
 import { PrivateRouter } from './PrivateRouter';
@@ -68,11 +69,10 @@ const RouterApp = () => {
                         <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                         <PrivateRouter exact path="/register/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
                         <PrivateRouter exact path="/admin" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
-                        <PrivateRouter exact path="/test" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
-                        <PrivateRouter exact path="/test" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                        <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
                         {/* <PrivateRoute exact path="/" isAuth={!!auth} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!auth} component={JournalScreen} ></PrivateRoute> */}
                         <Redirect to="/login"></Redirect>
