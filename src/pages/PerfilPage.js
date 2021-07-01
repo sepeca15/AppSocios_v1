@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 const PerfilPage = () => {
-
-  const [editar, setEditar]= useState("hidden")
+  const [editar, setEditar] = useState(true);
+  const [eitaroSave, setEitaroSave] = useState("Editar");
 
   return (
     <>
@@ -20,18 +20,20 @@ const PerfilPage = () => {
             <div className="p-2">
               <div className="flex justify-center text-gray-400 text-xs font-semibold">
                 <input
+                  disabled={editar}
                   autoComplete="off"
                   type="text"
-                  className={"form-control w-6/12 sm:w-3/12 mb-2 mr-1 " + editar}
+                  className="form-control w-6/12 sm:w-3/12 mb-2 mr-1"
                   placeholder="Nombre"
                   name="Cargo"
                   /* onChange={}
                     value={} */
                 />
                 <input
+                  disabled={editar}
                   autoComplete="off"
                   type="text"
-                  className={"form-control w-6/12 sm:w-3/12 mb-2 mr-1 " + editar}
+                  className="form-control w-6/12 sm:w-3/12 mb-2 mr-1 "
                   placeholder="Apellido"
                   name="apellido"
                   /* onChange={}
@@ -43,9 +45,10 @@ const PerfilPage = () => {
               </div>
               <div className="flex justify-center text-gray-400 text-xs font-semibold">
                 <input
+                  disabled={editar}
                   autoComplete="off"
                   type="text"
-                  className={"form-control w-full sm:w-6/12 " + editar}
+                  className="form-control w-full sm:w-6/12 "
                   placeholder="Cargo"
                   name="Cargo"
                   /* onChange={}
@@ -56,9 +59,10 @@ const PerfilPage = () => {
               <div className="flex justify-center text-gray-400 text-xs font-semibold">
                 {/* <p>Email: asdasdasdasdasdasdas</p> */}
                 <input
+                  disabled={editar}
                   autoComplete="off"
                   type="text"
-                  className={"form-control my-2 w-full sm:w-6/12 " + editar}
+                  className="form-control my-2 w-full sm:w-6/12 "
                   placeholder="Email"
                   name="email"
                   /* onChange={}
@@ -68,9 +72,10 @@ const PerfilPage = () => {
               <div className="flex justify-center text-gray-400 text-xs font-semibold">
                 {/* <p>Email: asdasdasdasdasdasdas</p> */}
                 <input
+                  disabled={editar}
                   autoComplete="off"
                   type="text"
-                  className={"form-control mb-2 w-full sm:w-6/12 " + editar}
+                  className="form-control mb-2 w-full sm:w-6/12 "
                   placeholder="Celular"
                   name="celular"
                   /* onChange={}
@@ -80,22 +85,32 @@ const PerfilPage = () => {
               <div className="flex justify-center text-gray-400 text-xs font-semibold">
                 {/* <p>Empresa: asdasdasdasdasdasdas</p> */}
                 <input
+                  disabled={editar}
                   autoComplete="off"
                   type="text"
-                  className={"form-control w-full sm:w-6/12 " + editar}
+                  className="form-control w-full sm:w-6/12 "
                   placeholder="Empresa"
                   name="empresa"
                   /* onChange={}
                          value={} */
                 />
               </div>
-           
+
               <div className="text-center my-3">
                 <button
-                  className="text-xs text-white bg-yellow1 hover:bg-yellow-300 py-2 px-4 rounded-full font-bold"
+                  onClick={() => {
+                    if(editar){
+                      setEditar(false);
+                      setEitaroSave("Guardar")
+                    }else{
+                      setEditar(true);
+                      setEitaroSave("Editar")
+                    }
+                  }}
+                  className={editar ? "py-2 px-4 rounded-full font-bold text-xs text-white bg-yellow1 hover:bg-yellow-300": "py-2 px-4 rounded-full font-bold text-xs text-white bg-green-500 hover:bg-green-300 " }
                   href="#"
                 >
-                  Editar
+                 {eitaroSave}
                 </button>
               </div>
             </div>
