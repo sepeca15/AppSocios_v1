@@ -1,0 +1,42 @@
+[33mc033f13[m[33m ([m[1;36mHEAD -> [m[1;32mmartinDev[m[33m)[m actualizacion
+[33m3d0554a[m[33m ([m[1;31morigin/martinDev[m[33m)[m form
+[33m9c6513d[m Hiden de form
+[33mc0384b6[m perfil
+[33mb908694[m sweet alert
+[33md9237ab[m actualizacion
+[33m3aa01b4[m Merge pull request #8 from maxioliverasilva13/sebaDev
+[33mbcb20a7[m subo rutreado de view y componentes
+[33m7709e75[m Merge pull request #7 from maxioliverasilva13/sebaDev
+[33m0482071[m funcionalidad de modal en view infoPageEmpleado
+[33m473b946[m Merge pull request #6 from maxioliverasilva13/martinDev
+[33m5be92ed[m info empleado vista y componetisado
+[33m3203bf9[m Merge branch 'Development' of https://github.com/maxioliverasilva13/AppSocios_v1 into martinDev
+[33mf3e72fb[m actualizacion
+[33mf05b0bc[m adimin terminado y componetisado
+[33m71f6a4d[m Merge pull request #5 from maxioliverasilva13/sebaDev
+[33m48032f4[m Ultimos retoques
+[33m51201c1[m Merge branch 'Development' of https://github.com/maxioliverasilva13/AppSocios_v1 into sebaDev
+[33m24cb2f7[m Merge pull request #4 from maxioliverasilva13/martinDev
+[33m7d73ee9[m Merge branch 'Development' of https://github.com/maxioliverasilva13/AppSocios_v1 into sebaDev
+[33mba42af6[m Subo una page de addempresa con sus 2 componentes ok PortadaAddEmpesa FormAddEmpresa
+[33m6925e42[m component
+[33m414a7db[m botones rubro
+[33m00ddb2e[m antes de hacer el pull
+[33me185027[m responsive
+[33m465f5a5[m Quito de router la ruta hacia mi componente xD
+[33m87d5ef8[m Formulario de Add Empresa Casi ok
+[33mb2c1c7c[m Merge pull request #3 from maxioliverasilva13/sebaDev
+[33m6c7857b[m Traigo lo de maxi
+[33m5e8666b[m Modals casi ok
+[33mc98c3b8[m Merge pull request #2 from maxioliverasilva13/MaxiDev
+[33m26294be[m login y registro
+[33ma14db27[m page creada
+[33m95ff9b9[m Merge branch 'Development' of https://github.com/maxioliverasilva13/AppSocios_v1 into sebaDev
+[33mc409450[m Cambios Router
+[33m3dc37b1[m se crean 4 modals en componets se pone una clase en scss para el fondo del modal
+[33m1e35283[m variables de colores en scss talwind
+[33m6d42e73[m Merge pull request #1 from maxioliverasilva13/martinDev
+[33m76887d4[m variables de colores en scss
+[33me188d8b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Three commit
+[33me2c624f[m first commit
+[33m91199aa[m Initialize project using Create React App
