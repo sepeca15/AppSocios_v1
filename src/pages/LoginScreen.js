@@ -3,9 +3,19 @@ import PropTypes from 'prop-types';
 import { Shield } from 'react-feather';
 import { ReactComponent as Security } from '../svg/security.svg';
 import { ReactComponent as GoogleIcon } from '../svg/google.svg';
-
+import { useForm } from '../helpers/useForm';
+import { useDispatch } from 'react-redux';
+import { signInBackend, signInWithGoogle } from '../store/actions/auth';
+import { useHistory } from 'react-router-dom';
 
 const LoginScreen = () => {
+    const router = useHistory();
+    const dispatch = useDispatch()
+    const [form, setForm] = useForm({
+        email: '',
+        password: ''
+    })
+
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
         function handleResize() {
@@ -21,7 +31,18 @@ const LoginScreen = () => {
     })
 
     const googleSignInButton = () => {
-        return <div className="w-auto hover:bg-opacity-50 duration-500 text-white flex items-center p-3 mt-2 rounded-full cursor-pointer bg-blue-500 "><GoogleIcon className="w-10 h-10" /><p>Continuar con Google</p> </div>
+        return <div onClick={GoogleSignInOrRegister} className="w-auto hover:bg-opacity-50 duration-500 text-white flex items-center p-3 mt-2 rounded-full cursor-pointer bg-blue-500 "><GoogleIcon className="w-10 h-10" /><p>Continuar con Google</p> </div>
+    }
+
+    const GoogleSignInOrRegister = () => {
+        dispatch(signInWithGoogle());
+    }
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        if (form.email.trim() != "" && form.password.trim() != "") {
+            dispatch(signInBackend(form))
+        }
     }
 
 
@@ -38,17 +59,17 @@ const LoginScreen = () => {
             <div className=" absolute md:relative flex w-4/5 bg-white md:w-1/2 h-auto p-4 md:h-full bg-red  justify-center items-center">
                 <div className="w-full h-auto flex justify-center items-center flex-col ">
                     <p className="text-3xl text-center font-medium text-grayBlack1 flex items-center flex-wrap justify-center"><Shield /> Iniciar Sesion Como Empleado/Empresa</p>
-                    <form className="sm:w-3/4 w-full p-1  sm:p-4 flex flex-col items-center ">
+                    <form onSubmit={handleLogin} className="sm:w-3/4 w-full p-1  sm:p-4 flex flex-col items-center ">
                         <div className="formgroup  ">
                             <label htmlFor="email" className="text-xl text-grayBlack1 ">Email:</label>
-                            <input type="email" name="email" autoComplete="off" className="my-2 w-full p-3 border-2 shadow-md border-gray1 rounded-xl outline-none" placeholder="Email" />
+                            <input required type="email" name="email" onChange={setForm} value={form.email} autoComplete="off" className="my-2 w-full p-3 border-2 shadow-md border-gray1 rounded-xl outline-none" placeholder="Email" />
                         </div>
                         <div className="formgroup ">
                             <label htmlFor="password" className="text-xl text-grayBlack1 ">Password:</label>
-                            <input type="password" name="password" autoComplete="off" className="my-2 w-full p-3 border-2 shadow-md border-gray1 rounded-xl outline-none" placeholder="Password" />
+                            <input required type="password" name="password" onChange={setForm} value={form.password} autoComplete="off" className="my-2 w-full p-3 border-2 shadow-md border-gray1 rounded-xl outline-none" placeholder="Password" />
                         </div>
                         <div className="formgroup ">
-                            <button className="w-full  bg-greenLight1 border-2 border-greenLight1 text-gray-50 hover:text-greenLight1  hover:bg-white     rounded-2xl py-2 duration-300 ">Loguearse</button>
+                            <button type="submit" className="w-full  bg-greenLight1 border-2 border-greenLight1 text-gray-50 hover:text-greenLight1  hover:bg-white     rounded-2xl py-2 duration-300 ">Loguearse</button>
                         </div>
                         {(isMobile) && googleSignInButton()}
 

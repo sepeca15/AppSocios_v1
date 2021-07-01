@@ -11,33 +11,31 @@ import { fetchSinToken } from '../helpers/fetch';
 import AdminPageScreen from '../pages/AdminPageScreen';
 import HomePageScreen from '../pages/HomePageScreen';
 import InfoPageEmpleado from '../pages/InfoPageEmpleado';
-import InfoPageEmpresa from '../pages/InfoPageEmpresa';
 import LoginScreen from '../pages/LoginScreen';
-import PerfilPage from '../pages/PerfilPage';
 import RegisterPage from '../pages/RegisterPage';
 import ResetPassword from '../pages/ResetPasswordScreen';
 import SelectEmpresa from '../pages/SelectEmpresa';
+import PerfilPage from '../pages/PerfilPage';
 import WelcomeScreen from '../pages/WelcomeScreen';
-import { setUser } from '../store/actions/auth';
+import { clearUser, setUser } from '../store/actions/auth';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
 
 
 const RouterApp = () => {
-    const state = useSelector(state => state.auth)
+    const state = useSelector(state => state.auth.user)
     const dispatch = useDispatch();
     const [auth, setAuth] = useState(null);
     useEffect(() => {
         (async function validarToken() {
             const resp = await fetchSinToken("http://localhost:5000/user/validarToken/" + localStorage.getItem("token"));
             const body = await resp.json();
-            console.log(body)
             setAuth(body.ok);
             if (body.ok) {
                 dispatch(setUser(body.usuario))
             }
         })()
-    }, [localStorage.getItem("token")])
+    }, [setUser, clearUser, dispatch, localStorage.getItem("token"), state?.id])
     if (auth == null) {
         return <p className="text-center text-xl">Espere por favor.....</p>
     }
@@ -54,11 +52,10 @@ const RouterApp = () => {
                         <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                         <PrivateRouter exact path="/register/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
                         <PrivateRouter exact path="/admin" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
-                        <PrivateRouter exact path="/test" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
-                        <PrivateRouter exact path="/test" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                        <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
                         {/* <PrivateRoute exact path="/" isAuth={!!auth} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!auth} component={JournalScreen} ></PrivateRoute> */}
                         <Redirect to="/login"></Redirect>

@@ -18,15 +18,23 @@ const customStyles = {
     },
 };
 
-const AddLocalidadModal = (props) => {
-    
+const AddLocalidadModal = () => {
+    const [modalIsOpen, setIsOpen] = useState(true);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
     return (
         <>
             <Modal className="w-4/5 sm:max-w-xl bg-white p-6"
                 /* overlayClassName="Overlay" */
-                isOpen={props.modalIsOpen}
+                isOpen={modalIsOpen}
                 closeTimeout={200}
-                onRequestClase={props.closeModal}
+                onRequestClase={closeModal}
                 contentLabel=""
                 preventScroll={true}
                 style={customStyles}
@@ -69,8 +77,8 @@ const AddLocalidadModal = (props) => {
                         />
                     </div>
                     <div className="flex justify-end">
-                    <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
-                    <button className="bg-danger text-white font-bold py-2 px-4 mx-2 rounded" onClick={props.closeModal}>Cancelar</button>
+                        <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
+                        <button className="bg-danger text-white font-bold py-2 px-4 mx-2 rounded" onClick={closeModal}>Cancelar</button>
                     </div>
                 </form>
             </Modal>
