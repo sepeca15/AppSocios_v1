@@ -30,7 +30,6 @@ const signUpWithG = (user) => {
             const res = await fetchSinToken("http://localhost:5000/user/signUpWithG", { ...user, estado: true, rol: 2, localidad: 2 }, "POST");
             const body = await res.json();
             if (body.ok == true) {
-                dispatch(signUp(user))
                 dispatch(signInWithG(user))
             } else if (body.ok == false) {
                 dispatch(signInWithG(user))
@@ -130,6 +129,7 @@ const setUser = (user) => {
     }
 }
 const clearUser = (user) => {
+    localStorage.clear()
     return {
         type: types.loggout
     }
