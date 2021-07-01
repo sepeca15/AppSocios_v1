@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from "prop-types";
 import * as Icon from 'react-feather';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import EditEmpleadoModal from '../components/EditEmpleadoModal';
 
 const AddInfoEmpleado = () => {
@@ -43,7 +43,19 @@ const AddInfoEmpleado = () => {
                             <label className="text-xs"> <Icon.XCircle className="text-red1" /> </label>
                         </div>
                         <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
-                            <button className="bg-danger text-xs mr-1 text-white font-bold p-2 rounded"> 
+                            <button onClick={()=>{
+                                Swal.fire({
+                                    title: '¿Está seguro que desea eliminar este empleado?',
+                                    text: "¡No podrás recuperar los datos!",
+                                    type: 'warning',
+                                    showCloseButton: true,
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#F64E60',
+                                    cancelButtonColor: '#C4C4C4',
+                                    confirmButtonText: 'Sí, eliminarlo!',
+                                    cancelButtonText: 'Cancelar',
+                                })
+                            }} className="bg-danger text-xs mr-1 text-white font-bold p-2 rounded"> 
                                 <Icon.Delete className="ml-2"/>
                                 Eliminar 
                             </button>
