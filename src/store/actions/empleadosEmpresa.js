@@ -9,13 +9,13 @@ const empleadoEmpresa = (empresas) => {
         payload: empresas
     }
 }
-/* const postempleadoEmpresa = (empresas) => {
+const addUIEmpleado = (empleado) => {
     return {
-        type: types.postempleadoEmpresa ,
-        payload: empresas
+        type: types.addUIEmpleado ,
+        payload: empleado
     }
 }
- */
+
 
 const getEmpleadosEmpresa = (idempresa) => {
     return async (dispatch) => {
@@ -41,16 +41,13 @@ const postempleadoEmpresa = (form) => {
         try {
             const resp = await fetchConToken("http://localhost:5000/empleados/newempleado", {...form}, "POST");
             const body = await resp.json();
-            /* falta empresa 1 */
-            /* const resp2 = await fetchConToken("http://localhost:5000/empleados/newempleado", {...form, resp.user.id}, "POST"); */
-            
-            if (body.ok) {
+             if (body.ok) {
                 Swal.fire({
                     title: "Se añadio correctamente",
                     text: "La empresa se agrego "+ form.name +" correctamente",
                     type: "success",
                 });
-                console.log(body.NewUserCreated);
+                dispatch(addUIEmpleado(body.user))
             } else {
                 Swal.fire("Error Empresas", body.msg, "error");
             }
@@ -61,5 +58,51 @@ const postempleadoEmpresa = (form) => {
 
     }
 }
+const editEmpleadoEmpresa = (userid, form) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/user/"+ userid, form, "PUT");
+            const body = await resp.json();
+            
+            if (body.ok) {
+                Swal.fire({
+                    title: "Se EDITO",
+                    text: "La empresa se EDITO correctamente",
+                    type: "success",
+                });
+            } else {
+                Swal.fire("Error edit", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
 
-export { getEmpleadosEmpresa, postempleadoEmpresa } 
+    }
+}
+const eliminarEmpleado = (empleado) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/empleados/", {...empleado}, "DELETE");
+            const resp2 = await fetchConToken("http://localhost:5000/user/"+ empleado.user, {}, "DELETE");
+            const body = await resp.json();
+            if (body.ok) {
+                Swal.fire({
+                    title: "Se elimino correctamente" + body,
+                    type: "success",
+                });
+                dispatch({type: types.removeEmpleado, payload: empleado})
+                /* alert(empleado.user) */
+            } else {
+                Swal.fire("Error Empresas", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "jdsjdjdjNo se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+
+    }
+}
+ 
+
+export { getEmpleadosEmpresa, postempleadoEmpresa, eliminarEmpleado, editEmpleadoEmpresa } 
