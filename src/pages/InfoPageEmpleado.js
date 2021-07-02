@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PortadaLogoNombre from "../components/PortadaLogoNombre";
-import * as Icon from "react-feather";
 import AddInfoEmpleado from "../components/AddInfoEmpleado";
 import AddEmpleadoModal from "../components/AddEmpleadoModal";
 

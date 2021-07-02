@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
 import PropTypes from "prop-types";
+import { useForm } from '../helpers/useForm';
+import { insertRubro } from '../helpers/loadData';
 const customStyles = {
     overlay: {
         backgroundColor: '#0000007e',
@@ -28,7 +30,9 @@ const AddRubroModal = (props) => {
     function closeModal() {
         setIsOpen(false);
     }
-
+    const [form, setForm] = useForm({
+        rubro: "",
+      });
     return (
         <div>
             <div>
@@ -42,16 +46,18 @@ const AddRubroModal = (props) => {
                     style={customStyles}
                 >
                     <p className="text-gray-800 text-center text-3x1 font-semibold">Agregar Rubro</p>
-                    <form className="" /* onSubmit={ } */>
+                    <form className="" onSubmit={e=>{e.preventDefault()
+                    insertRubro(form.rubro)
+                    closeModal()}}>
                         <div className="form-group my-6">
                             <input
                                 autoComplete="off"
                                 type="text"
                                 className="form-control"
                                 placeholder="Ingrese un Rubro"
-                                name="Rubro"
-                            /*  onChange={ }
-                             value={ } */
+                                name="rubro"
+                                onChange={setForm}
+                                value={form.rubro}
                             />
                         </div>
                         <div className="flex justify-end">

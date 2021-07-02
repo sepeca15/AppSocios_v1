@@ -21,7 +21,7 @@ export const empresasReducer = (state = initialState, action) => {
 
         case types.updateEmpresas:
 
-            return { ...state, }
+            return { ...state, empresas: action.payload}
             
         case types.deletEmpresas:
 

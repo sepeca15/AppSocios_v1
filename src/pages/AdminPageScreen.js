@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import * as Icon from "react-feather";
-import { Link } from "react-router-dom";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
-import AddEmpresa from "../pages/AddEmpresa";
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllEmpresas } from "../store/actions/empresas";
 

@@ -9,7 +9,6 @@ import { signInBackend, signInWithGoogle } from '../store/actions/auth';
 import { useHistory } from 'react-router-dom';
 
 const LoginScreen = () => {
-    const router = useHistory();
     const dispatch = useDispatch()
     const [form, setForm] = useForm({
         email: '',

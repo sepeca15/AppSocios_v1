@@ -72,7 +72,7 @@ const QueDeseaAgregarModal = () => {
                     <div className="form-group my-6">
                         <label htmlFor="departamento">Que desea agegar hoy</label>
                         <select onChange={onChange} defaultValue="null" className="form-control" id="departamento">
-                            <option value="null" disabled={true}>Seleccione una opcion</option>
+                            <option value="null" selected={true} disabled={true}>Seleccione una opcion</option>
                             <option value="Localidades">Localidades</option>
                             <option value="Rubros">Rubros</option>
                             <option value="Cargo">Cargo</option>

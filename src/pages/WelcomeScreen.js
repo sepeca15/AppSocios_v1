@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Carousel from 'react-elastic-carousel'
 import { ReactComponent as Partners } from '../svg/partners.svg';
 import { ReactComponent as Welcome } from '../svg/welcome.svg';

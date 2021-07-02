@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Bell, LogOut } from 'react-feather';
 import { clearUser } from '../store/actions/auth';

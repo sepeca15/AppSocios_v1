@@ -13,7 +13,7 @@ const FormAddEmpresa = () => {
     const [localidades, setLocalidades] = useState(null);
     const [file, setFile] = useState(null);
     const dispatch = useDispatch()
-    const [form, setForm, reset] = useForm({
+    const [form, setForm] = useForm({
         nombre_fantasia: "",
         telefono: "",
         nro_referencia: "",
