@@ -35,3 +35,17 @@ export const loadLocalidades = async (idD) => {
         Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador [Frontend]", "error");
     }
 }
+export const loadCargos = async () => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/cargos");
+        const body = await resp.json();
+        if (body.ok) {
+            return { ok: true, localidades: body.cargos }
+        } else {
+            return { ok: false, localidades: [] }
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador [Frontend]", "error");
+    }
+}

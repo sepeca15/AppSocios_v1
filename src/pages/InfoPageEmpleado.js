@@ -94,8 +94,6 @@ const InfoPageEmpleado = () => {
               state.map((element, i) => {
                 return <AddInfoEmpleado {...element} num={i} />;
               })}
-            }
-            
           </div>
         </div>
       </div>
