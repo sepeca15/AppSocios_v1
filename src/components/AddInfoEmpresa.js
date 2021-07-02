@@ -3,8 +3,14 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import * as Icon from "react-feather";
+import { elimiarEmpresa } from "../store/actions/empresas";
+import { useDispatch } from "react-redux";
 
-const AddInfoEmpresa = ({ nombre_fantasia, email, celular, razon_social, rut, activa, direccion, logo_empresa, num }) => {
+const AddInfoEmpresa = ({ nombre_fantasia, email, celular, razon_social, rut, activa, direccion, logo_empresa, num ,id}) => {
+    const dispatch = useDispatch()
+    const eliminarEmpresa = () => {
+        dispatch(elimiarEmpresa(id))
+      };
     return (
         <>
             <div className={num % 2 == 1 ? "bg-gray-200 md:w-full inline-block md:flex justify-between px-2 py-1 itemRow md:px-10 flex-col md:flex-row shadow-md" : "bg-white md:w-full inline-block md:flex justify-between px-2 py-1 itemRow md:px-10 flex-col md:flex-row shadow-md"}>
@@ -50,7 +56,7 @@ const AddInfoEmpresa = ({ nombre_fantasia, email, celular, razon_social, rut, ac
                     <button
                         onClick={() => {
                             Swal.fire({
-                                title: "¿Está seguro que desea eliminar esta empresa?",
+                                title: "¿Está seguro que desea eliminar este empleado?",
                                 text: "¡No podrás recuperar los datos!",
                                 type: "warning",
                                 showCloseButton: true,
@@ -59,6 +65,12 @@ const AddInfoEmpresa = ({ nombre_fantasia, email, celular, razon_social, rut, ac
                                 cancelButtonColor: "#C4C4C4",
                                 confirmButtonText: "Sí, eliminarlo!",
                                 cancelButtonText: "Cancelar",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    eliminarEmpresa();
+                                } else if (result.isDenied) {
+                                    Swal.fire("Changes are not saved", "", "info");
+                                }
                             });
                         }}
                         className="bg-danger text-xs mr-1 text-white font-bold p-2 rounded"

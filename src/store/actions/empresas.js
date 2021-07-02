@@ -50,4 +50,28 @@ const postEmpresa = (form) => {
     }
 }
 
-export { getAllEmpresas, postEmpresa }
+const elimiarEmpresa = (id) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/empresas/"+id, {} ,"DELETE");
+            const body = await resp.json();
+            if (body.ok) {
+                /* dispatch(createEmpresa(body.empresas)) */
+                Swal.fire({
+                    title: "Se elimino correctamente",
+                    type: "success",
+                });
+                
+            } else {
+                Swal.fire("Error Empresas", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+
+    }
+}
+
+
+export { getAllEmpresas, postEmpresa, elimiarEmpresa }
