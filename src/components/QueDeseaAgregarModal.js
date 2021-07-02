@@ -48,7 +48,7 @@ const QueDeseaAgregarModal = () => {
             case "Rubros":
                 return <AddRubroModal />
             case "Empresa":
-                router.push("/addEmpleado")
+                router.push("/adminglobal/addempresa")
             default:
                 break;
         }

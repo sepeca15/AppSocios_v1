@@ -29,4 +29,22 @@ const getAllEmpresas = () => {
     }
 }
 
+/* const postEmpresas = () => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/empresas/");
+            const body = await resp.json();
+            if (body.ok) {
+                dispatch(getEmpresas(body.empresas))
+            } else {
+                Swal.fire("Error Empresas", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+
+    }
+} */
+
 export { getAllEmpresas, createEmpresa }

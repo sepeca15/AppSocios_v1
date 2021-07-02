@@ -47,6 +47,11 @@ const FormAddEmpresa = () => {
                 console.log(error)
             })
         }
+        else {
+            dispatch(createEmpresa({
+                ...form
+            }))
+        }
     }
 
     const changeDepartamento = async ({ target }) => {

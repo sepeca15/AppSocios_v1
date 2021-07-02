@@ -15,7 +15,7 @@ export const empresasReducer = (state = initialState, action) => {
             return { ...state, empresas: action.payload }
         case types.createEmpresas:
 
-            return { ...state, }
+            return { ...state, empresas: action.payload }
         case types.updateEmpresas:
 
             return { ...state, }

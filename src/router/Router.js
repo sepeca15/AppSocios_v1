@@ -68,10 +68,11 @@ const RouterApp = () => {
                         <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
                         <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                         <PrivateRouter exact path="/register/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
-                        <PrivateRouter exact path="/admin" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
+                        <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                        <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
                         <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
                         {/* <PrivateRoute exact path="/" isAuth={!!auth} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!auth} component={JournalScreen} ></PrivateRoute> */}
