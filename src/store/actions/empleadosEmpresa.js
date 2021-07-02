@@ -50,7 +50,27 @@ const postempleadoEmpresa = (form) => {
                     text: "La empresa se agrego "+ form.name +" correctamente",
                     type: "success",
                 });
-                console.log(body.NewUserCreated);
+            } else {
+                Swal.fire("Error Empresas", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+
+    }
+}
+const eliminarEmpleado = (empleado) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/empleados/", {...empleado}, "DELETE");
+            const resp2 = await fetchConToken("http://localhost:5000/user/"+ empleado.user, {}, "DELETE");
+            const body = await resp.json();
+            if (body.ok) {
+                Swal.fire({
+                    title: "Se elimino correctamente" + body,
+                    type: "success",
+                });
             } else {
                 Swal.fire("Error Empresas", body.msg, "error");
             }
@@ -62,4 +82,4 @@ const postempleadoEmpresa = (form) => {
     }
 }
 
-export { getEmpleadosEmpresa, postempleadoEmpresa } 
+export { getEmpleadosEmpresa, postempleadoEmpresa, eliminarEmpleado } 
