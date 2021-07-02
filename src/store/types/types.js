@@ -7,5 +7,8 @@ export const types = {
     updateEmpresas: "[empresas] updateEmpresas",
     deletEmpresas: "[empresas] deletEmpresas",
     getactiveEmpresa: "[empresas] getactiveEmpresa",
-    
+    setEmpleadosEmpresa: "[empresaEmpleados] asignarEmpleado",
+    removeEmpleado: "[empresaEmpleado] removeEmpleado",
+    getEmpleadosEmpresa: "[empresaEmpleados] getEmpleado"
+
 }

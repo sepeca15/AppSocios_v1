@@ -79,7 +79,7 @@ const RouterApp = () => {
                         <Redirect to="/login"></Redirect>
                     </Switch>
 
-                </div>
+                </div>  
             </div>
 
         </Router >
