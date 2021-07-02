@@ -9,16 +9,20 @@ export const empresasReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.getactiveEmpresa:
 
-            return {}
+            return { ...state}
+
         case types.getEmpresas:
 
             return { ...state, empresas: action.payload }
+
         case types.createEmpresas:
 
             return { ...state, empresas: action.payload }
+
         case types.updateEmpresas:
 
             return { ...state, }
+            
         case types.deletEmpresas:
 
             return { ...state, }

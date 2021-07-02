@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fileupload } from '../helpers/fileUpload';
-import { createEmpresa } from '../store/actions/empresas';
+import { postEmpresa } from '../store/actions/empresas';
 import { useForm } from '../helpers/useForm';
 import { loadDepartamentos, loadLocalidades } from '../helpers/loadData';
 
+
 const FormAddEmpresa = () => {
     const state = useSelector(state => state.auth.user)
+    const stateEmpresa = useSelector((state) => state.empresas.empresas);
     const [departamento, setDepartamentos] = useState(null);
     const [localidades, setLocalidades] = useState(null);
     const [file, setFile] = useState(null);
@@ -39,7 +41,7 @@ const FormAddEmpresa = () => {
         e.preventDefault();
         if (file) {
             await fileupload(file).then(e => {
-                dispatch(createEmpresa({
+                dispatch(postEmpresa({
                     ...form,
                     logo_empresa: e
                 }))
@@ -48,7 +50,7 @@ const FormAddEmpresa = () => {
             })
         }
         else {
-            dispatch(createEmpresa({
+            dispatch(postEmpresa({
                 ...form
             }))
         }
@@ -93,7 +95,7 @@ const FormAddEmpresa = () => {
     if (departamento == null) return <div className="text-center ">Espere por favor...</div>
     return (
         <div className="w-full h-full bg-white">
-            <form className="" /* onSubmit={handelSumit} */>
+            <form onSubmit={addEmpresa}>
                 <div className="w-10/12 flex flex-col items-center my-4 mx-auto">
                     <p className="text-gray-800 text-center text-3x1 font-semibold">Rellena los campos para añadir una Empresa</p>
                 </div>
@@ -158,7 +160,7 @@ const FormAddEmpresa = () => {
                                 type="text"
                                 className="form-control text-sm my-1 mr-2 p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
                                 placeholder="Ingrese un Telefono"
-                                name="telefono:"
+                                name="telefono"
                                 value={form.telefono}
                                 onChange={setForm}
                             />
@@ -179,7 +181,7 @@ const FormAddEmpresa = () => {
                         <div className="form-group w-full">
                             <label htmlFor="departamento">Departamento</label>
                             <select className="form-control text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none" onChange={changeDepartamento} required name="departamento">
-                            <option selected={true} disabled="disable">Seleccione uno</option>
+                                <option selected={true} defaultValue={true} disabled="disable">Seleccione uno</option>
                                 {
                                     departamento?.map((e, i) => {
                                         return <option key={e.name + "," + i} value={`${e.id}`}>{e.name}</option>
@@ -298,10 +300,10 @@ const FormAddEmpresa = () => {
                                 <option value={0}>Intactiva</option>
                             </select>
                         </div>
-                        <div className="flex justify-end content-end py-8 w-full">
-                            <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
-                        </div>
                     </div>
+                </div>
+                <div className="flex justify-end content-end py-8 w-full">
+                    <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">Guardar</button>
                 </div>
             </form>
         </div>
