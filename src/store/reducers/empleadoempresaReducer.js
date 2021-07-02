@@ -1,7 +1,8 @@
 import { types } from "../types/types"
 
 const initialState = {
-    empleadosEmpresa: null
+    empleadosEmpresa: null,
+    activeUser: null
 }
 
 export const empleadoempresaReducer = (state = initialState, action) => {

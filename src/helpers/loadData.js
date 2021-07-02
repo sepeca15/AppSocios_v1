@@ -40,9 +40,9 @@ export const loadCargos = async () => {
         const resp = await fetchConToken("http://localhost:5000/cargos");
         const body = await resp.json();
         if (body.ok) {
-            return { ok: true, localidades: body.cargos }
+            return { ok: true, cargos: body.cargos }
         } else {
-            return { ok: false, localidades: [] }
+            return { ok: false, cargos: [] }
         }
     } catch (error) {
         console.log(error);

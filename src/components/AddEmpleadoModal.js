@@ -5,7 +5,12 @@ import { fileupload } from "../helpers/fileUpload";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpBackend } from "../store/actions/auth";
 import { useForm } from "../helpers/useForm";
-import { loadDepartamentos, loadLocalidades } from "../helpers/loadData";
+import {
+  loadDepartamentos,
+  loadLocalidades,
+  loadCargos,
+} from "../helpers/loadData";
+import Swal from "sweetalert2";
 
 const customStyles = {
   overlay: {
@@ -26,30 +31,38 @@ const customStyles = {
 const AddEmpleadoModal = (props) => {
   const [departamento, setDepartamentos] = useState(null);
   const [localidades, setLocalidades] = useState(null);
+  const [cargos, setCargos] = useState(null);
   const state = useSelector((state) => state.auth.user);
 
   useEffect(() => {
-    if(props.modalIsOpen == true){
-        (async function loadInputsDepandLoc() {
-      const departamentosAll = await loadDepartamentos(state?.id);
-      if (departamentosAll?.ok) {
-        setDepartamentos(departamentosAll.departamentos);
-        if (departamentosAll.dptoUser) {
-          /* setdptoUser(departamentosAll.dptoUser); */
-        }
-        if (departamentosAll.dptoUser) {
-          const localidad = await loadLocalidades(departamentosAll.dptoUser);
-          if (localidad.ok) {
-            setLocalidades(localidad.localidades);
-          } else {
-            setLocalidades([]);
+    if (props.modalIsOpen == true) {
+      (async function loadInputsDepandLoc() {
+        const departamentosAll = await loadDepartamentos(state?.id);
+        const cargosAll = await loadCargos(state?.id);
+        if (departamentosAll?.ok) {
+          setDepartamentos(departamentosAll.departamentos);
+          if (departamentosAll.dptoUser) {
+            /* setdptoUser(departamentosAll.dptoUser); */
           }
+          if (departamentosAll.dptoUser) {
+            const localidad = await loadLocalidades(departamentosAll.dptoUser);
+            if (localidad.ok) {
+              setLocalidades(localidad.localidades);
+            } else {
+              setLocalidades([]);
+            }
+          }
+        } else {
+          setDepartamentos([]);
         }
-      } else {
-        setDepartamentos([]);
-      }
-    })();
-}
+
+        if (cargosAll?.ok) {
+          setCargos(cargosAll.cargos);
+        } else {
+          setCargos([]);
+        }
+      })();
+    }
     return () => {
       setDepartamentos(null);
       setLocalidades(null);
@@ -104,7 +117,7 @@ const AddEmpleadoModal = (props) => {
     rol: "",
     empresa: "",
     activo: true,
-  }); 
+  });
   const changeDepartamento = async ({ target }) => {
     const localidad = await loadLocalidades(target.value);
     console.log(localidad);
@@ -115,7 +128,7 @@ const AddEmpleadoModal = (props) => {
     }
   };
 
-  if (departamento == null) {
+  if (departamento == null || cargos == null) {
     return <div className="text-center ">Espere por favor...</div>;
   }
   return (
@@ -253,7 +266,9 @@ const AddEmpleadoModal = (props) => {
                 className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
                 name="localidad"
               >
-                  <option selected={true} disabled="disable">Seleccione uno</option>
+                <option selected={true} disabled="disable">
+                  Seleccione uno
+                </option>
                 {localidades?.map((e, i) => {
                   return (
                     <option key={e.name + "," + i} value={`${e.id}`}>
@@ -275,11 +290,13 @@ const AddEmpleadoModal = (props) => {
                 <option selected={true} disabled="disable">
                   Seleccione uno
                 </option>
-                <option value="">Artigas</option>
-                <option value="">Canelones</option>
-                <option value="">Cerro Largo</option>
-                <option value="">Colonia</option>
-                <option value="">Durazno</option>
+                {cargos?.map((e, i) => {
+                  return (
+                    <option key={e.name + "," + i} value={`${e.id}`}>
+                      {e.name}
+                    </option>
+                  );
+                })}
               </select>
             </div>
 
@@ -291,7 +308,9 @@ const AddEmpleadoModal = (props) => {
                 onChange={setForm}
                 className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
               >
-                  <option selected={true} disabled="disable">Seleccione uno</option>
+                <option selected={true} disabled="disable">
+                  Seleccione uno
+                </option>
                 <option value="1">Super Usuario</option>
                 <option value="2">Usuario</option>
                 <option value="3">Admin Empresa</option>
@@ -307,7 +326,23 @@ const AddEmpleadoModal = (props) => {
             />
           </div>
           <div className="flex justify-end">
-            <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">
+            <button
+              className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded"
+              onClick={() => {
+                if (
+                  form.name === "" ||
+                  form.last_name === "" ||
+                  form.email === "" ||
+                  form.telefono === "" ||
+                  form.cargo === "" ||
+                  form.name_user === ""
+                ) {
+                  Swal.fire("Error", "Complete los campos", "error");
+                }else{
+                    Swal.fire("Bien", "Nuevo empleado", "info");
+                }
+              }}
+            >
               Guardar
             </button>
             <button
