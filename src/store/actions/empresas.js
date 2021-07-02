@@ -6,9 +6,9 @@ const getEmpresas = (empresas) => {
     return {payload: empresas, type:types.getEmpresas}
 }
 
-/* const createEmpresas = (empresas) => {
+const createEmpresa = (empresas) => {
     return {payload: empresas, type:types.getEmpresas}
-} */
+}
 
 /* load data fecht */
 const getAllEmpresas = () => {
@@ -29,4 +29,4 @@ const getAllEmpresas = () => {
     }
 }
 
-export { getAllEmpresas }
+export { getAllEmpresas, createEmpresa }
