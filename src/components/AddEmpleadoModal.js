@@ -11,6 +11,7 @@ import {
   loadCargos,
 } from "../helpers/loadData";
 import Swal from "sweetalert2";
+import { postempleadoEmpresa } from "../store/actions/empleadosEmpresa";
 
 const customStyles = {
   overlay: {
@@ -79,12 +80,14 @@ const AddEmpleadoModal = (props) => {
   };
   const dispatch = useDispatch();
 
-  const saveEnmpleado = async () => {
+  const saveEnmpleado = async (e) => {
+    e.preventDefault()
+    console.log(form);
     if (file) {
       await fileupload(file)
         .then((e) => {
           dispatch(
-            signUpBackend({
+            postempleadoEmpresa({
               ...form,
               photo: e,
             })
@@ -95,7 +98,7 @@ const AddEmpleadoModal = (props) => {
         });
     } else {
       dispatch(
-        signUpBackend({
+        postempleadoEmpresa({
           ...form,
         })
       );
@@ -115,7 +118,7 @@ const AddEmpleadoModal = (props) => {
     esemprendedor: false,
     cargo: "",
     rol: "",
-    empresa: "",
+    empresa: "1",
     activo: true,
   });
   const changeDepartamento = async ({ target }) => {
@@ -146,7 +149,7 @@ const AddEmpleadoModal = (props) => {
         <p className="text-gray-800 text-center text-3x1 font-semibold">
           Agregar Empleado
         </p>
-        <form className="" /* onSubmit={} */>
+        <form className="" onSubmit={saveEnmpleado}>
           <div className="my-6">
             <div className="formgroup">
               <label>Nombre</label>
@@ -287,7 +290,7 @@ const AddEmpleadoModal = (props) => {
                 onChange={setForm}
                 className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
               >
-                <option selected={true} disabled="disable">
+                <option >
                   Seleccione uno
                 </option>
                 {cargos?.map((e, i) => {
@@ -311,7 +314,7 @@ const AddEmpleadoModal = (props) => {
                 <option selected={true} disabled="disable">
                   Seleccione uno
                 </option>
-                <option value="1">Super Usuario</option>
+                {/* <option value="1">Super Usuario</option> */}
                 <option value="2">Usuario</option>
                 <option value="3">Admin Empresa</option>
               </select>
@@ -327,22 +330,7 @@ const AddEmpleadoModal = (props) => {
           </div>
           <div className="flex justify-end">
             <button
-              className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded"
-              onClick={() => {
-                if (
-                  form.name === "" ||
-                  form.last_name === "" ||
-                  form.email === "" ||
-                  form.telefono === "" ||
-                  form.cargo === "" ||
-                  form.name_user === ""
-                ) {
-                  Swal.fire("Error", "Complete los campos", "error");
-                }else{
-                    Swal.fire("Bien", "Nuevo empleado", "info");
-                }
-              }}
-            >
+              className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded" type="submit">
               Guardar
             </button>
             <button
