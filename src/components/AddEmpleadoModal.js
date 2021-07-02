@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { fileupload } from "../helpers/fileUpload";
 import { useDispatch, useSelector } from "react-redux";
-import { signUpBackend } from "../store/actions/auth";
 import { useForm } from "../helpers/useForm";
 import {
   loadDepartamentos,
   loadLocalidades,
   loadCargos,
 } from "../helpers/loadData";
-import Swal from "sweetalert2";
+import { postempleadoEmpresa } from "../store/actions/empleadosEmpresa";
 import { editEmpleadoEmpresa, postempleadoEmpresa } from "../store/actions/empleadosEmpresa";
 
 const customStyles = {

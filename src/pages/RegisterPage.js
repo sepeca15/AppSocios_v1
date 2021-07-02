@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { Shield } from 'react-feather';
-import { ReactComponent as Security } from '../svg/security.svg';
 import { ReactComponent as GoogleIcon } from '../svg/google.svg';
 import { useDispatch } from 'react-redux';
 import { signInWithGoogle, signUp, signUpBackend } from '../store/actions/auth';

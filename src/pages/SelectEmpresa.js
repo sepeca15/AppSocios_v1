@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, Shield, CheckCircle } from 'react-feather';
+import { List, CheckCircle } from 'react-feather';
 
 
 const SelectEmpresa = () => {

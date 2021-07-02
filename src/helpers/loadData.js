@@ -49,3 +49,63 @@ export const loadCargos = async () => {
         Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador [Frontend]", "error");
     }
 }
+
+export const insertCargo = async (cargo) => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/cargos/", {name:cargo}, "POST");
+        const body = await resp.json();
+        if (body.ok) {
+            Swal.fire({
+                title: "Se añadio correctamente",
+                text: "El Cargo se agrego correctamente",
+                type: "success",
+            });
+            
+        } else {
+            Swal.fire("Error Cargo", body.msg, "error");
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+    }
+}
+
+export const insertLocalidad = async (localidad,departamento) => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/localidades/", {name:localidad, did:departamento}, "POST");
+        const body = await resp.json();
+        if (body.ok) {
+            Swal.fire({
+                title: "Se añadio correctamente",
+                text: "La localidad se agrego correctamente",
+                type: "success",
+            });
+            
+        } else {
+            Swal.fire("Error Localiada o id Departamento", body.msg, "error");
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+    }
+}
+
+export const insertRubro= async (rubro) => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/rubroA/", {name:rubro}, "POST");
+        const body = await resp.json();
+        if (body.ok) {
+            Swal.fire({
+                title: "Se añadio correctamente",
+                text: "El rubro se agrego correctamente",
+                type: "success",
+            });
+            
+        } else {
+            Swal.fire("Error Rubro", body.msg, "error");
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+    }
+}

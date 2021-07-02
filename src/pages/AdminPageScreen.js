@@ -1,38 +1,16 @@
-import React, { useState } from "react";
-import * as Icon from "react-feather";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
-import AddLocalidadModal from "../components/AddLocalidadModal";
-import AddRubroModal from "../components/AddRubroModal";
-import AddCargoModal from "../components/AddCargoModal";
-import AddEmpresa from "../pages/AddEmpresa";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllEmpresas } from "../store/actions/empresas";
 
 const AdminPageScreen = () => {
-  /* addRubro */
-  const [modalAddRubroIsOpen, setAddRubroIsOpen] = useState(false);
 
-  function openAddRubroModal() {
-    setAddRubroIsOpen(true);
-  }
-
-  function closeAddRubroModal() {
-    setAddRubroIsOpen(false);
-  }
-  /* addRubro */
-
-  /* addlocalidad */
-  const [modalAddLocalidadIsOpen, setAddLocalidadIsOpen] = useState(false);
-
-  function openAddLocalidadModal() {
-    setAddLocalidadIsOpen(true);
-  }
-
-  function closeAddLocalidadModal() {
-    setAddLocalidadIsOpen(false);
-  }
-  /* addlocalidad */
-
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllEmpresas())
+  }, [])
+  const state = useSelector(state => state.empresas.empresas)
   return (
     <div className=" relative w-full h-full ">
       <div className="flex justify-around flex-col text-center bg-gray-100 md:flex-row mb-2 py-4 ">
@@ -116,19 +94,11 @@ const AdminPageScreen = () => {
         </div>
 
         <div className="flex flex-nowrap flex-grow md:flex-col w-6/12 md:w-full heightvh overflow-x-auto md:overflow-y-auto ">
-          {/* Map aqui */}
-          <AddInfoEmpresa />
-          {/* 
-                        <AddInfoEmpresa 
-                            name={} 
-                            email={} 
-                            celular={} 
-                            empleados={} 
-                            razonsocial={} 
-                            rut={} 
-                            estado={} 
-                        /> 
-                    */}
+          {state&&
+          state.map((empresa,index)=>{
+            return <AddInfoEmpresa {...empresa} num={index} />
+          })
+          }
         </div>
       </div>
       <p>
