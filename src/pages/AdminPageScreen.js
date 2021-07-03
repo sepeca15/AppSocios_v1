@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllEmpresas } from "../store/actions/empresas";
+import { getAllEmpresas, getbusquedaEmpresaText } from "../store/actions/empresas";
 import { useForm } from "../helpers/useForm";
 
 const AdminPageScreen = () => {
@@ -18,8 +18,11 @@ const AdminPageScreen = () => {
   const dataBusqueda = (e) =>{
     e.preventDefault()
     let data = e.target.value
-    
-    
+    if(!data){
+      dispatch(getAllEmpresas());
+    }else{
+      dispatch(getbusquedaEmpresaText(data))
+    }
   }
   return (
     <div className=" relative w-full h-full ">

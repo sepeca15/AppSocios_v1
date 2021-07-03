@@ -14,6 +14,8 @@ export const types = {
     addUIEmpleado: "[empresaEmpleados] addEmpleadoEmpresa",
     activeEmpleado: "[empresaEmpleado] activeEmpleado",
     clearActiveEmpleado: "[empresaEmpleado] claerActiveEmpleado",
-    detalleEmpresa: "[empresaDetalle] detalleEmpresa"
+    detalleEmpresa: "[empresaDetalle] detalleEmpresa",
+    busquedaEmpresaText: "[empresaDetalle] busquedaEmpresaText",
+    busquedaEmpleadoText: "[empresaDetalle] busquedaEmpleadoText"
 
 }

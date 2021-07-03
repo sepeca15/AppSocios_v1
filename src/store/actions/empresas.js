@@ -5,6 +5,9 @@ import Swal from "sweetalert2"
 const getEmpresas = (empresas) => {
     return {payload: empresas, type:types.getEmpresas}
 }
+const getEmpresasSearch = (empresas) => {
+    return {payload: empresas, type:types.busquedaEmpresaText}
+}
 
 
 /* load data fecht */
@@ -21,6 +24,24 @@ const getAllEmpresas = () => {
         } catch (error) {
             console.log(error);
             Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+
+    }
+}
+/* load data fecht */
+const getbusquedaEmpresaText = (data) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/empresas/search/" + data);
+            const body = await resp.json();
+            if (body.ok) {
+                dispatch(getEmpresasSearch(body.empresas))
+            } else {
+               /*  console.log(body); */
+            }
+        } catch (error) {
+            /* console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error"); */
         }
 
     }
@@ -74,4 +95,4 @@ const elimiarEmpresa = (id) => {
 }
 
 
-export { getAllEmpresas, postEmpresa, elimiarEmpresa }
+export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText }

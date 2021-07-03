@@ -12,6 +12,8 @@ export const empleadoempresaReducer = (state = initialState, action) => {
         ...state,
         empleadosEmpresa: action.payload,
       };
+    case types.busquedaEmpleadoText:
+      return { ...state, empleadosEmpresa: action.payload };
     case types.addUIEmpleado:
       return {
         ...state,
@@ -24,7 +26,7 @@ export const empleadoempresaReducer = (state = initialState, action) => {
         empleadosEmpresa: state.empleadosEmpresa.filter((e) =>  
             e.user.id != action.payload.user && e.user.cargo != action.payload.cargo
           ),
-      };
+      }; 
     case types.activeEmpleado:
       return {
         ...state,

@@ -15,15 +15,35 @@ const addUIEmpleado = (empleado) => {
         payload: empleado
     }
 }
+const getEmpleadoSearch = (empleadosEmpresa) => {
+    return {payload: empleadosEmpresa, type:types.busquedaEmpleadoText}
+}
 
+const getbusquedaEmpleadoSearchText = (data) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/user/" + data);
+            const body = await resp.json();
+            if (body.ok) {
+                dispatch(getEmpleadoSearch(body.usuarios))
+            } else {
+                console.log(body);
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion"+ data +", contacte con el desarrollador", "error");
+        }
+
+    }
+}
 
 const getEmpleadosEmpresa = (idempresa) => {
     return async (dispatch) => {
         try {
             /* Cambiar id */
-            const res = await fetchConToken("http://localhost:5000/empleados/1");
+            const res = await fetchConToken("http://localhost:5000/empleados/"+ idempresa);
             const body = await res.json();
-            if (body.ok == true) {
+            if (body.ok === true) {
                 /* Si la respuesta es positiva */
                 /* body.empleados */
                 dispatch(empleadoEmpresa(body.empleados))
@@ -105,4 +125,4 @@ const eliminarEmpleado = (empleado) => {
 }
  
 
-export { getEmpleadosEmpresa, postempleadoEmpresa, eliminarEmpleado, editEmpleadoEmpresa } 
+export { getEmpleadosEmpresa, postempleadoEmpresa, eliminarEmpleado, editEmpleadoEmpresa, getbusquedaEmpleadoSearchText } 
