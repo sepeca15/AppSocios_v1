@@ -4,15 +4,18 @@ import AddInfoEmpleado from "../components/AddInfoEmpleado";
 import AddEmpleadoModal from "../components/AddEmpleadoModal";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getEmpleadosEmpresa } from "../store/actions/empleadosEmpresa";
+import { getbusquedaEmpleadoSearchText, getEmpleadosEmpresa } from "../store/actions/empleadosEmpresa";
 
 const InfoPageEmpleado = () => {
+  const detalleEmpresaActual = useSelector(
+    (state) => state.detalleEmpresa.detallesDeEmpresaActual
+  );
   const state = useSelector((state) => state.empleadosEmpresa.empleadosEmpresa);
   console.log(state);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getEmpleadosEmpresa());
-  });
+    dispatch(getEmpleadosEmpresa(detalleEmpresaActual?.id));
+  }, []);
 
   /* AddEmpleadoModal */
   const [modalAddEmpleadoIsOpen, setIsAddEmpleadoOpen] = useState(false);
@@ -26,7 +29,15 @@ const InfoPageEmpleado = () => {
   }
 
   /* AddEmpleadoModal */
-
+  const dataBusquedaEmpleado = (e) =>{
+    e.preventDefault()
+    let data = e.target.value
+    if(!data){
+      /* dispatch(getAllEmpresas()); */
+    }else{ 
+      dispatch(getbusquedaEmpleadoSearchText(data))
+    }
+  }
   return (
     <>
       <AddEmpleadoModal
@@ -46,6 +57,7 @@ const InfoPageEmpleado = () => {
           </div>
           <div className="max-w-full lg:w-5/12 xl:w-6/12 my-3 md:my-0 flex items-center justify-center">
             <input
+              onChange={dataBusquedaEmpleado}
               className="shadow appearance-none border rounded w-4/6 md:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"

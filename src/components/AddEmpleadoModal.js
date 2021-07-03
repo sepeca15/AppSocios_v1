@@ -33,6 +33,9 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
   const state = useSelector((state) => state.auth.user);
   /* const cargo = useSelector((state) => state?.empleadosEmpresa?.activeEmpleado?.cargo) */
   const user = useSelector((state) => state?.empleadosEmpresa?.activeEmpleado?.user)
+  const detalleEmpresaActual = useSelector(
+    (state) => state.detalleEmpresa.detallesDeEmpresaActual
+  );
   useEffect(() => {
     if (modalIsOpen === true) {
       (async function loadInputsDepandLoc() {
@@ -137,7 +140,7 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
     esemprendedor: false,
     cargo: "",
     rol: "",
-    empresa: "1",
+    empresa: detalleEmpresaActual?.id,
     activo: true,
   });
   const changeDepartamento = async ({ target }) => {

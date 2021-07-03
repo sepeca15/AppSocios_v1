@@ -3,6 +3,7 @@ import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEmpresas, getbusquedaEmpresaText } from "../store/actions/empresas";
+import { useForm } from "../helpers/useForm";
 
 const AdminPageScreen = () => {
   const dispatch = useDispatch();
@@ -11,13 +12,17 @@ const AdminPageScreen = () => {
   });
   const state = useSelector((state) => state.empresas.empresas);
 
-const dataBusqueda = (e) =>{
-  e.preventDefault()
-  let data = e.target.value
-  if(!data){
-    dispatch(getAllEmpresas());
-  }else{
-    dispatch(getbusquedaEmpresaText(data))
+  const [form, setForm, reset] = useForm({
+    data: ""
+})
+  const dataBusqueda = (e) =>{
+    e.preventDefault()
+    let data = e.target.value
+    if(!data){
+      dispatch(getAllEmpresas());
+    }else{
+      dispatch(getbusquedaEmpresaText(data))
+    }
   }
 }
   return (
