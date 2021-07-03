@@ -13,6 +13,7 @@ export const types = {
     getEmpleadosEmpresa: "[empresaEmpleados] getEmpleado",
     addUIEmpleado: "[empresaEmpleados] addEmpleadoEmpresa",
     activeEmpleado: "[empresaEmpleado] activeEmpleado",
-    clearActiveEmpleado: "[empresaEmpleado] claerActiveEmpleado"
+    clearActiveEmpleado: "[empresaEmpleado] claerActiveEmpleado",
+    detalleEmpresa: "[empresaDetalle] detalleEmpresa"
 
 }
