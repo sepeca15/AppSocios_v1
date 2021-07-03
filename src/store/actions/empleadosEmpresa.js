@@ -22,10 +22,12 @@ const getEmpleadoSearch = (empleadosEmpresa) => {
 const getbusquedaEmpleadoSearchText = (data) => {
     return async (dispatch) => {
         try {
-            const resp = await fetchConToken("http://localhost:5000/user/" + data);
+            const resp = await fetchConToken("http://localhost:5000/user/search/" + data);
             const body = await resp.json();
             if (body.ok) {
+                console.log(body);
                 dispatch(getEmpleadoSearch(body.usuarios))
+                console.log(data);
             } else {
                 console.log(body);
             }

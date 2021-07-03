@@ -14,6 +14,7 @@ export const empleadoempresaReducer = (state = initialState, action) => {
       };
     case types.busquedaEmpleadoText:
       return { ...state, empleadosEmpresa: action.payload };
+      
     case types.addUIEmpleado:
       return {
         ...state,

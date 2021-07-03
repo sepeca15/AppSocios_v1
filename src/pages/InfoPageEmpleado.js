@@ -16,7 +16,8 @@ const InfoPageEmpleado = () => {
   useEffect(() => {
     dispatch(getEmpleadosEmpresa(detalleEmpresaActual?.id));
   }, []);
-
+  
+  const dispatch2 = useDispatch();
   /* AddEmpleadoModal */
   const [modalAddEmpleadoIsOpen, setIsAddEmpleadoOpen] = useState(false);
 
@@ -35,7 +36,7 @@ const InfoPageEmpleado = () => {
     if(!data){
       /* dispatch(getAllEmpresas()); */
     }else{ 
-      dispatch(getbusquedaEmpleadoSearchText(data))
+      dispatch2(getbusquedaEmpleadoSearchText(data))
     }
   }
   return (
