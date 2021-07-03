@@ -24,7 +24,7 @@ const AdminPageScreen = () => {
       dispatch(getbusquedaEmpresaText(data))
     }
   }
-}
+
   return (
     <div className=" relative w-full h-full ">
       <div className="flex justify-around flex-col text-center bg-gray-100 md:flex-row mb-2 py-4 ">
