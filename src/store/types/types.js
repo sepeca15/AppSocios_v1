@@ -3,7 +3,11 @@ export const types = {
     loggout: "[auth] loggout",
     setEmpleado: "[empleado]",
     setEmpleadosEmpresa: "[empresaEmpleados] asignarEmpleado",
+    putEmpleadosEmpresa: "[empresaEmpleados] editEmpleado",
     removeEmpleado: "[empresaEmpleado] removeEmpleado",
-    getEmpleadosEmpresa: "[empresaEmpleados] getEmpleado"
+    getEmpleadosEmpresa: "[empresaEmpleados] getEmpleado",
+    addUIEmpleado: "[empresaEmpleados] addEmpleadoEmpresa",
+    activeEmpleado: "[empresaEmpleado] activeEmpleado",
+    clearActiveEmpleado: "[empresaEmpleado] claerActiveEmpleado"
 
 }

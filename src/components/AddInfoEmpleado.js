@@ -5,18 +5,24 @@ import Swal from "sweetalert2";
 import EditEmpleadoModal from "../components/EditEmpleadoModal";
 import { useDispatch, useSelector } from "react-redux";
 import { eliminarEmpleado } from "../store/actions/empleadosEmpresa";
+import AddEmpleadoModal from "./AddEmpleadoModal";
+import { types } from "../store/types/types";
 
 const AddInfoEmpleado = ({ cargo, user, empresa, estado, num }) => {
   const dispatch = useDispatch();
 
-  const [modalEditEmpleadoIsOpen, setIsEditEmpleadoOpen] = useState(false);
-  function openModalEditEmpleado() {
-    setIsEditEmpleadoOpen(true);
-  }
+    /* AddEmpleadoModal */
+    const [modalAddEmpleadoIsOpen, setIsAddEmpleadoOpen] = useState(false);
 
-  function closeModalEditEmpleado() {
-    setIsEditEmpleadoOpen(false);
-  }
+    function openModalAddEmpleado() {
+      dispatch({type: types.activeEmpleado, payload: {cargo, user, empresa, estado}})
+      setIsAddEmpleadoOpen(true);
+    }
+  
+    function closeModalAddEmpleado() {
+      setIsAddEmpleadoOpen(false);
+      dispatch({type: types.clearActiveEmpleado})
+    }
 
   const eliminarEmpleados = () => {
     dispatch(eliminarEmpleado({user: user.id, empresa: 1, cargo: cargo.id}));
@@ -24,9 +30,9 @@ const AddInfoEmpleado = ({ cargo, user, empresa, estado, num }) => {
 
   return (
     <>
-      <EditEmpleadoModal
-        modalIsOpen={modalEditEmpleadoIsOpen}
-        closeModal={closeModalEditEmpleado}
+      <AddEmpleadoModal
+        modalIsOpen={modalAddEmpleadoIsOpen}
+        closeModal={closeModalAddEmpleado}
       />
       <div
         className={
@@ -99,7 +105,7 @@ const AddInfoEmpleado = ({ cargo, user, empresa, estado, num }) => {
           </button>
           <button
             className="bg-green1 text-xs ml-1 text-white font-bold p-2 rounded"
-            onClick={openModalEditEmpleado}
+            onClick={openModalAddEmpleado}
           >
             <Icon.Edit className="ml-1" /> Editar
           </button>

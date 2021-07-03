@@ -31,6 +31,7 @@ const InfoPageEmpleado = () => {
   return (
     <>
       <AddEmpleadoModal
+        post_Put={true}
         modalIsOpen={modalAddEmpleadoIsOpen}
         closeModal={closeModalAddEmpleado}
       />
@@ -92,7 +93,7 @@ const InfoPageEmpleado = () => {
             {/* Aqui se map los datos de los empleados */}
             {state &&
               state.map((element, i) => {
-                return <AddInfoEmpleado {...element} num={i} />;
+                if(element?.estado != null){ return <AddInfoEmpleado {...element} num={i} />};
               })}
           </div>
         </div>
