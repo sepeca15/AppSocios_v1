@@ -72,7 +72,7 @@ export const insertCargo = async (cargo) => {
 
 export const insertLocalidad = async (localidad,departamento) => {
     try {
-        const resp = await fetchConToken("http://localhost:5000/localidades/", {name:localidad, did:departamento}, "POST");
+        const resp = await fetchConToken("http://localhost:5000/localidades/", {name: localidad, departamento: departamento}, "POST");
         const body = await resp.json();
         if (body.ok) {
             Swal.fire({

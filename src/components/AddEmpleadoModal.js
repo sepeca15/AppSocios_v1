@@ -8,7 +8,6 @@ import {
   loadLocalidades,
   loadCargos,
 } from "../helpers/loadData";
-import { postempleadoEmpresa } from "../store/actions/empleadosEmpresa";
 import { editEmpleadoEmpresa, postempleadoEmpresa } from "../store/actions/empleadosEmpresa";
 
 const customStyles = {

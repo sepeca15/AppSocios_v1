@@ -48,6 +48,7 @@ const AddLocalidadModal = () => {
                 <p className="text-gray-800 text-center text-3x1 font-semibold">Agregar Localidades</p>
                 <form className="" onSubmit={e=>{e.preventDefault()
                 insertLocalidad(form.localidad,form.departamento)
+                console.log(form);
                 closeModal()}}>
                     <div className="form-group my-6">
                         <label htmlFor="departamento">Departamento</label>

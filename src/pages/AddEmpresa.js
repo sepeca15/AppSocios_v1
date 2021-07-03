@@ -6,7 +6,7 @@ const AddEmpresa = () => {
     return (
         <div className="w-full">
             <PortadaAddEmpresa/>
-            <FormAddEmpresa/>
+            <FormAddEmpresa InfoPageEmpresa={true}/>
         </div>
     )
 }
