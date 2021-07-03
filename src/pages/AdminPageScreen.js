@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { getAllEmpresas } from "../store/actions/empresas";
+import { useForm } from "../helpers/useForm";
 
 const AdminPageScreen = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllEmpresas())
-  }, [])
-  const state = useSelector(state => state.empresas.empresas)
+    dispatch(getAllEmpresas());
+  }, []);
+  const state = useSelector((state) => state.empresas.empresas);
+
+  const [form, setForm, reset] = useForm({
+    data: ""
+})
+  const dataBusqueda = (e) =>{
+    e.preventDefault()
+    let data = e.target.value
+    
+    
+  }
   return (
     <div className=" relative w-full h-full ">
       <div className="flex justify-around flex-col text-center bg-gray-100 md:flex-row mb-2 py-4 ">
@@ -20,14 +30,16 @@ const AdminPageScreen = () => {
             <span className="text-gray">Datos de las empresas </span>
           </label>
         </div>
-        <div className="max-w-full lg:w-5/12 xl:w-6/12 my-3 md:my-0 flex items-center justify-center">
-          <input
-            className="shadow appearance-none border rounded w-4/6 md:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            placeholder="¿Estás buscando algún socio?"
-          />
-        </div>
+          <form className="max-w-full lg:w-5/12 xl:w-6/12 my-3 md:my-0 flex items-center justify-center">
+            <input
+            onChange={dataBusqueda}
+              className="shadow appearance-none border rounded w-4/6 md:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              name="data"
+              id="username"
+              type="text"
+              placeholder="¿Estás buscando algún socio?"
+            />
+          </form>
         <div className="max-w-full lg:w-4/12 xl:w-3/12 flex items-center  justify-center">
           <QueDeseaAgregarModal />
         </div>
@@ -43,7 +55,9 @@ const AdminPageScreen = () => {
           </select>
         </div>
         <div className="text-center">
-          <label className="block text-center m-0">Empresas Activas/Inactivas (5)</label>
+          <label className="block text-center m-0">
+            Empresas Activas/Inactivas (5)
+          </label>
           <select className="w-2/3 sm:w-full py-2 px-4 border-2">
             <option value="volvo">Todos</option>
             <option value="saab">Activas</option>
@@ -94,11 +108,10 @@ const AdminPageScreen = () => {
         </div>
 
         <div className="flex flex-nowrap flex-grow md:flex-col w-6/12 md:w-full heightvh overflow-x-auto md:overflow-y-auto ">
-          {state&&
-          state.map((empresa,index)=>{
-            return <AddInfoEmpresa {...empresa} num={index} />
-          })
-          }
+          {state &&
+            state.map((empresa, index) => {
+              return <AddInfoEmpresa {...empresa} num={index} />;
+            })}
         </div>
       </div>
       <p>

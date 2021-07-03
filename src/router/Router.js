@@ -22,6 +22,7 @@ import { clearUser, setUser } from '../store/actions/auth';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
 import UpdateData from '../pages/UpdateData';
+import InfoPageEmpresa from '../pages/InfoPageEmpresa';
 
 const RouterApp = () => {
     const state = useSelector(state => state.auth.user)
@@ -69,8 +70,9 @@ const RouterApp = () => {
                         <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                         <PrivateRouter exact path="/register/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
-                        <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                        <PrivateRouter exact path="/adminglobal/infoempleado" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                         <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
+                        <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
                         <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                         <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
                         <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
