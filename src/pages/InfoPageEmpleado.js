@@ -34,7 +34,7 @@ const InfoPageEmpleado = () => {
     e.preventDefault()
     let data = e.target.value
     if(!data){
-      /* dispatch(getAllEmpresas()); */
+      dispatch(getEmpleadosEmpresa(detalleEmpresaActual.id));
     }else{ 
       dispatch2(getbusquedaEmpleadoSearchText(data))
     }
