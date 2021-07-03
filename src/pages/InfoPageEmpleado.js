@@ -12,7 +12,7 @@ const InfoPageEmpleado = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getEmpleadosEmpresa());
-  }, []);
+  });
 
   /* AddEmpleadoModal */
   const [modalAddEmpleadoIsOpen, setIsAddEmpleadoOpen] = useState(false);

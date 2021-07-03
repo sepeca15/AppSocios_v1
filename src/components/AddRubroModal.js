@@ -23,9 +23,9 @@ const customStyles = {
 const AddRubroModal = (props) => {
     const [modalIsOpen, setIsOpen] = useState(true);
 
-    function openModal() {
+   /*  function openModal() {
         setIsOpen(true);
-    }
+    } */
 
     function closeModal() {
         setIsOpen(false);

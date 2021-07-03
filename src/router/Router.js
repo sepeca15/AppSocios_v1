@@ -4,13 +4,11 @@ import {
     Switch,
     BrowserRouter as Router,
     Redirect,
-    useLocation
 } from 'react-router-dom';
 import AddEmpresa from '../pages/AddEmpresa';
 import NavBar from '../components/NavBar';
 import { fetchSinToken } from '../helpers/fetch';
 import AdminPageScreen from '../pages/AdminPageScreen';
-import HomePageScreen from '../pages/HomePageScreen';
 import InfoPageEmpleado from '../pages/InfoPageEmpleado';
 import LoginScreen from '../pages/LoginScreen';
 import RegisterPage from '../pages/RegisterPage';
@@ -40,14 +38,14 @@ const RouterApp = () => {
         })()
     }, [setUser, clearUser, dispatch, localStorage.getItem("token"), state?.id])
 
-    const handleChangeData = () => {
+    /* const handleChangeData = () => {
         return (
             <div className="w-full h-full">
 
                 <Redirect to="/updatedata"></Redirect>
             </div>
         )
-    }
+    } */
     if (auth == null) {
         return <p className="text-center text-red-500 text-xl">Espere por favor.....</p>
     }

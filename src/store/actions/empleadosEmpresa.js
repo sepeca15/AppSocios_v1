@@ -23,7 +23,7 @@ const getEmpleadosEmpresa = (idempresa) => {
             /* Cambiar id */
             const res = await fetchConToken("http://localhost:5000/empleados/1");
             const body = await res.json();
-            if (body.ok == true) {
+            if (body.ok === true) {
                 /* Si la respuesta es positiva */
                 /* body.empleados */
                 dispatch(empleadoEmpresa(body.empleados))
@@ -86,9 +86,10 @@ const eliminarEmpleado = (empleado) => {
             const resp = await fetchConToken("http://localhost:5000/empleados/", {...empleado}, "DELETE");
             const resp2 = await fetchConToken("http://localhost:5000/user/"+ empleado.user, {}, "DELETE");
             const body = await resp.json();
+            const body1 = await resp2.json();
             if (body.ok) {
                 Swal.fire({
-                    title: "Se elimino correctamente" + body,
+                    title: "Se elimino correctamente" + body+body1,
                     type: "success",
                 });
                 dispatch({type: types.removeEmpleado, payload: empleado})

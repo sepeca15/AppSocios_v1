@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Shield } from 'react-feather';
 import { ReactComponent as GoogleIcon } from '../svg/google.svg';
 import { useDispatch } from 'react-redux';
-import { signInWithGoogle, signUp, signUpBackend } from '../store/actions/auth';
+import { signInWithGoogle, signUpBackend } from '../store/actions/auth';
 import { useForm } from '../helpers/useForm';
 import { fileupload } from '../helpers/fileUpload';
 import Swal from 'sweetalert2';
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 const RegisterPage = () => {
     const [file, setFile] = useState(null);
     const dispatch = useDispatch()
-    const [form, setForm, reset] = useForm({
+    const [form, setForm] = useForm({
         name: "",
         last_name: "",
         name_user: "",
@@ -39,7 +39,7 @@ const RegisterPage = () => {
     }
     const registerUer = async (e) => {
         e.preventDefault();
-        if (form.password1 == form.password2) {
+        if (form.password1 === form.password2) {
             if (file) {
                 await fileupload(file).then(e => {
                     dispatch(signUpBackend({
