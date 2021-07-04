@@ -4,6 +4,7 @@ import {
     Switch,
     BrowserRouter as Router,
     Redirect,
+    Route,
 } from 'react-router-dom';
 import AddEmpresa from '../pages/AddEmpresa';
 import NavBar from '../components/NavBar';
@@ -20,6 +21,7 @@ import { clearUser, setUser } from '../store/actions/auth';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
 import UpdateData from '../pages/UpdateData';
+import NotFound from '../pages/NotFound';
 import InfoPageEmpresa from '../pages/InfoPageEmpresa';
 
 const RouterApp = () => {
@@ -46,6 +48,8 @@ const RouterApp = () => {
             </div>
         )
     } */
+
+
     if (auth == null) {
         return <p className="text-center text-red-500 text-xl">Espere por favor.....</p>
     }
@@ -56,30 +60,86 @@ const RouterApp = () => {
                     {
                         (state && ((state?.name_user != null && !state?.esemprendedor != null && !state?.telefono != null && state.localidad != null) && <NavBar />))
                     }
-                    <Switch className="flex-grow ">
-                        <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
-                        {
-                            (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
-                        }
 
-                        <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>
-                        <PublicRouter exact path="/welcome" isAuth={auth} component={WelcomeScreen} ></PublicRouter>
-                        <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
-                        <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
-                        <PrivateRouter exact path="/register/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
-                        <PrivateRouter exact path="/adminglobal" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
-                        <PrivateRouter exact path="/adminglobal/infoempleado" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
-                        <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
-                        <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
-                        <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
-                        <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
-                        <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
-                        {/* <PrivateRoute exact path="/" isAuth={!!auth} component={CalendarScreen} ></PrivateRoute>
-                    <PrivateRoute exact path="/journal" isAuth={!!auth} component={JournalScreen} ></PrivateRoute> */}
-                        <Redirect to="/login"></Redirect>
-                    </Switch>
 
-                </div>  
+                    {
+                        (state != null && state?.rol) ?
+                            (state?.rol?.id === 1) ?
+                                <>
+                                    <Switch className="flex-grow">
+                                        <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>
+                                        <PublicRouter exact path="/welcome" isAuth={auth} component={WelcomeScreen} ></PublicRouter>
+                                        <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
+                                        <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
+                                        {/* <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter> */}
+
+                                        <PrivateRouter exact path="/inicio" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
+                                        <PrivateRouter exact path="/adminglobal/infoempleado" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                                        <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
+                                        <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
+                                        <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                                        <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
+
+                                        <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
+                                        <Route exact path="/404" component={NotFound} />
+                                    </Switch>
+                                </>
+                                :
+
+                                (state?.rol?.id === 2) ?
+                                    <>
+                                        <>
+                                            <Switch className="flex-grow">
+
+                                                <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>
+                                                <PublicRouter exact path="/welcome" isAuth={auth} component={WelcomeScreen} ></PublicRouter>
+                                                <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
+                                                <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
+                                                <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
+                                                <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter >
+                                                {
+                                                    (state != null && auth != null && (state?.empresaWork?.lenght == 0)) && <Redirect to="/selectEmpresa"></Redirect>
+                                                }
+                                                {
+                                                    (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
+                                                }
+                                                <PrivateRouter exact path="/inicio" isAuth={auth} component={PerfilPage} ></PrivateRouter>
+                                                <Route path="*" component={NotFound} />
+                                            </Switch>
+                                        </>
+                                    </>
+                                    :
+                                    (state?.rol?.id == 3) ?
+                                        <>
+                                            <Switch className="flex-grow">
+                                                <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>
+                                                <PublicRouter exact path="/welcome" isAuth={auth} component={WelcomeScreen} ></PublicRouter>
+                                                <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
+                                                <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
+                                                <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
+                                                {
+                                                    (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
+                                                }
+                                                <PrivateRouter exact path="/inicio" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                                                <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
+                                                <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                                            </Switch>
+                                        </>
+                                        :
+                                        <div className=""></div>
+                            :
+                            <Switch className="flex-grow ">
+                                <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>
+                                <PublicRouter exact path="/welcome" isAuth={auth} component={WelcomeScreen} ></PublicRouter>
+                                <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
+                                <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
+                                <PrivateRouter path="/" isAuth={auth} component={LoginScreen} ></PrivateRouter>
+                                <Route path="*" component={NotFound} />
+
+                            </Switch>
+
+                    }
+                </div>
             </div>
 
         </Router >
@@ -87,3 +147,5 @@ const RouterApp = () => {
 }
 
 export default RouterApp
+
+
