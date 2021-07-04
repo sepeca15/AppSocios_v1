@@ -14,7 +14,7 @@ const PerfilPage = () => {
     cargo: state ? state.cargo : "",
     email: state?.email,
     telefono: state?.telefono,
-    photo: state?.photo,
+    photo: state.photo?state.photo : "https://filestore.community.support.microsoft.com/api/profileimages/594cfa76-526a-4815-91b1-4f168d81a3a2",
     /* empresaWork: state?state.empresaWork:"", */
     id: state?.id
   })

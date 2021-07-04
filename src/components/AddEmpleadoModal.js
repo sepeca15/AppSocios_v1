@@ -9,6 +9,8 @@ import {
   loadCargos,
 } from "../helpers/loadData";
 import { editEmpleadoEmpresa, postempleadoEmpresa } from "../store/actions/empleadosEmpresa";
+import { numbers } from "@material/textfield";
+import Swal from "sweetalert2";
 
 const customStyles = {
   overlay: {
@@ -83,6 +85,13 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
 
   const saveEnmpleado = async (e) => {
     e.preventDefault();
+
+    if(isNaN(form.telefono)){
+      Swal.fire({
+        title: "Ingrese Numero de Telefono correcto",
+        type: "error",
+    });
+    }
     if (post_Put === true) {
       if (file) {
         await fileupload(file)
@@ -171,7 +180,8 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
         <p className="text-gray-800 text-center text-3x1 font-semibold">
           {post_Put ? "Agregar empleado":"Editar empleado"} 
         </p>
-        <form className="" onSubmit={saveEnmpleado}>
+        <form className="" onSubmit={
+          saveEnmpleado}>
           <div className="my-6">
             <div className="formgroup">
               <label>Nombre</label>
@@ -184,6 +194,7 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
                 name="name"
                 onChange={setForm}
                 value={form.name}
+                maxLength="20"
               />
             </div>
             <div className="formgroup">
@@ -196,6 +207,7 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
                 name="last_name"
                 onChange={setForm}
                 value={form.last_name}
+                maxLength="20"
               />
             </div>
             <div className="formgroup">
@@ -203,12 +215,13 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
               <input
                 required
                 autoComplete="off"
-                type="text"
+                type="email"
                 className="text-sm my-1 mr-2 p-2 border-2 shadow-md border-gray1 w-full rounded-xl outline-none"
                 placeholder="Ingrese un Email"
                 name="email"
                 onChange={setForm}
                 value={form.email}
+                maxLength="30"
               />
             </div>
             <div className="formgroup">
@@ -222,6 +235,7 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
                 name="telefono"
                 onChange={setForm}
                 value={form.telefono}
+                maxLength="15"
               />
             </div>
             <div className="formgroup">
@@ -235,6 +249,7 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
                 name="name_user"
                 onChange={setForm}
                 value={form.name_user}
+                maxLength="20"
               />
             </div>
             {post_Put === true ?   <div className="formgroup">
@@ -248,6 +263,8 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
                 name="password"
                 onChange={setForm}
                 value={form.password}
+                maxLength="20"
+                minLength="8"
               />
             </div> : ""
             }
@@ -257,8 +274,9 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
                 onChange={changeDepartamento}
                 className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
                 name="departamento"
+                required
               > 
-               <option selected={true} disabled="disable">Seleccione uno</option> 
+               <option selected={true} value="" disabled="disable">Seleccione uno</option> 
                 {departamento?.map((e, i) => {
                   return (
                     <option key={e.name + "," + i} value={`${e.id}`}>
@@ -272,12 +290,13 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
             <div className="formgroup">
               <label>Localidad</label>
               <select
+                required
                 onChange={setForm}
                 value={form.localidad}
                 className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
                 name="localidad"
               >
-                <option selected={true} disabled="disable">
+                <option selected={true} value="" disabled="disable">
                   Seleccione uno
                 </option>
                 {localidades?.map((e, i) => {
@@ -293,12 +312,13 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
             <div className="formgroup">
               <label>Cargo</label>
               <select
+                required
                 name="cargo"
                 value={form.cargo}
                 onChange={setForm}
                 className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
               >
-                <option>Seleccione uno</option> 
+                <option selected={true} value="" disabled="disable">Seleccione uno</option> 
                 {cargos?.map((e, i) => {
                   return (
                     <option key={e.name + "," + i} value={`${e.id}`}>
@@ -312,12 +332,13 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false}) => {
             <div className="formgroup">
               <label>Rol</label>
               <select
+                required
                 name="rol"
                 value={form.rol}
                 onChange={setForm}
                 className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
               >
-                <option selected={true} disabled="disable">
+                <option selected={true} value="" disabled="disable">
                   Seleccione uno
                 </option>
                 {/* <option value="1">Super Usuario</option> */}
