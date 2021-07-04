@@ -118,11 +118,11 @@ const RouterApp = () => {
                                                 <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                                                 <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
                                                 {
-                                                    (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
+                                                    (state && auth && (state?.name_user == null || state?.esemprendedor == null || state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
                                                 }
-                                                <PrivateRouter exact path="/inicio" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                                                <PrivateRouter exact path="/inicio" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
+                                                <PrivateRouter exact path="/adminglobal/infoempleado" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                                                 <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
-                                                <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                                             </Switch>
                                         </>
                                         :

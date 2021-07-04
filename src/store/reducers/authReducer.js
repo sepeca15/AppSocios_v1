@@ -3,7 +3,8 @@ import { types } from "../types/types"
 
 const initialState = {
     user: null,
-    esEmpresa: false,
+    empresaData: null
+
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -13,6 +14,11 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload
+            }
+        case types.setIsEmpresa:
+            return {
+                ...state,
+                empresaData: action.payload
             }
         case types.loggout:
             return {

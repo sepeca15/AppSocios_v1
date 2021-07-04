@@ -147,6 +147,12 @@ const setUser = (user) => {
         payload: user
     }
 }
+const setIsEmpresa = (empresa) => {
+    return {
+        type: types.setUser,
+        payload: empresa
+    }
+}
 const clearUser = () => {
     localStorage.clear()
     return {
@@ -155,5 +161,6 @@ const clearUser = () => {
 }
 
 export {
-    updateUser, signUp, signInWithGoogle, signUpBackend, signInBackend, setUser, clearUser
+    updateUser, signUp, signInWithGoogle, signUpBackend, signInBackend, setUser, clearUser,
+    setIsEmpresa
 }
