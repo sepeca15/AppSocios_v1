@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, } from "react";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEmpresas, getbusquedaEmpresaText } from "../store/actions/empresas";
-import { useForm } from "../helpers/useForm";
+/* import { useForm } from "../helpers/useForm"; */
 
 const AdminPageScreen = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllEmpresas());
-  }, []);
+  },[]);
   const state = useSelector((state) => state.empresas.empresas);
 
-  const [form, setForm, reset] = useForm({
+  /* const [form, setForm, reset] = useForm({
     data: ""
-})
+}) */
   const dataBusqueda = (e) =>{
     e.preventDefault()
     let data = e.target.value
@@ -24,6 +24,7 @@ const AdminPageScreen = () => {
       dispatch(getbusquedaEmpresaText(data))
     }
   }
+
   return (
     <div className=" relative w-full h-full ">
       <div className="flex justify-around flex-col text-center bg-gray-100 md:flex-row mb-2 py-4 ">

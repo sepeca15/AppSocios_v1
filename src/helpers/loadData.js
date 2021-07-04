@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { fetchConToken, fetchSinToken } from "./fetch";
+import { fetchConToken } from "./fetch";
 
 
 export const loadDepartamentos = async (id) => {

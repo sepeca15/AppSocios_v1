@@ -10,7 +10,6 @@ import AddEmpresa from '../pages/AddEmpresa';
 import NavBar from '../components/NavBar';
 import { fetchSinToken } from '../helpers/fetch';
 import AdminPageScreen from '../pages/AdminPageScreen';
-import HomePageScreen from '../pages/HomePageScreen';
 import InfoPageEmpleado from '../pages/InfoPageEmpleado';
 import LoginScreen from '../pages/LoginScreen';
 import RegisterPage from '../pages/RegisterPage';
@@ -42,14 +41,15 @@ const RouterApp = () => {
         })()
     }, [setUser, clearUser, dispatch, localStorage.getItem("token"), state?.id])
 
-    const handleChangeData = () => {
+    /* const handleChangeData = () => {
         return (
             <div className="w-full h-full">
 
                 <Redirect to="/updatedata"></Redirect>
             </div>
         )
-    }
+    } */
+
 
     if (auth == null) {
         return <p className="text-center text-red-500 text-xl">Espere por favor.....</p>
@@ -97,7 +97,7 @@ const RouterApp = () => {
                                                 <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
                                                 <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter >
                                                 {
-                                                    (state != null && auth != null && (state?.empresaWork?.lenght == 0)) && <Redirect to="/selectEmpresa"></Redirect>
+                                                    (state != null && auth != null && (state?.empresaWork?.lenght === 0)) && <Redirect to="/selectEmpresa"></Redirect>
                                                 }
                                                 {
                                                     (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
@@ -108,7 +108,7 @@ const RouterApp = () => {
                                         </>
                                     </>
                                     :
-                                    (state?.rol?.id == 3) ?
+                                    (state?.rol?.id === 3) ?
                                         <>
                                             <Switch className="flex-grow">
                                                 <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>

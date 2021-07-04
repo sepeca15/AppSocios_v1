@@ -23,9 +23,9 @@ const customStyles = {
 const AddLocalidadModal = () => {
     const [modalIsOpen, setIsOpen] = useState(true);
 
-    function openModal() {
+    /* function openModal() {
         setIsOpen(true);
-    }
+    } */
 
     function closeModal() {
         setIsOpen(false);
@@ -52,8 +52,8 @@ const AddLocalidadModal = () => {
                 closeModal()}}>
                     <div className="form-group my-6">
                         <label htmlFor="departamento">Departamento</label>
-                        <select className="form-control" name="departamento"onChange={setForm}>
-                            <option selected={true} disabled={true}>Selecione uno</option>
+                        <select className="form-control" required name="departamento"onChange={setForm}>
+                            <option selected={true} value="" disabled={true}>Selecione uno</option>
                             <option value={1}>Artigas</option>
                             <option value={2}>Canelones</option>
                             <option value={3}>Cerro Largo</option>
