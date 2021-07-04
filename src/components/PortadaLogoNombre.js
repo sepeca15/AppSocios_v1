@@ -6,6 +6,9 @@ const PortadaLogoNombre = () => {
   const empresa = useSelector(
     (state) => state?.detalleEmpresa?.detallesDeEmpresaActual
   );
+  const empresaAdmin = useSelector((state) => state.auth?.user?.empresaAdmin);
+  const state = useSelector((state) => state.auth.user);
+
 
   return (
     //gradient : bg-gradient-to-r from-greenBlack1 via-green1 to-greenLight1
@@ -13,10 +16,10 @@ const PortadaLogoNombre = () => {
       <div className="flex items-center justify-start">
         <img
           className="w-4/12 h-48 md:w-3/12 p-2 md:m-4 object-contain "
-          src={empresa?.[0]?.logo_empresa}
+          src={state.rol.id == 1 ? empresa?.[0]?.logo_empresa : empresaAdmin?.logo_empresa  }
         />
         <span className="font-medium m-2 text-2xl p-2 md:m-4 md:text-6xl">
-          {empresa?.[0]?.nombre_fantasia}
+          {state.rol.id == 1 ? empresa?.[0]?.nombre_fantasia : empresaAdmin?.nombre_fantasia}
         </span>
         <div>
           <button className="bg-yellow1 text-white font-bold py-2 px-4 mx-2 rounded">

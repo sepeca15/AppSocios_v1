@@ -39,7 +39,7 @@ const AddInfoEmpresa = ({
       type: types.detalleEmpresa,
       payload: {
         nombre_fantasia: nombre_fantasia,
-        email: email,
+        email: email, 
         telefono: telefono, 
         celular: celular,
         razon_social: razon_social,
