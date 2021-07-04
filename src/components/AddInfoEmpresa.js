@@ -4,7 +4,9 @@ import Swal from "sweetalert2";
 import * as Icon from "react-feather";
 import { elimiarEmpresa, getEmpresaActive } from "../store/actions/empresas";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom"; 
+import { useHistory } from "react-router-dom";
+import { types } from "../store/types/types";
+import { getEmpleadosEmpresa } from "../store/actions/empleadosEmpresa";
 
 const AddInfoEmpresa = ({
   nombre_fantasia,
@@ -29,33 +31,39 @@ const AddInfoEmpresa = ({
   const eliminarEmpresa = () => {
     dispatch(elimiarEmpresa(id));
   };
-
-  /* const user = useSelector((state) => state?.empleadosEmpresa?.activeEmpleado?.user) Y definir useSelector*/
+  const state = useSelector((state) => state.auth.user);
+  const detalleEmpresaActual = useSelector(
+    (state) => state.detalleEmpresa.detallesDeEmpresaActual
+  );
   const rotuer = useHistory();
   const dataUnaEmpresa = () => {
     localStorage.setItem("empresaActive", id);
     dispatch(getEmpresaActive(id));
-    /* dispatch({
-      type: types.detalleEmpresa,
-      payload: {
-        nombre_fantasia: nombre_fantasia,
-        email: email,
-        telefono: telefono, 
-        celular: celular,
-        razon_social: razon_social,
-        rut: rut,
-        nro_bps: nro_bps,
-        fecha_afiliacion: fecha_afiliacion,
-        fecha_inicio_empresa:fecha_inicio_empresa,
-        activa: activa,
-        nro_referencia: nro_referencia,
-        fecha_baja: fecha_baja,
-        direccion: direccion,
-        observaciones:observaciones,
-        logo_empresa: logo_empresa,
-        id: id
-      },
-    }); */
+    console.log("paso 1");
+    if (state.rol.id === 1) {
+      dispatch({
+        type: types.detalleEmpresa,
+        payload: {
+          nombre_fantasia: nombre_fantasia,
+          email: email, 
+          telefono: telefono, 
+          celular: celular,
+          razon_social: razon_social,
+          rut: rut,
+          nro_bps: nro_bps,
+          fecha_afiliacion: fecha_afiliacion,
+          fecha_inicio_empresa:fecha_inicio_empresa,
+          activa: activa,
+          nro_referencia: nro_referencia,
+          fecha_baja: fecha_baja,
+          direccion: direccion,
+          observaciones:observaciones,
+          logo_empresa: logo_empresa,
+          id: id
+        },
+      });
+    dispatch(getEmpleadosEmpresa(id));
+    }
   };
   return (
     <>
