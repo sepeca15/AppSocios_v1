@@ -8,7 +8,27 @@ const getEmpresas = (empresas) => {
 const getEmpresasSearch = (empresas) => {
     return {payload: empresas, type:types.busquedaEmpresaText}
 }
-
+ 
+const getEmpresaActive = (idempresa) => {
+    return async (dispatch) => {
+        try { 
+            const res = await fetchConToken("http://localhost:5000/empresas/getdataEmpresa/"+ idempresa);
+            const body = await res.json();
+            if (body.ok === true) {  
+                dispatch({
+                    type: types.detalleEmpresa, 
+                    payload: body.empresa
+                })
+            } else {
+                Swal.fire("Empresaseleccionada", "No se pudo insertar la empresa", "error");
+                console.log(body.empresa);
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+    }
+}
 
 /* load data fecht */
 const getAllEmpresas = () => {
@@ -95,4 +115,4 @@ const elimiarEmpresa = (id) => {
 }
 
 
-export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText }
+export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive }

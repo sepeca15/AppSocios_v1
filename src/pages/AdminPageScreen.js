@@ -19,7 +19,7 @@ const AdminPageScreen = () => {
     e.preventDefault()
     let data = e.target.value
     if(!data){
-      dispatch(getAllEmpresas());
+      dispatch(getAllEmpresas()); 
     }else{
       dispatch(getbusquedaEmpresaText(data))
     }

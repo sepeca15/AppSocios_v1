@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import * as Icon from "react-feather";
-import { elimiarEmpresa } from "../store/actions/empresas";
+import { elimiarEmpresa, getEmpresaActive } from "../store/actions/empresas";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { types } from "../store/types/types";
@@ -34,7 +34,9 @@ const AddInfoEmpresa = ({
   /* const user = useSelector((state) => state?.empleadosEmpresa?.activeEmpleado?.user) */
   const rotuer = useHistory();
   const dataUnaEmpresa = () => {
-    dispatch({
+    localStorage.setItem("empresaActive", id);
+    dispatch(getEmpresaActive(id));
+    /* dispatch({
       type: types.detalleEmpresa,
       payload: {
         nombre_fantasia: nombre_fantasia,
@@ -54,8 +56,7 @@ const AddInfoEmpresa = ({
         logo_empresa: logo_empresa,
         id: id
       },
-    });
-
+    }); */
   };
   return (
     <>

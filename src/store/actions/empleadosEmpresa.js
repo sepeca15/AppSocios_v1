@@ -19,7 +19,9 @@ const getEmpleadoSearch = (empleadosEmpresa) => {
     return {payload: empleadosEmpresa, type:types.busquedaEmpleadoText}
 }
 
-const getbusquedaEmpleadoSearchText = (data) => {
+const getbusquedaEmpleadoSearchText = (data) => 
+{
+    /* mandar la empresa */
     return async (dispatch) => {
         try {
             const resp = await fetchConToken("http://localhost:5000/user/search/" + data);

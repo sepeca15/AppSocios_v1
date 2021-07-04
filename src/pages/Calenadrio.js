@@ -12,14 +12,14 @@ const Calendario = () => {
   const event = [ 
     {
       title: "Nombre empresa",
-      start: moment("2021-7-3"),
-      end: moment("2021-7-3"),
+      start:  moment(Date.now()),
+      end:    moment(Date.now()).add(2, 'hours')
     },
   ];
   const onSelectEvent = (e) => {
     Swal.fire({
       title: "Hoy es el aniversario de:" + event[0].title,
-      text: "¡HoyHoyHoyHoyHoyHoyHoyHoyHoyHoyHoyHoy!",
+      text: "¡asdasdasd!",
       type: "succes",
     })
   };

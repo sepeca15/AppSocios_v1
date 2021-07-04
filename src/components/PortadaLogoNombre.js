@@ -13,10 +13,10 @@ const PortadaLogoNombre = () => {
       <div className="flex items-center justify-start">
         <img
           className="w-4/12 h-48 md:w-3/12 p-2 md:m-4 object-contain "
-          src={empresa?.logo_empresa}
+          src={empresa?.[0]?.logo_empresa}
         />
         <span className="font-medium m-2 text-2xl p-2 md:m-4 md:text-6xl">
-          {empresa?.nombre_fantasia}
+          {empresa?.[0]?.nombre_fantasia}
         </span>
         <div>
           <button className="bg-yellow1 text-white font-bold py-2 px-4 mx-2 rounded">
