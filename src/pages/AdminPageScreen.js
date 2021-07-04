@@ -9,7 +9,7 @@ const AdminPageScreen = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllEmpresas());
-  });
+  },[]);
   const state = useSelector((state) => state.empresas.empresas);
 
   const [form, setForm, reset] = useForm({

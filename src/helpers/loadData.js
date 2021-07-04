@@ -52,7 +52,7 @@ export const loadCargos = async () => {
 
 export const insertCargo = async (cargo) => {
     try {
-        const resp = await fetchConToken("http://localhost:5000/cargos/", {name:cargo}, "POST");
+        const resp = await fetchConToken("http://localhost:5000/cargos/", { name: cargo }, "POST");
         const body = await resp.json();
         if (body.ok) {
             Swal.fire({
@@ -60,7 +60,7 @@ export const insertCargo = async (cargo) => {
                 text: "El Cargo se agrego correctamente",
                 type: "success",
             });
-            
+
         } else {
             Swal.fire("Error Cargo", body.msg, "error");
         }
@@ -70,9 +70,9 @@ export const insertCargo = async (cargo) => {
     }
 }
 
-export const insertLocalidad = async (localidad,departamento) => {
+export const insertLocalidad = async (localidad, departamento) => {
     try {
-        const resp = await fetchConToken("http://localhost:5000/localidades/", {name: localidad, departamento: departamento}, "POST");
+        const resp = await fetchConToken("http://localhost:5000/localidades/", { name: localidad, departamento: departamento }, "POST");
         const body = await resp.json();
         if (body.ok) {
             Swal.fire({
@@ -80,7 +80,7 @@ export const insertLocalidad = async (localidad,departamento) => {
                 text: "La localidad se agrego correctamente",
                 type: "success",
             });
-            
+
         } else {
             Swal.fire("Error Localiada o id Departamento", body.msg, "error");
         }
@@ -90,9 +90,9 @@ export const insertLocalidad = async (localidad,departamento) => {
     }
 }
 
-export const insertRubro= async (rubro) => {
+export const insertRubro = async (rubro) => {
     try {
-        const resp = await fetchConToken("http://localhost:5000/rubroA/", {name:rubro}, "POST");
+        const resp = await fetchConToken("http://localhost:5000/rubroA/", { name: rubro }, "POST");
         const body = await resp.json();
         if (body.ok) {
             Swal.fire({
@@ -100,7 +100,7 @@ export const insertRubro= async (rubro) => {
                 text: "El rubro se agrego correctamente",
                 type: "success",
             });
-            
+
         } else {
             Swal.fire("Error Rubro", body.msg, "error");
         }
