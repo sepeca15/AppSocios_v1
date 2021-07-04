@@ -81,7 +81,7 @@ const UpdateData = () => {
     }
 
     if (state?.name_user != null && !state?.esemprendedor != null && !state?.telefono != null && state.localidad != null) {
-        return <Redirect to="/admin" />
+        return <Redirect to="/inicio" />
     }
     if (departamento == null) {
         return <div className="text-center ">Espere por favor...</div>
@@ -160,3 +160,6 @@ UpdateData.propTypes = {
 
 
 export default UpdateData;
+
+
+
