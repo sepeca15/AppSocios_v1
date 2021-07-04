@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { allowEmployed, deniedEmployed } from '../helpers/loadData';
 import { ArrowRight } from 'react-feather';
 import Swal from 'sweetalert2';
@@ -22,9 +21,9 @@ const ItemNotification = ({ estado, user, empresa, cargo }) => {
         <div className="w-full h-36 p-2 bg-gray-100 rounded-xl flex flex-col my-2">
             <div className="flex flex-row items-center justify-center">
                 <div className=" h-auto py-1 flex flex-row items-center justify-start">
-                    <img className=" w-10 h-10 object-cover rounded-full" src={user?.photo} />
+                    <img className=" w-10 h-10 object-cover rounded-full" alt="userPhoto" src={user?.photo} />
                     <ArrowRight size={24} />
-                    <img className=" w-10 h-10 object-cover rounded-full" src={empresa?.logo_empresa} />
+                    <img className=" w-10 h-10 object-cover rounded-full" alt="logoEmpresa" src={empresa?.logo_empresa} />
                 </div>
                 <p className="text-gray-700 flex-grow">Maxi SIlva</p>
             </div>

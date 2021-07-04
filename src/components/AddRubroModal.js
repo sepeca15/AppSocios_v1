@@ -23,9 +23,9 @@ const customStyles = {
 const AddRubroModal = (props) => {
     const [modalIsOpen, setIsOpen] = useState(true);
 
-    function openModal() {
+   /*  function openModal() {
         setIsOpen(true);
-    }
+    } */
 
     function closeModal() {
         setIsOpen(false);
@@ -58,6 +58,7 @@ const AddRubroModal = (props) => {
                                 name="rubro"
                                 onChange={setForm}
                                 value={form.rubro}
+                                required
                             />
                         </div>
                         <div className="flex justify-end">

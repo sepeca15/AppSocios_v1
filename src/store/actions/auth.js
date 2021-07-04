@@ -123,7 +123,7 @@ const updateUser = (user) => {
 }
 
 const signUp = (user) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         auth
             .createUserWithEmailAndPassword(user.email, user.password)
             .then(async (userCredential) => {
@@ -138,6 +138,33 @@ const signUp = (user) => {
             });
     }
 };
+
+
+export const editUserPerfil = (form) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/user/" + form.id, { ...form, esemprendedor: true }, "PUT");
+            const body = await resp.json();
+            if (body.ok) {
+                dispatch(updateUser(body.newUser))
+                Swal.fire({
+                    title: "Se edito correctamente",
+                    text: "Usuario se edito correctamente",
+                    type: "success",
+                });
+            } else {
+                Swal.fire("Error usuario", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+    }
+}
+
+
+
+
 
 //---------------------Actions Redux ------------------------
 
@@ -157,6 +184,13 @@ const clearUser = () => {
     localStorage.clear()
     return {
         type: types.loggout
+    }
+}
+
+const edirtUser = (user) => {
+    return {
+        type: types.setUser,
+        payload: user
     }
 }
 

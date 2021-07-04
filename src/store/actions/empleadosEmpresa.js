@@ -19,13 +19,17 @@ const getEmpleadoSearch = (empleadosEmpresa) => {
     return {payload: empleadosEmpresa, type:types.busquedaEmpleadoText}
 }
 
-const getbusquedaEmpleadoSearchText = (data) => {
+const getbusquedaEmpleadoSearchText = (data) => 
+{
+    /* mandar la empresa */
     return async (dispatch) => {
         try {
-            const resp = await fetchConToken("http://localhost:5000/user/" + data);
+            const resp = await fetchConToken("http://localhost:5000/user/search/" + data);
             const body = await resp.json();
             if (body.ok) {
+                console.log(body);
                 dispatch(getEmpleadoSearch(body.usuarios))
+                console.log(data);
             } else {
                 console.log(body);
             }
@@ -47,6 +51,7 @@ const getEmpleadosEmpresa = (idempresa) => {
                 /* Si la respuesta es positiva */
                 /* body.empleados */
                 dispatch(empleadoEmpresa(body.empleados))
+                
             } else {
                 Swal.fire("No hay usuarios", "No se pudo insertar el usuario", "error");
             }
@@ -78,10 +83,16 @@ const postempleadoEmpresa = (form) => {
 
     }
 }
-const editEmpleadoEmpresa = (userid, form) => {
+const editEmpleadoEmpresa = (form, id) => {
     return async (dispatch) => {
         try {
-            const resp = await fetchConToken("http://localhost:5000/user/"+ userid, form, "PUT");
+            delete form.cargo
+            delete form.empresa
+            delete form.activo
+            let id = form.userid
+            delete form.userid
+
+            const resp = await fetchConToken("http://localhost:5000/user/"+id, {...form, rol: 2, localidad: 1, esemprendedor: form.esemprendedor}, "PUT");
             const body = await resp.json();
             
             if (body.ok) {
@@ -90,10 +101,14 @@ const editEmpleadoEmpresa = (userid, form) => {
                     text: "La empresa se EDITO correctamente",
                     type: "success",
                 });
+                console.log(form); 
             } else {
+                console.log(body); 
+                console.log(form); 
                 Swal.fire("Error edit", body.msg, "error");
             }
         } catch (error) {
+            console.lo({...form.id})
             console.log(error);
             Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
         }
@@ -106,9 +121,10 @@ const eliminarEmpleado = (empleado) => {
             const resp = await fetchConToken("http://localhost:5000/empleados/", {...empleado}, "DELETE");
             const resp2 = await fetchConToken("http://localhost:5000/user/"+ empleado.user, {}, "DELETE");
             const body = await resp.json();
+            const body1 = await resp2.json();
             if (body.ok) {
                 Swal.fire({
-                    title: "Se elimino correctamente" + body,
+                    title: "Se elimino correctamente" + body+body1,
                     type: "success",
                 });
                 dispatch({type: types.removeEmpleado, payload: empleado})

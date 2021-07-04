@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, } from "react";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
 import { useDispatch, useSelector } from "react-redux";

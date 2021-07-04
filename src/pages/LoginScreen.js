@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Shield } from 'react-feather';
 import { ReactComponent as Security } from '../svg/security.svg';
 import { ReactComponent as GoogleIcon } from '../svg/google.svg';
 import { useForm } from '../helpers/useForm';
 import { useDispatch } from 'react-redux';
 import { signInBackend, signInWithGoogle } from '../store/actions/auth';
-import { useHistory } from 'react-router-dom';
 
 const LoginScreen = () => {
     const dispatch = useDispatch()
@@ -39,7 +37,7 @@ const LoginScreen = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if (form.email.trim() != "" && form.password.trim() != "") {
+        if (form.email.trim() !== "" && form.password.trim() !== "") {
             dispatch(signInBackend(form))
         }
     }

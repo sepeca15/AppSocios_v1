@@ -10,7 +10,6 @@ import AddEmpresa from '../pages/AddEmpresa';
 import NavBar from '../components/NavBar';
 import { fetchSinToken } from '../helpers/fetch';
 import AdminPageScreen from '../pages/AdminPageScreen';
-import HomePageScreen from '../pages/HomePageScreen';
 import InfoPageEmpleado from '../pages/InfoPageEmpleado';
 import LoginScreen from '../pages/LoginScreen';
 import RegisterPage from '../pages/RegisterPage';
@@ -24,6 +23,7 @@ import { PublicRouter } from './PublicRouter';
 import UpdateData from '../pages/UpdateData';
 import NotFound from '../pages/NotFound';
 import InfoPageEmpresa from '../pages/InfoPageEmpresa';
+import Calendario from '../pages/Calenadrio';
 
 const RouterApp = () => {
     const state = useSelector(state => state.auth.user)
@@ -41,14 +41,15 @@ const RouterApp = () => {
         })()
     }, [setUser, clearUser, dispatch, localStorage.getItem("token"), state?.id])
 
-    const handleChangeData = () => {
+    /* const handleChangeData = () => {
         return (
             <div className="w-full h-full">
 
                 <Redirect to="/updatedata"></Redirect>
             </div>
         )
-    }
+    } */
+
 
     if (auth == null) {
         return <p className="text-center text-red-500 text-xl">Espere por favor.....</p>
@@ -60,8 +61,6 @@ const RouterApp = () => {
                     {
                         (state && ((state?.name_user != null && !state?.esemprendedor != null && !state?.telefono != null && state.localidad != null) && <NavBar />))
                     }
-
-
                     {
                         (state != null && state?.rol) ?
                             (state?.rol?.id === 1) ?
@@ -98,7 +97,7 @@ const RouterApp = () => {
                                                 <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
                                                 <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter >
                                                 {
-                                                    (state != null && auth != null && (state?.empresaWork?.lenght == 0)) && <Redirect to="/selectEmpresa"></Redirect>
+                                                    (state != null && auth != null && (state?.empresaWork?.lenght === 0)) && <Redirect to="/selectEmpresa"></Redirect>
                                                 }
                                                 {
                                                     (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
@@ -109,7 +108,7 @@ const RouterApp = () => {
                                         </>
                                     </>
                                     :
-                                    (state?.rol?.id == 3) ?
+                                    (state?.rol?.id === 3) ?
                                         <>
                                             <Switch className="flex-grow">
                                                 <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>
@@ -121,7 +120,10 @@ const RouterApp = () => {
                                                     (state && auth && (state?.name_user == null || state?.esemprendedor == null || state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
                                                 }
                                                 <PrivateRouter exact path="/inicio" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
+<<<<<<< HEAD
                                                 <PrivateRouter exact path="/adminglobal/infoempleado" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+=======
+>>>>>>> 231adbf094a0e0431c1f3ad376444d2a62192375
                                                 <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
                                             </Switch>
                                         </>
