@@ -1,7 +1,8 @@
 import { types } from "../types/types"
 
 const initialState = {
-   detallesDeEmpresaActual: null
+    detallesDeEmpresaActual: null,
+    departamento: null
 }
 
 export const detalleEmpresaReducer = (state = initialState, action) => {
@@ -9,7 +10,8 @@ export const detalleEmpresaReducer = (state = initialState, action) => {
         case types.detalleEmpresa:
             return {
                 ...state,
-                detallesDeEmpresaActual: action.payload
+                detallesDeEmpresaActual: action.payload.empresa,
+                departamento: action.payload.departamento
             }
         default:
             return {
