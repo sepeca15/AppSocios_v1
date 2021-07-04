@@ -23,6 +23,7 @@ import { PublicRouter } from './PublicRouter';
 import UpdateData from '../pages/UpdateData';
 import NotFound from '../pages/NotFound';
 import InfoPageEmpresa from '../pages/InfoPageEmpresa';
+import Calendario from '../pages/Calenadrio';
 
 const RouterApp = () => {
     const state = useSelector(state => state.auth.user)
@@ -60,8 +61,6 @@ const RouterApp = () => {
                     {
                         (state && ((state?.name_user != null && !state?.esemprendedor != null && !state?.telefono != null && state.localidad != null) && <NavBar />))
                     }
-
-
                     {
                         (state != null && state?.rol) ?
                             (state?.rol?.id === 1) ?
@@ -120,7 +119,7 @@ const RouterApp = () => {
                                                 {
                                                     (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
                                                 }
-                                                <PrivateRouter exact path="/inicio" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                                                <PrivateRouter exact path="/inicio" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
                                                 <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
                                                 <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                                             </Switch>

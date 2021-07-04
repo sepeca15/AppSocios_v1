@@ -45,22 +45,22 @@ const AddInfoEmpleado = ({ cargo, user, empresa, estado, num }) => {
             src={user.photo}
             alt="Profile"
           />
-          <label>{user.name}</label>
+          <label>{user?.name}</label>
         </div>
         <div className="flex my-2 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-          <label className="text-xs">{user.last_name}</label>
+          <label className="text-xs">{user?.last_name}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
-          <label className="text-xs">{user.email}</label>
+          <label className="text-xs">{user?.email}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-          <label className="text-xs">{user.telefono}</label>
+          <label className="text-xs">{user?.telefono}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
           <label className="text-xs">726192-2</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-          <label className="text-xs">{cargo.name}</label>
+          <label className="text-xs">{cargo?.name}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
           {estado === true ? (

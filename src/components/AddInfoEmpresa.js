@@ -2,10 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import * as Icon from "react-feather";
-import { elimiarEmpresa } from "../store/actions/empresas";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { types } from "../store/types/types";
+import { elimiarEmpresa, getEmpresaActive } from "../store/actions/empresas";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom"; 
 
 const AddInfoEmpresa = ({
   nombre_fantasia,
@@ -34,7 +33,9 @@ const AddInfoEmpresa = ({
   /* const user = useSelector((state) => state?.empleadosEmpresa?.activeEmpleado?.user) Y definir useSelector*/
   const rotuer = useHistory();
   const dataUnaEmpresa = () => {
-    dispatch({
+    localStorage.setItem("empresaActive", id);
+    dispatch(getEmpresaActive(id));
+    /* dispatch({
       type: types.detalleEmpresa,
       payload: {
         nombre_fantasia: nombre_fantasia,
@@ -54,8 +55,7 @@ const AddInfoEmpresa = ({
         logo_empresa: logo_empresa,
         id: id
       },
-    });
-
+    }); */
   };
   return (
     <>
@@ -74,6 +74,7 @@ const AddInfoEmpresa = ({
           />
           <label>{nombre_fantasia}</label>
         </div>
+        {/* js */}
         <div className="flex my-2 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
           <label className="text-xs">
             {email}
@@ -119,7 +120,7 @@ const AddInfoEmpresa = ({
               }).then((result) => {
                 if (result.isConfirmed) {
                   eliminarEmpresa();
-                  rotuer.push("/admin");
+                  rotuer.push("/inicio");
                 } else if (result.isDenied) {
                   Swal.fire("Changes are not saved", "", "info");
                 }

@@ -10,7 +10,7 @@ export const empresasReducer = (state = initialState, action) => {
         case types.getactiveEmpresa:
 
             return { ...state}
-        case types.busquedaEmpresaText:
+        case types.busquedaEmpresaText: 
 
             return  { ...state, empresas: action.payload }
 
