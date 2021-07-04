@@ -59,7 +59,6 @@ const RegisterPage = () => {
         } else {
             Swal.fire("Error", "Las contraseñas no coinciden", "error")
         }
-
     }
 
     return (
