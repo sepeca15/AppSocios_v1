@@ -22,7 +22,11 @@ import { clearUser, setUser } from '../store/actions/auth';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
 import UpdateData from '../pages/UpdateData';
+<<<<<<< HEAD
 import NotFound from '../pages/NotFound';
+=======
+import InfoPageEmpresa from '../pages/InfoPageEmpresa';
+>>>>>>> d6006398edcef156951ba72afe28e15928e9f496
 
 const RouterApp = () => {
     const state = useSelector(state => state.auth.user)
@@ -59,6 +63,7 @@ const RouterApp = () => {
                     {
                         (state && ((state?.name_user != null && !state?.esemprendedor != null && !state?.telefono != null && state.localidad != null) && <NavBar />))
                     }
+<<<<<<< HEAD
 
 
                     {
@@ -136,6 +141,32 @@ const RouterApp = () => {
 
                     }
                 </div>
+=======
+                    <Switch className="flex-grow ">
+                        <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
+                        {
+                            (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
+                        }
+
+                        <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>
+                        <PublicRouter exact path="/welcome" isAuth={auth} component={WelcomeScreen} ></PublicRouter>
+                        <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
+                        <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
+                        <PrivateRouter exact path="/register/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
+                        <PrivateRouter exact path="/adminglobal" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
+                        <PrivateRouter exact path="/adminglobal/infoempleado" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                        <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
+                        <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
+                        <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
+                        <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
+                        <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
+                        {/* <PrivateRoute exact path="/" isAuth={!!auth} component={CalendarScreen} ></PrivateRoute>
+                    <PrivateRoute exact path="/journal" isAuth={!!auth} component={JournalScreen} ></PrivateRoute> */}
+                        <Redirect to="/login"></Redirect>
+                    </Switch>
+
+                </div>  
+>>>>>>> d6006398edcef156951ba72afe28e15928e9f496
             </div>
 
         </Router >

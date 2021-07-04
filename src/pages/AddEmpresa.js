@@ -4,9 +4,9 @@ import FormAddEmpresa from '../components/FormAddEmpresa';
 
 const AddEmpresa = () => {
     return (
-        <div>
+        <div className="w-full">
             <PortadaAddEmpresa/>
-            <FormAddEmpresa/>
+            <FormAddEmpresa InfoPageEmpresa={true}/>
         </div>
     )
 }

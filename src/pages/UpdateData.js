@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useForm } from '../helpers/useForm';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,7 +16,7 @@ const UpdateData = () => {
     const [localidades, setLocalidades] = useState(null);
     const [dptoUser, setdptoUser] = useState(null);
     const state = useSelector(state => state.auth.user)
-    const [form, setForm, reset] = useForm({
+    const [form, setForm] = useForm({
         id: state?.id,
         name: state?.name,
         last_name: state?.last_name,

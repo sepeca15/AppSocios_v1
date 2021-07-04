@@ -4,7 +4,6 @@ import { List, Shield, CheckCircle } from 'react-feather';
 import { loadEmpleosXUser, searchEmpresaPa, sendSolicitud } from '../helpers/loadData';
 import { useSelector } from 'react-redux';
 
-
 const SelectEmpresa = () => {
     const auth = useSelector(state => state?.auth?.user)
     const [viewSearch, setviewSearch] = useState(false);

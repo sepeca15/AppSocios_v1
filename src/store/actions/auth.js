@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { app, auth, googleAuthProvider } from "../../firebase/firebaseconfig";
+import { auth, googleAuthProvider } from "../../firebase/firebaseconfig";
 import { fetchConToken, fetchSinToken } from "../../helpers/fetch";
 import { types } from "../types/types";
 
@@ -29,9 +29,9 @@ const signUpWithG = (user) => {
         try {
             const res = await fetchSinToken("http://localhost:5000/user/signUpWithG", { ...user, estado: true, rol: 2 }, "POST");
             const body = await res.json();
-            if (body.ok == true) {
+            if (body.ok === true) {
                 dispatch(signInWithG(user))
-            } else if (body.ok == false) {
+            } else if (body.ok === false) {
                 dispatch(signInWithG(user))
             } else {
                 Swal.fire("Usuario No Registrado", "No se pudo insertar el usuario", "error");

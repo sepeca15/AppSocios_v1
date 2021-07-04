@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
+import { insertCargo } from '../helpers/loadData';
+import { useForm } from '../helpers/useForm';
 
 const customStyles = {
     overlay: {
@@ -20,13 +22,12 @@ const customStyles = {
 const AddCargoModal = () => {
     const [modalIsOpen, setIsOpen] = useState(true);
 
-    function openModal() {
-        setIsOpen(true);
-    }
-
     function closeModal() {
         setIsOpen(false);
     }
+    const [form, setForm] = useForm({
+        cargo: "",
+      });
     return (
         <>
             <Modal className="w-4/5 sm:max-w-xl bg-white p-6"
@@ -39,7 +40,10 @@ const AddCargoModal = () => {
                 style={customStyles}
             >
                 <p className="text-gray-800 text-center text-3x1 font-semibold">Agregar Cargo</p>
-                <form className="" /* onSubmit={handelSumit} */>
+                <form className="" onSubmit={(e)=>{
+                    e.preventDefault()
+                    insertCargo(form.cargo)
+                    closeModal()}}>
                     <div className="form-group my-6">
 
                         <input
@@ -47,9 +51,9 @@ const AddCargoModal = () => {
                             type="text"
                             className="form-control"
                             placeholder="Ingrese un Cargo"
-                            name="Cargo"
-                        /* onChange={}
-                        value={} */
+                            name="cargo"
+                            onChange={setForm}
+                            value={form.cargo}
                         />
                     </div>
                     <div className="flex justify-end">
