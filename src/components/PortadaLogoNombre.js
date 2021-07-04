@@ -23,7 +23,7 @@ const PortadaLogoNombre = () => {
             Activar
           </button>
            
-          <Link to="/adminglobal/infoempleado">
+          <Link to="/admin/infoempresa">
             <button 
               className="bg-green1  text-white font-bold  py-2 px-4 mx-2 rounded"
             >

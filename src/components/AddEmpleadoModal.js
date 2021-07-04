@@ -168,7 +168,7 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false }) => {
     esemprendedor: false,
     cargo: "",
     rol: "",
-    empresa: detalleEmpresaActual.id,
+    empresa: detalleEmpresaActual?.id,
     activo: true,
   });
   const changeDepartamento = async ({ target }) => {

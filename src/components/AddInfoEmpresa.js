@@ -121,7 +121,7 @@ const AddInfoEmpresa = ({
               }).then((result) => {
                 if (result.isConfirmed) {
                   eliminarEmpresa();
-                  rotuer.push("/admin");
+                  rotuer.push("/inicio");
                 } else if (result.isDenied) {
                   Swal.fire("Changes are not saved", "", "info");
                 }
