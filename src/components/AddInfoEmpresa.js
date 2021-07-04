@@ -72,9 +72,10 @@ const AddInfoEmpresa = ({
             className=" inline object-cover w-12 h-12 border-2 border-white rounded-full"
             src={logo_empresa}
             alt="Profile image"
-          />
+          /> 
           <label>{nombre_fantasia}</label>
         </div>
+        {/* js */}
         <div className="flex my-2 md:my-0 lg:w-2/12 justify-start md:justify-center items-center">
           <label className="text-xs">
             {email}
