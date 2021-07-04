@@ -386,7 +386,7 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
           <div className="flex justify-end content-end py-8 w-full">
             {" "}
             <button onClick={()=>{
-                if(editar == true){
+                if(editar === true){
                     setEditar(false)
                 }else{
                     setEditar(true)

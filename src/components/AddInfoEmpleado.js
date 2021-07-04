@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import * as Icon from "react-feather";
 import Swal from "sweetalert2";
-import EditEmpleadoModal from "../components/EditEmpleadoModal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { eliminarEmpleado } from "../store/actions/empleadosEmpresa";
 import AddEmpleadoModal from "./AddEmpleadoModal";
 import { types } from "../store/types/types";
@@ -36,7 +34,7 @@ const AddInfoEmpleado = ({ cargo, user, empresa, estado, num }) => {
       />
       <div
         className={
-          num % 2 == 1
+          num % 2 === 1
             ? "bg-gray-200 md:w-full inline-block md:flex justify-between px-2 py-1 itemRow md:px-10 flex-col md:flex-row shadow-md"
             : "bg-white md:w-full inline-block md:flex justify-between px-2 py-1 itemRow md:px-10 flex-col md:flex-row shadow-md"
         }
@@ -45,7 +43,7 @@ const AddInfoEmpleado = ({ cargo, user, empresa, estado, num }) => {
           <img
             className="inline object-cover w-12 h-12 border-2 border-white rounded-full"
             src={user.photo}
-            alt="Profile image"
+            alt="Profile"
           />
           <label>{user.name}</label>
         </div>
@@ -65,7 +63,7 @@ const AddInfoEmpleado = ({ cargo, user, empresa, estado, num }) => {
           <label className="text-xs">{cargo.name}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-          {estado == true ? (
+          {estado === true ? (
             <label className="text-xs">
               {" "}
               <Icon.CheckCircle className="text-green1" />{" "}

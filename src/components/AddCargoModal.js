@@ -54,6 +54,7 @@ const AddCargoModal = () => {
                             name="cargo"
                             onChange={setForm}
                             value={form.cargo}
+                            required
                         />
                     </div>
                     <div className="flex justify-end">

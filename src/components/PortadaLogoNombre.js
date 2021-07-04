@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const PortadaLogoNombre = () => {
   const empresa = useSelector(
@@ -13,7 +13,8 @@ const PortadaLogoNombre = () => {
       <div className="flex items-center justify-start">
         <img
           className="w-4/12 h-48 md:w-3/12 p-2 md:m-4 object-contain "
-          src={empresa?.logo_empresa}
+          src={empresa.logo_empresa?empresa.logo_empresa: "https://lexa.cl/wp-content/uploads/2018/11/logo.png"}
+          alt="img portada"
         />
         <span className="font-medium m-2 text-2xl p-2 md:m-4 md:text-6xl">
           {empresa?.nombre_fantasia}

@@ -2,13 +2,13 @@ import React from 'react';
 import Carousel from 'react-elastic-carousel'
 import { ReactComponent as Partners } from '../svg/partners.svg';
 import { ReactComponent as Welcome } from '../svg/welcome.svg';
-const settings = {
+/* const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1
-};
+}; */
 
 const WelcomeScreen = () => {
     return (
