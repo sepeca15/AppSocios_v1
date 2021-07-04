@@ -23,6 +23,7 @@ import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
 import UpdateData from '../pages/UpdateData';
 import InfoPageEmpresa from '../pages/InfoPageEmpresa';
+import Calendario from '../pages/Calenadrio';
 
 const RouterApp = () => {
     const state = useSelector(state => state.auth.user)
@@ -76,6 +77,7 @@ const RouterApp = () => {
                         <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                         <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
                         <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
+                        <PrivateRouter exact path="/calendar" isAuth={auth} component={Calendario} ></PrivateRouter>
                         {/* <PrivateRoute exact path="/" isAuth={!!auth} component={CalendarScreen} ></PrivateRoute>
                     <PrivateRoute exact path="/journal" isAuth={!!auth} component={JournalScreen} ></PrivateRoute> */}
                         <Redirect to="/login"></Redirect>
