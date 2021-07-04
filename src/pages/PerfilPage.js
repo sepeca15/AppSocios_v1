@@ -11,11 +11,9 @@ const PerfilPage = () => {
   const [form, setForm] = useForm({
     name: state?.name,
     last_name: state?.last_name,
-    cargo: state ? state.cargo : "",
     email: state?.email,
     telefono: state?.telefono,
     photo: state.photo?state.photo : "https://filestore.community.support.microsoft.com/api/profileimages/594cfa76-526a-4815-91b1-4f168d81a3a2",
-    /* empresaWork: state?state.empresaWork:"", */
     id: state?.id
   })
   const dispatch = useDispatch();
@@ -51,32 +49,9 @@ const PerfilPage = () => {
       );
     }
   };
-  /* const editPerfil = async () => {
-    if (file) {
-      await fileupload(file)
-        .then((e) => {
-          dispatch(
-            editUserPerfil({
-              ...form,
-              photo: e,
-            })
-          );
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      dispatch(
-        editUserPerfil({
-          ...form,
-        })
-      );
-    }
-  }; */
   return (
     <>
       <div className="flex items-center w-full justify-center">
-        {/* max-w-xs */}
         <div className="w-full">
           <div className="bg-white rounded-lg">
             <div className="portada p-2">
@@ -97,6 +72,7 @@ const PerfilPage = () => {
                   name="name"
                   onChange={setForm}
                   value={form.name}
+                  required
                 />
                 
                 <input
@@ -108,20 +84,9 @@ const PerfilPage = () => {
                   name="last_name"
                   onChange={setForm}
                   value={form.last_name}
+                  required
                 />
               </div>
-              {/* {editar ? <div className="flex justify-center text-gray-400 text-xs font-semibold">
-                <input
-                  disabled={editar}
-                  autoComplete="off"
-                  type="text"
-                  className="form-control w-full sm:w-6/12 text-sm my-1 p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
-                  placeholder="Cargo"
-                  name="cargo"
-                  onChange={setForm}
-                  value={form.cargo}
-                />
-              </div> : ""} */}
               <div className="flex justify-center text-gray-400 text-xs font-semibold">
                 <input
                   disabled={editar}
@@ -132,6 +97,7 @@ const PerfilPage = () => {
                   name="email"
                   onChange={setForm}
                   value={form.email}
+                  required
                 />
               </div>
               <div className="flex justify-center text-gray-400 text-xs font-semibold">
@@ -144,6 +110,7 @@ const PerfilPage = () => {
                   name="telefono"
                   onChange={setForm}
                   value={form.telefono}
+                  required
                 />
               </div>
               {!editar ? <div className="flex justify-center text-gray-400 text-xs font-semibold">

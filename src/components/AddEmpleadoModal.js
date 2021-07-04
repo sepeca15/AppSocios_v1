@@ -9,7 +9,7 @@ import {
   loadCargos,
 } from "../helpers/loadData";
 import { editEmpleadoEmpresa, postempleadoEmpresa } from "../store/actions/empleadosEmpresa";
-import { numbers } from "@material/textfield";
+/* import { numbers } from "@material/textfield"; */
 import Swal from "sweetalert2";
 
 const customStyles = {

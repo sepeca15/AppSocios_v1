@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { List, Shield, CheckCircle } from 'react-feather';
+import { List, CheckCircle } from 'react-feather';
 import { loadEmpleosXUser, searchEmpresaPa, sendSolicitud } from '../helpers/loadData';
 import { useSelector } from 'react-redux';
 
@@ -62,7 +61,7 @@ const SelectEmpresa = () => {
                             <div className="formgroup relative ">
                                 <input type="text" name="search" onChange={handleView} autoComplete="off" className="my-2  w-full p-3 border-2 shadow-md border-gray1 rounded-xl outline-none" placeholder="Busca tu empresa" />
                                 {
-                                    (viewSearch == true) &&
+                                    (viewSearch === true) &&
                                     <div className="absolute top-14 bg-white border-gray1 z-30 shadow-sm rounded-bl-xl rounded-br-xl border-2 border-t-0  left-0 w-full  p-2 h-48 max-h-48 overflow-y-auto">
                                         <div className="w-full h-full rounded-xl ">
                                             {
@@ -70,18 +69,18 @@ const SelectEmpresa = () => {
                                                     console.log(e)
                                                     return (
                                                         <div key={e?.id} className="w-full my-2 h-16 rounded-full bg-gray-200 flex flex-row items-center justify-start p-1">
-                                                            <img className="w-14 h-14 object-cover rounded-full bg-white" src={e?.logo_empresa}></img>
+                                                            <img className="w-14 h-14 object-cover rounded-full bg-white" alt="logoEmpresa" src={e?.logo_empresa}></img>
                                                             <div className="flex flex-grow h-full items-center justify-between ">
                                                                 <p className="text-gray-400 text-base font-normal">{e?.nombre_fantasia}</p>
                                                                 <div className="h-full flex flex-col items-center  justify-center cursor-pointer pr-2">
                                                                     {
-                                                                        (e?.solicitud == true) ?
+                                                                        (e?.solicitud === true) ?
                                                                             <>
                                                                                 <CheckCircle className=" text-gray-600" fill="#ebed72" />
                                                                                 <p className="text-gray-600">En Espera</p>
                                                                             </>
                                                                             :
-                                                                            (e?.solicitud == false) ?
+                                                                            (e?.solicitud === false) ?
                                                                                 <>
                                                                                     <CheckCircle className=" text-gray-600" fill="#77bd7f" />
                                                                                     <p className="text-gray-600">Confirmado</p>
@@ -109,12 +108,12 @@ const SelectEmpresa = () => {
                                         empleos.map(e => {
                                             return (
                                                 <div className="w-full my-2 h-16 rounded-full bg-gray-200 flex flex-row items-center justify-start p-1">
-                                                    <img className="w-14 h-14 object-cover rounded-full bg-white" src={e?.empresa?.logo_empresa}></img>
+                                                    <img className="w-14 h-14 object-cover rounded-full bg-white" alt="logoEmpresa" src={e?.empresa?.logo_empresa}></img>
                                                     <div className="flex flex-grow h-full items-center justify-between ">
                                                         <p className="text-gray-400 text-base font-normal">{e?.empresa?.nombre_fantasia}</p>
                                                         <div className="h-full flex flex-col items-center mr-2 justify-center cursor-pointer">
                                                             {
-                                                                (e?.estado == 0) ?
+                                                                (e?.estado === 0) ?
                                                                     <>
                                                                         <CheckCircle className=" text-gray-600" fill="#ebed72" />
                                                                         <p className="text-gray-600">En Espera</p>

@@ -58,6 +58,7 @@ const AddRubroModal = (props) => {
                                 name="rubro"
                                 onChange={setForm}
                                 value={form.rubro}
+                                required
                             />
                         </div>
                         <div className="flex justify-end">

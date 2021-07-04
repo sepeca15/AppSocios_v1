@@ -43,7 +43,7 @@ const AddInfoEmpleado = ({ cargo, user, empresa, estado, num }) => {
           <img
             className="inline object-cover w-12 h-12 border-2 border-white rounded-full"
             src={user.photo}
-            alt="Profile image"
+            alt="Profile"
           />
           <label>{user.name}</label>
         </div>

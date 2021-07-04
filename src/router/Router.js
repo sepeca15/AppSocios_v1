@@ -98,7 +98,7 @@ const RouterApp = () => {
                                                 <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
                                                 <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter >
                                                 {
-                                                    (state != null && auth != null && (state?.empresaWork?.lenght == 0)) && <Redirect to="/selectEmpresa"></Redirect>
+                                                    (state != null && auth != null && (state?.empresaWork?.lenght === 0)) && <Redirect to="/selectEmpresa"></Redirect>
                                                 }
                                                 {
                                                     (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
@@ -109,7 +109,7 @@ const RouterApp = () => {
                                         </>
                                     </>
                                     :
-                                    (state?.rol?.id == 3) ?
+                                    (state?.rol?.id === 3) ?
                                         <>
                                             <Switch className="flex-grow">
                                                 <PublicRouter exact path="/login" isAuth={auth} component={LoginScreen} ></PublicRouter>

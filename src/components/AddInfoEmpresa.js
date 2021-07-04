@@ -70,7 +70,7 @@ const AddInfoEmpresa = ({
           <img
             className=" inline object-cover w-12 h-12 border-2 border-white rounded-full"
             src={logo_empresa}
-            alt="Profile image"
+            alt="Profile"
           />
           <label>{nombre_fantasia}</label>
         </div>

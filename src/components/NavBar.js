@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Bell, LogOut } from 'react-feather';
 import { clearUser } from '../store/actions/auth';
-import { Redirect, useHistory } from "react-router-dom";
+/* import { useHistory } from "react-router-dom"; */
 import { NavLink } from "react-router-dom";
 import { loadNotifications } from '../helpers/loadData';
 import ItemNotification from './ItemNotification';
 const NavBar = () => {
-    const rotuer = useHistory();
+    /* const rotuer = useHistory(); */
     const dispatch = useDispatch();
     const user = useSelector(state => state?.auth?.user)
     const [onActive, setOnActive] = useState(false)
@@ -18,7 +17,7 @@ const NavBar = () => {
         dispatch(clearUser());
     }
     useEffect(() => {
-        if (user?.rol?.id == 1 || user?.rol?.id == 3) {
+        if (user?.rol?.id === 1 || user?.rol?.id === 3) {
             (async function loadNotificationsUser() {
                 const notify = await loadNotifications(null);
                 if (notify.ok) {
@@ -42,7 +41,7 @@ const NavBar = () => {
                 <div className="flex font-semibold  flex-row items-center text-2xl ">TuApp <p className="bg-green1 text-white p-1 rounded-lg">Socios</p> </div>
                 <div className="md:z-0 z-50 absolute left-0 md:mt-0 mt-20   md:relative w-full md:w-auto h-16 bg-white md:bg-transparent border-red border-t-2  md:border-none bottom-0  flex flex-grow p-0 md:px-6 md:h-full items-center justify-around ">
                     {
-                        (user?.rol?.id == 1) ?
+                        (user?.rol?.id === 1) ?
                             <>
                                 <NavLink to="/inicio">
                                     <p className="text-sm cursor-pointer  ">Inicio</p>
@@ -58,7 +57,7 @@ const NavBar = () => {
                                 </NavLink>
                             </>
                             :
-                            (user?.rol.id == 2) ?
+                            (user?.rol.id === 2) ?
                                 <>
                                     <NavLink to="/selectempresa" >
                                         <p className="text-sm cursor-pointer  ">Empresa</p>
@@ -79,7 +78,7 @@ const NavBar = () => {
                 </div>
 
                 <div className="flex flex-row items-center justify-center   ">
-                    <img className="w-12 h-12 object-cover rounded-full" src={user?.photo}></img>
+                    <img className="w-12 h-12 object-cover rounded-full" alt="userPhoto" src={user?.photo}></img>
                     <p className="font-medium ml-1 text-gray-600 text-lg">{user?.name}</p>
                     <div className="relative flex items-center justify-center ">
                         <Bell className="ml-2 cursor-pointer  h-full color-black" onClick={() => setOnActive(!onActive)} size={23} />
