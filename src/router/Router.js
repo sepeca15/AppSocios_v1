@@ -74,6 +74,7 @@ const RouterApp = () => {
                                         <PrivateRouter exact path="/inicio" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
                                         <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
                                         <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter >
+                                        <PrivateRouter exact path="/" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
                                         {
                                             (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
                                         }
@@ -99,14 +100,22 @@ const RouterApp = () => {
                                                 <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
                                                 <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                                                 <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
+                                                <PrivateRouter exact path="/inicio" isAuth={auth} component={PerfilPage} ></PrivateRouter>
                                                 <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter >
+
+                                                {
+                                                    (state && auth && state.esemprendedor == true) && <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
+                                                }
+                                                <PrivateRouter exact path="/" isAuth={auth} component={PerfilPage} ></PrivateRouter >
                                                 {
                                                     (state != null && auth != null && (state?.empresaWork?.lenght === 0)) && <Redirect to="/selectEmpresa"></Redirect>
                                                 }
                                                 {
                                                     (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
                                                 }
-                                                <PrivateRouter exact path="/inicio" isAuth={auth} component={PerfilPage} ></PrivateRouter>
+                                                {
+                                                    (state && auth && state.esemprendedor == true) && <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
+                                                }
                                                 <Route path="*" component={NotFound} />
                                             </Switch>
                                         </>
@@ -121,6 +130,7 @@ const RouterApp = () => {
                                                 <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                                                 <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
                                                 <PrivateRouter exact path="/inicio" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
+                                                <PrivateRouter exact path="/" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
                                                 {
                                                     (state && auth && (state?.name_user == null || state?.esemprendedor == null || state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
                                                 }

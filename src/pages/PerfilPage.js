@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fileupload } from "../helpers/fileUpload";
 import { editUserPerfil } from "../store/actions/auth";
 import { useForm } from "../helpers/useForm";
+import { Link } from 'react-router-dom';
+import { auth } from "../firebase/firebaseconfig";
 
 const PerfilPage = () => {
   const [editar, setEditar] = useState(true);
@@ -13,7 +15,7 @@ const PerfilPage = () => {
     last_name: state?.last_name,
     email: state?.email,
     telefono: state?.telefono,
-    photo: state.photo?state.photo : "https://filestore.community.support.microsoft.com/api/profileimages/594cfa76-526a-4815-91b1-4f168d81a3a2",
+    photo: state.photo ? state.photo : "https://filestore.community.support.microsoft.com/api/profileimages/594cfa76-526a-4815-91b1-4f168d81a3a2",
     id: state?.id
   })
   const dispatch = useDispatch();
@@ -74,7 +76,7 @@ const PerfilPage = () => {
                   value={form.name}
                   required
                 />
-                
+
                 <input
                   disabled={editar}
                   autoComplete="off"
@@ -140,8 +142,22 @@ const PerfilPage = () => {
                   {eitaroSave}
                 </button>
               </div>
+              {
+                (state?.esemprendedor == true && (state?.empleadoEmprendedor == null)) &&
+                <Link to="/admin/addempresa" className="absolute bottom-4 left-4 bg-green1 rounded-full px-2 cursor-pointer text-white font-semibold py-4"> Crear Empresa</Link>
+              }
             </div>
           </div>
+          {
+            ((state?.esemprendedor == true) && (state?.empleadoEmprendedor != null)) &&
+            <div className="p-4 h-auto m-auto">
+              <div className="w-80 m-auto h-auto p-4 shadow-md border-grayBlack1 rounded-xl border flex flex-col items-center ">
+                <img className="w-10 h-10 rounded-full object-cover" src={state?.empleadoEmprendedor?.empresa?.logo_empresa} />
+                <p className="text-gray-700 text-sm text-center"> El Administrador esta procesando tu solicitud para crear la emrpesa {state?.empleadoEmprendedor?.empresa.name} </p>
+                <p className=" text-sm text-center text-yellow-300"> Por favor espere....{state?.empleadoEmprendedor?.empresa.name} </p>
+              </div>
+            </div>
+          }
         </div>
       </div>
     </>

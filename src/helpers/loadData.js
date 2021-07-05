@@ -68,6 +68,24 @@ export const loadCargos = async () => {
     }
 }
 
+export const loadRubrosA = async () => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/rubroA");
+        const body = await resp.json();
+        console.log(body)
+        if (body.ok) {
+            return { ok: true, rubros: body.rubros }
+        } else {
+            return { ok: false, rubros: [] }
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador [Frontend]", "error");
+    }
+}
+
+
+
 export const searchEmpresaPa = async (text, uid) => {
     try {
         const resp = await fetchConToken("http://localhost:5000/empresas/searchandempl/" + text, { uid }, "POST");
@@ -119,13 +137,13 @@ export const sendSolicitud = async (user, empresa) => {
 
 
 
-
 export const loadNotifications = async (empresa) => {
     try {
         const resp = await fetchConToken((empresa != null ? "http://localhost:5000/notificaciones/empresa/" + empresa : "http://localhost:5000/notificaciones/"));
         const body = await resp.json();
+        console.log(body)
         if (body.ok) {
-            return { ok: true, notificaciones: body.notificaciones }
+            return { ok: true, notificaciones: body.notificaciones, notificacionesEmprendedor: body?.empEmpresa }
         } else {
             return { ok: false }
         }
@@ -226,5 +244,38 @@ export const insertRubro = async (rubro) => {
     } catch (error) {
         console.log(error);
         Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+    }
+}
+
+
+
+export const allowEmpresaEmprendedor = async (data) => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/empresas/allowempresaemprendedor/", { ...data }, "POST");
+        const body = await resp.json();
+        console.log(body)
+        if (body.ok) {
+            return { ok: true }
+        } else {
+            return { ok: false }
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador [Frontend]", "error");
+    }
+}
+export const deniedEmpresaEmprendedor = async (data) => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/empresas/deniedempresaemprendedor/", { ...data }, "POST");
+        const body = await resp.json();
+        console.log(body)
+        if (body.ok) {
+            return { ok: true }
+        } else {
+            return { ok: false }
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador [Frontend]", "error");
     }
 }
