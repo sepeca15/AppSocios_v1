@@ -8,6 +8,12 @@ const getEmpresas = (empresas) => {
 const getEmpresasSearch = (empresas) => {
     return { payload: empresas, type: types.busquedaEmpresaText }
 }
+const saveStateComboBox2 = (...empresas) => {
+    return {payload: empresas, type:types.ComboBox2}
+}
+const saveStateComboBox3 = (empresas) => {
+    return {payload: empresas, type:types.ComboBox3}
+}
 
 const getEmpresaActive = (idempresa) => {
     return async (dispatch) => {
@@ -137,4 +143,4 @@ const elimiarEmpresa = (id) => {
 }
 
 
-export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, editEmpresa }
+export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, saveStateComboBox2, editEmpresa }
