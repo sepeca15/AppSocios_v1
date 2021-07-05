@@ -1,20 +1,32 @@
-import React, { useEffect, } from "react";
+import React, { useEffect, useState } from "react";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllEmpresas, getbusquedaEmpresaText } from "../store/actions/empresas";
+import { getAllEmpresas, getbusquedaEmpresaText, saveStateComboBox2 } from "../store/actions/empresas";
+import { loadLocalidadescombobox } from "../helpers/loadData";
+import { useForm } from "../helpers/useForm";
 /* import { useForm } from "../helpers/useForm"; */
 
 const AdminPageScreen = () => {
   const dispatch = useDispatch();
+  
+  const [localidades, setLocalidades] = useState(null);
   useEffect(() => {
     dispatch(getAllEmpresas());
+    cargarlocadidadcombobox()
   },[]);
   const state = useSelector((state) => state.empresas.empresas);
+  const [empresaFilter, setempresaFilter] = useState(null)
+  async function cargarlocadidadcombobox(){
+    const localidad = await loadLocalidadescombobox();
+    console.log(localidades);
+        if (localidad.ok) {
+          setLocalidades(localidad.localidades);
+        } else {
+          setLocalidades([]);
+        }
+      }
 
-  /* const [form, setForm, reset] = useForm({
-    data: ""
-}) */
   const dataBusqueda = (e) =>{
     e.preventDefault()
     let data = e.target.value
@@ -24,7 +36,89 @@ const AdminPageScreen = () => {
       dispatch(getbusquedaEmpresaText(data))
     }
   }
+  const ComboBox1 = (e) => {
+    let newData = []
+    let activa = e.target.value==="1" ? true : false
+    let inactiva = e.target.value==="0" ? false : true
+    if(activa){
+      state.filter(function(element,i){
+        if(element.activa===activa){
+          newData.push(element)
+        } 
+        setempresaFilter(newData)
+      } )
+    } else if(!inactiva){
+      state.filter(function(element,i){
+        if(element.activa===inactiva){
+          newData.push(element)
+        }
+        setempresaFilter(newData) 
+      } )
+    } else setempresaFilter(null)
+  }
 
+  const ComboBox2 = (e) => {
+    let newData = []
+    let activa = e.target.value==="1" ? true : false
+    let inactiva = e.target.value==="0" ? false : true
+    if(activa){
+      state.filter(function(element,i){
+        if(element.activa===activa){
+          newData.push(element)
+        } 
+        setempresaFilter(newData)
+      } )
+    } else if(!inactiva){
+      state.filter(function(element,i){
+        if(element.activa===inactiva){
+          newData.push(element)
+        }
+        setempresaFilter(newData) 
+      } )
+    } else setempresaFilter(null)
+  }
+ 
+  const ComboBox3 = (e) => {
+    let newData = []
+    let activa = e.target.value==="1" ? true : false
+    let inactiva = e.target.value==="0" ? false : true
+    if(activa){
+      state.filter(function(element,i){
+        if(element.activa===activa){
+          newData.push(element)
+        } 
+        setempresaFilter(newData)
+      } )
+    } else if(!inactiva){
+      state.filter(function(element,i){
+        if(element.activa===inactiva){
+          newData.push(element)
+        }
+        setempresaFilter(newData) 
+      } )
+    } else setempresaFilter(null)
+  }
+
+  const ComboBox4 = (e) => {
+    let newData = []
+    let activa = e.target.value==="1" ? true : false
+    let inactiva = e.target.value==="0" ? false : true
+    if(activa){
+      state.filter(function(element,i){
+        if(element.activa===activa){
+          newData.push(element)
+        } 
+        setempresaFilter(newData)
+      } )
+    } else if(!inactiva){
+      state.filter(function(element,i){
+        if(element.activa===inactiva){
+          newData.push(element)
+        }
+        setempresaFilter(newData) 
+      } )
+    } else setempresaFilter(null)
+  }
   return (
     <div className=" relative w-full h-full ">
       <div className="flex justify-around flex-col text-center bg-gray-100 md:flex-row mb-2 py-4 ">
@@ -48,43 +142,50 @@ const AdminPageScreen = () => {
           <QueDeseaAgregarModal />
         </div>
       </div>
-
+      <form>
       <div className="flex justify-center sm:justify-around my-2 flex-col sm:flex-row">
         <div className="text-center">
           <label className="block text-center m-0">Rubro actividad</label>
-          <select className="w-2/3 sm:w-full py-2 px-4 border-2">
-            <option value="volvo">Todos</option>
+          <select onChange={ComboBox1} name="combobox1" className="w-2/3 sm:w-full py-2 px-4 border-2">
+            <option value="">Todos</option>
             <option value="saab">Ropa</option>
             <option value="opel">Deporte</option>
           </select>
         </div>
         <div className="text-center">
           <label className="block text-center m-0">
-            Empresas Activas/Inactivas (5)
+            Empresas Activas/Inactivas {empresaFilter?"("+empresaFilter.length+")":"("+state?.length+")"} 
           </label>
-          <select className="w-2/3 sm:w-full py-2 px-4 border-2">
-            <option value="volvo">Todos</option>
-            <option value="saab">Activas</option>
-            <option value="opel">Inactivas</option>
+          {/* ,()=>{ComboBox2(form.combobox2)} */}
+          <select onChange={ComboBox2} name="combobox2" className="w-2/3 sm:w-full py-2 px-4 border-2">
+            <option value="todo">Todos</option>
+            <option  value="1">Activas</option>
+            <option value="0">Inactivas</option>
           </select>
         </div>
         <div className="text-center">
           <label className="block text-center m-0">Localidad</label>
-          <select className="w-2/3 sm:w-full  py-2 px-4 border-2">
-            <option value="volvo">Todas</option>
-            <option value="audi">San Jose de Mayo</option>
+          <select onChange={ComboBox3} name="combobox3" className="w-2/3 sm:w-full  py-2 px-4 border-2">
+            <option value="">Todas</option>
+            {localidades?.map((e, i) => {
+                  return (
+                    <option key={e.name + "," + i} value={`${e.id}`}>
+                      {e.name}
+                    </option>
+                  );
+                })}
           </select>
         </div>
         <div className=" text-center">
           <label className="block m-0">Empresas/Emprendedores</label>
-          <select className="w-2/3 sm:w-full py-2 px-4 border-2">
+          <select onChange={ComboBox4} name="combobox4" className="w-2/3 sm:w-full py-2 px-4 border-2">
             <option value="volvo">Todos</option>
             <option value="saab">Empresas</option>
             <option value="opel">Emprendedores</option>
           </select>
         </div>
       </div>
-
+      </form>
       <div className=" flex md:block flex-row flex-grow">
         <div className="bg-gray-200 md:w-full inline-block md:flex justify-between pb-2 pt-3 text-black rounded flex-col md:flex-row ">
           <label className="flex p-2 md:p-0 lg:w-1/12 justify-center md:text-center">
@@ -112,10 +213,16 @@ const AdminPageScreen = () => {
         </div>
 
         <div className="flex flex-nowrap flex-grow md:flex-col w-6/12 md:w-full heightvh overflow-x-auto md:overflow-y-auto ">
-          {state &&
+          {/* {state &&
             state.map((empresa, index) => {
               return <AddInfoEmpresa {...empresa} num={index} />;
-            })}
+            })} */}
+            {(empresaFilter !== null)? empresaFilter.map((empresa, index) => {
+              return <AddInfoEmpresa {...empresa} num={index} />;
+            }) : (state &&
+              state.map((empresa, index) => {
+                return <AddInfoEmpresa {...empresa} num={index} />;
+              })) }
         </div>
       </div>
       <p>

@@ -36,6 +36,22 @@ export const loadLocalidades = async (idD) => {
 }
 
 
+export const loadLocalidadescombobox = async () => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/localidades/");
+        const body = await resp.json();
+        if (body.ok) {
+            return { ok: true, localidades: body.rubros }
+        } else {
+            return { ok: false, localidades: [] }
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador [Frontend]", "error");
+    }
+}
+
+
 
 export const loadCargos = async () => {
     try {
