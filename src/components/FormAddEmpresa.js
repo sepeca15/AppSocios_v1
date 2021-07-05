@@ -189,65 +189,67 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
       Swal.fire("ERROR", "intente seleccionar los rubros y las localidades correctamente", "error")
     }
     e.preventDefault();
-    if (state?.esemprendedor == false) {
-      if (!InfoPageEmpresa) {
-        if (file) {
-          await fileupload(file)
-            .then((e) => {
-              dispatch(
-                editEmpresa({
-                  ...form,
-                  logo_empresa: e,
-                })
-              );
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        } else {
-          dispatch(
-            editEmpresa({
-              ...form,
-            })
-          );
-        }
-      } else {
-        if (file) {
-          await fileupload(file)
-            .then((e) => {
-              dispatch(
-                postEmpresa({
-                  ...form,
-                  logo_empresa: e,
-                })
-              );
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        } else {
-          dispatch(
-            postEmpresa({
-              ...form,
-            })
-          );
-        }
-      }
-    } else {
-      if (file) {
-        await fileupload(file)
-          .then((e) => {
+    if (editar == true) {
+      if (state?.esemprendedor == false) {
+        if (!InfoPageEmpresa) {
+          if (file) {
+            await fileupload(file)
+              .then((e) => {
+                dispatch(
+                  editEmpresa({
+                    ...form,
+                    logo_empresa: e,
+                  })
+                );
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          } else {
             dispatch(
-              insertempresaemprendedor({ ...form, logo_empresa: e, }, state?.id)
+              editEmpresa({
+                ...form,
+              })
             );
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+          }
+        } else {
+          if (file) {
+            await fileupload(file)
+              .then((e) => {
+                dispatch(
+                  postEmpresa({
+                    ...form,
+                    logo_empresa: e,
+                  })
+                );
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          } else {
+            dispatch(
+              postEmpresa({
+                ...form,
+              })
+            );
+          }
+        }
       } else {
-        dispatch(
-          insertempresaemprendedor({ ...form, }, state?.id)
-        );
+        if (file) {
+          await fileupload(file)
+            .then((e) => {
+              dispatch(
+                insertempresaemprendedor({ ...form, logo_empresa: e, }, state?.id)
+              );
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          dispatch(
+            insertempresaemprendedor({ ...form, }, state?.id)
+          );
+        }
       }
     }
 
