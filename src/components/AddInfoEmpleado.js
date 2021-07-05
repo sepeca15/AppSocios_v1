@@ -6,24 +6,24 @@ import { eliminarEmpleado } from "../store/actions/empleadosEmpresa";
 import AddEmpleadoModal from "./AddEmpleadoModal";
 import { types } from "../store/types/types";
 
-const AddInfoEmpleado = ({ cargo, user, empresa, estado, num }) => {
+const AddInfoEmpleado = ({ cargo, user, empresa, estado, localidad, num }) => {
   const dispatch = useDispatch();
 
-    /* AddEmpleadoModal */
-    const [modalAddEmpleadoIsOpen, setIsAddEmpleadoOpen] = useState(false);
+  /* AddEmpleadoModal */
+  const [modalAddEmpleadoIsOpen, setIsAddEmpleadoOpen] = useState(false);
 
-    function openModalAddEmpleado() {
-      dispatch({type: types.activeEmpleado, payload: {cargo, user, empresa, estado}})
-      setIsAddEmpleadoOpen(true);
-    }
-  
-    function closeModalAddEmpleado() {
-      setIsAddEmpleadoOpen(false);
-      dispatch({type: types.clearActiveEmpleado})
-    }
+  function openModalAddEmpleado() {
+    dispatch({ type: types.activeEmpleado, payload: { cargo, user, empresa, estado, localidad } })
+    setIsAddEmpleadoOpen(true);
+  }
+
+  function closeModalAddEmpleado() {
+    setIsAddEmpleadoOpen(false);
+    dispatch({ type: types.clearActiveEmpleado })
+  }
 
   const eliminarEmpleados = () => {
-    dispatch(eliminarEmpleado({user: user.id, empresa: 1, cargo: cargo.id}));
+    dispatch(eliminarEmpleado({ user: user.id, empresa: 1, cargo: cargo.id }));
   };
 
   return (
