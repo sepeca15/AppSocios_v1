@@ -57,7 +57,7 @@ const AddInfoEmpleado = ({ cargo, user, empresa, estado, localidad, num }) => {
           <label className="text-xs">{user?.telefono}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-          <label className="text-xs">726192-2</label>
+          <label className="text-xs">{localidad?.name}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
           <label className="text-xs">{cargo?.name}</label>

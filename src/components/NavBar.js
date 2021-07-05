@@ -122,9 +122,9 @@ const NavBar = () => {
                     <img className="w-12 h-12 object-cover rounded-full" alt="userPhoto" src={user?.photo}></img>
                     <p className="font-medium ml-1 text-gray-600 text-lg">{user?.name}</p>
                     <div className="relative flex items-center justify-center ">
-                        <Bell className="ml-2 cursor-pointer  h-full color-black" onClick={() => setOnActive(!onActive)} size={23} />
+                        <Bell className={notificaciones?.length === 0 ? "ml-2 cursor-pointer h-full color-black" : "ml-2 cursor-pointer h-full text-red-500"} onClick={() => setOnActive(!onActive)} size={23} />
                         {onActive &&
-                            <div className="z-50 duration-700  absolute h-96 flex flex-col items-center  p-4 top-6 right-0 w-96  bg-white border-grayBlack1 shadow-md rounded-lg">
+                            <div className="z-50 duration-700 border absolute h-96 flex flex-col items-center  p-4 top-6 right-0 w-96  bg-white border-grayBlack1 shadow-md rounded-lg">
                                 <p className="text-gray-800 text-sm p-1 ">Notificaciones</p>
                                 <div className="flex flex-col flex-grow w-full items-center justify-start ">
                                     {

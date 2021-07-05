@@ -106,7 +106,7 @@ const InfoPageEmpleado = () => {
               Telefono
             </label>
             <label className="flex p-2 md:p-0 sm:w-1/12 justify-center md:text-center">
-              CI
+              Localidad
             </label>
             <label className="flex p-2 md:p-0 sm:w-1/12 justify-center md:text-center">
               Cargo

@@ -25,7 +25,7 @@ const ItemNotification = ({ estado, user, empresa, cargo }) => {
                     <ArrowRight size={24} />
                     <img className=" w-10 h-10 object-cover rounded-full" alt="logoEmpresa" src={empresa?.logo_empresa} />
                 </div>
-                <p className="text-gray-700 flex-grow">Maxi SIlva</p>
+                <p className="text-gray-700 flex-grow">{user?.name + " " + user?.last_name} </p>
             </div>
             <div className="flex flex-row flex-grow items-center justify-center">
                 <p className="text-xs text-left  text-gray-700 flex-grow">{user?.name || "Sin nombre"} a solicitado unirse a la empresa {empresa?.nombre_fantasia || "Sin nombre"} con un cargo de {cargo?.name || "Empleado"}</p>
