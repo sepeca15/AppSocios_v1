@@ -28,8 +28,7 @@ const WelcomeScreen = () => {
                     </div>
                 </Carousel>
                 <div className="flex flex-col items-center my-4  w-full md:max-w-3xl">
-                    <button className="w-full py-2 buttonIndex">Continuar Como Empresa</button>
-                    <button className="w-full py-2 buttonIndex">Continuar Como Emprendedor</button>
+                    <button className="w-full py-2 buttonIndex">Continuar Como Empresa/Emplendedor</button>
                 </div>
             </div>
         </div>

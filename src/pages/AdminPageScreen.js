@@ -80,23 +80,16 @@ const AdminPageScreen = () => {
 
   const ComboBox3 = (e) => {
     let newData = []
-    let activa = e.target.value === "1" ? true : false
-    let inactiva = e.target.value === "0" ? false : true
-    if (activa) {
+    if (e.target.value === "Todos") {
+      setempresaFilter(null)
+    } else {
       state.filter(function (element, i) {
-        if (element.activa === activa) {
+        if (element.localidad.id === parseInt(e.target.value)) {
           newData.push(element)
         }
         setempresaFilter(newData)
       })
-    } else if (!inactiva) {
-      state.filter(function (element, i) {
-        if (element.activa === inactiva) {
-          newData.push(element)
-        }
-        setempresaFilter(newData)
-      })
-    } else setempresaFilter(null)
+    }
   }
 
   const ComboBox4 = (e) => {
@@ -166,7 +159,7 @@ const AdminPageScreen = () => {
           <div className="text-center">
             <label className="block text-center m-0">Localidad</label>
             <select onChange={ComboBox3} name="combobox3" className="w-2/3 sm:w-full  py-2 px-4 border-2">
-              <option value="">Todas</option>
+              <option value="Todos">Todas</option>
               {localidades?.map((e, i) => {
                 return (
                   <option key={e.name + "," + i} value={`${e.id}`}>
