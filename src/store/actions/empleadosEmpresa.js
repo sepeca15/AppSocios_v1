@@ -50,9 +50,13 @@ const getEmpleadosEmpresa = (idempresa) => {
             if (body.ok === true) {
                 /* Si la respuesta es positiva */
                 /* body.empleados */
+                console.log("Funcion getEmpleados de una empresa");
+                console.log(idempresa);
+                console.log(body);
                 dispatch(empleadoEmpresa(body.empleados))
                 
             } else {
+                console.log(body);
                 Swal.fire("No hay usuarios", "No se pudo insertar el usuario", "error");
             }
         } catch (error) {

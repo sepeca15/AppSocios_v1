@@ -5,16 +5,31 @@ import AddEmpleadoModal from "../components/AddEmpleadoModal";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getbusquedaEmpleadoSearchText, getEmpleadosEmpresa } from "../store/actions/empleadosEmpresa";
+import { getEmpresaActive } from "../store/actions/empresas";
 
 const InfoPageEmpleado = () => {
   const detalleEmpresaActual = useSelector(
     (state) => state.detalleEmpresa.detallesDeEmpresaActual
   );
+  const authuser = useSelector((state) => state.auth.user);
+
   const state = useSelector((state) => state.empleadosEmpresa.empleadosEmpresa);
-  console.log(state);
   const dispatch = useDispatch();
+  const empresaAdmin = useSelector((state) => state.auth?.user?.empresaAdmin);
+  
   useEffect(() => {
-    dispatch(getEmpleadosEmpresa(detalleEmpresaActual?.id));
+    if (authuser.rol.id === 1) {
+      /* Admin global */
+      if (detalleEmpresaActual == null) {
+        const id = localStorage.getItem("empresaActive");
+        dispatch(getEmpresaActive(id));
+        dispatch(getEmpleadosEmpresa(id));
+      }
+    }else if(authuser.rol.id === 3){
+      const id = localStorage.getItem("empresaActive");
+      dispatch(getEmpleadosEmpresa(empresaAdmin.id));
+      console.log("aqui");
+    }
   }, []);
   
   const dispatch2 = useDispatch();

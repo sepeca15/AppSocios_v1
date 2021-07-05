@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { getEmpleadosEmpresa } from "../store/actions/empleadosEmpresa";
+import { useDispatch, useSelector } from "react-redux";
 
 const PortadaLogoNombre = () => {
   const empresa = useSelector(
@@ -8,10 +9,26 @@ const PortadaLogoNombre = () => {
   );
   const empresaAdmin = useSelector((state) => state.auth?.user?.empresaAdmin);
   const state = useSelector((state) => state.auth.user);
+  const detalleEmpresaActual = useSelector(
+    (state) => state.detalleEmpresa.detallesDeEmpresaActual
+  );
+  const dispatch = useDispatch();
 
-
+    const verEmpleados =() =>{
+      if (state.rol.id === 1) {
+        /* Admin empresa */
+          const id = localStorage.getItem("empresaActive");
+          dispatch(getEmpleadosEmpresa(id));      
+      }
+      if (state.rol.id === 3) {
+        /* Admin empresa */
+        if (detalleEmpresaActual == null) {
+          const id = localStorage.getItem("empresaActive");
+          dispatch(getEmpleadosEmpresa(empresaAdmin.id));      
+        }
+      }
+    }
   return (
-    //gradient : bg-gradient-to-r from-greenBlack1 via-green1 to-greenLight1
     <div className="portada w-full h-1/4 flex items-center justify-start">
       <div className="flex items-center justify-start">
         <img
@@ -28,6 +45,7 @@ const PortadaLogoNombre = () => {
            
           <Link to="/admin/infoempresa">
             <button 
+            onClick={()=>{verEmpleados()}}
               className="bg-green1  text-white font-bold  py-2 px-4 mx-2 rounded"
             >
               Ver empleado
