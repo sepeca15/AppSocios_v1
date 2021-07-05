@@ -8,7 +8,28 @@ const getEmpresas = (empresas) => {
 const getEmpresasSearch = (empresas) => {
     return { payload: empresas, type: types.busquedaEmpresaText }
 }
+const empresasAniversario = (empresas) => {
+    return { payload: empresas, type: types.empresaAniversario }
+}
 
+const getEmpresasAniversarios = () => {
+    return async (dispatch) => {
+        try {
+            const res = await fetchConToken("http://localhost:5000/empresas/fechaAniversario/");
+            const body = await res.json();
+            if (body.ok === true) {
+                dispatch(empresasAniversario(
+                     body.fechasAniversario
+                ))
+            } else {
+                Swal.fire("fechasAniversario", "No se pudo insertar las de fechasAniversario", "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+    }
+}
 const getEmpresaActive = (idempresa) => {
     return async (dispatch) => {
         try {
@@ -136,4 +157,4 @@ const elimiarEmpresa = (id) => {
 }
 
 
-export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, editEmpresa }
+export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, editEmpresa, getEmpresasAniversarios }

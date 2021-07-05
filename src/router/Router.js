@@ -83,6 +83,7 @@ const RouterApp = () => {
                                         <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                                         <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
                                         <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
+                                        <PrivateRouter exact path="/calendario" isAuth={auth} component={Calendario} ></PrivateRouter>
                                         <Route exact path="/404" component={NotFound} />
                                     </Switch>
                                 </>

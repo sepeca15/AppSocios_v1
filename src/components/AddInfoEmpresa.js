@@ -136,8 +136,8 @@ const AddInfoEmpresa = ({
             }}
             className="bg-danger text-xs mr-1 text-white font-bold p-2 rounded"
           >
-            <Icon.Delete className="ml-2" />
-            Eliminar
+            <Icon.XCircle className="ml-3" />
+            Desactivar
           </button>
 
           <Link to="/adminglobal/infoempresa/">

@@ -25,10 +25,10 @@ const InfoPageEmpleado = () => {
         dispatch(getEmpresaActive(id));
         dispatch(getEmpleadosEmpresa(id));
       }
-    }else if(authuser.rol.id === 3){
+    }else if(authuser.rol.id === 3)
+    {
       const id = localStorage.getItem("empresaActive");
       dispatch(getEmpleadosEmpresa(empresaAdmin.id));
-      console.log("aqui");
     }
   }, []);
   
@@ -43,15 +43,16 @@ const InfoPageEmpleado = () => {
   function closeModalAddEmpleado() {
     setIsAddEmpleadoOpen(false);
   }
-
+  /* empresaAdmin.id */
   /* AddEmpleadoModal */
   const dataBusquedaEmpleado = (e) =>{
     e.preventDefault()
     let data = e.target.value
     if(!data){
-      dispatch(getEmpleadosEmpresa(detalleEmpresaActual.id));
+      console.log("111asd");
+      dispatch(getEmpleadosEmpresa(empresaAdmin?.id));
     }else{ 
-      dispatch2(getbusquedaEmpleadoSearchText(data))
+      dispatch2(getbusquedaEmpleadoSearchText(data,empresaAdmin?.id))
     }
   }
   return (
@@ -121,6 +122,10 @@ const InfoPageEmpleado = () => {
             {state &&
               state.map((element, i) => {
                 if(element?.empleado?.estado != null){ return <AddInfoEmpleado {...element.empleado} num={i} />};
+              })}
+            {state &&
+              state.map((element, i) => {
+                if(element?.estado != null){ return <AddInfoEmpleado {...element} num={i} />};
               })}
           </div>
         </div>

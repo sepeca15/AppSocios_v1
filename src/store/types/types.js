@@ -17,6 +17,7 @@ export const types = {
     clearActiveEmpleado: "[empresaEmpleado] claerActiveEmpleado",
     detalleEmpresa: "[empresaDetalle] detalleEmpresa",
     busquedaEmpresaText: "[empresaDetalle] busquedaEmpresaText",
-    busquedaEmpleadoText: "[empresaEmpleado] busquedaEmpleadoText"
+    busquedaEmpleadoText: "[empresaEmpleado] busquedaEmpleadoText",
+    empresaAniversario: "[empresaAniversario] empresaAniversario"
 
 }

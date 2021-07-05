@@ -29,26 +29,24 @@ const PortadaLogoNombre = () => {
       }
     }
   return (
-    <div className="portada w-full h-1/4 flex items-center justify-start">
-      <div className="flex items-center justify-start">
+    <div className="portada w-full h-2/4 flex items-center justify-start p-2">
+      {/*  */}
+      <div className="flex items-center justify-around w-full flex-col sm:flex-row">
         <img
-          className="w-4/12 h-48 md:w-3/12 p-2 md:m-4 object-contain "
+          className=" h-48 p-2 md:m-4 object-contain  "
           src={state.rol.id == 1 ? empresa?.[0]?.logo_empresa : empresaAdmin?.logo_empresa  }
         />
         <span className="font-medium m-2 text-2xl p-2 md:m-4 md:text-6xl">
           {state.rol.id == 1 ? empresa?.[0]?.nombre_fantasia : empresaAdmin?.nombre_fantasia}
         </span>
-        <div>
-          <button className="bg-yellow1 text-white font-bold py-2 px-4 mx-2 rounded">
-            Activar
-          </button>
+        <div> 
            
           <Link to="/admin/infoempresa">
             <button 
             onClick={()=>{verEmpleados()}}
               className="bg-green1  text-white font-bold  py-2 px-4 mx-2 rounded"
             >
-              Ver empleado
+              Ver empleados
             </button>
           </Link>
 
