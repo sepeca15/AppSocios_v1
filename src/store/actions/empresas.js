@@ -173,12 +173,12 @@ const elimiarEmpresa = (id) => {
             if (body.ok) {
                 /* dispatch(createEmpresa(body.empresas)) */
                 Swal.fire({
-                    title: "Se elimino correctamente",
+                    title: "Se desactivo correctamente",
                     type: "success",
                 });
 
             } else {
-                Swal.fire("Error Empresas", body.msg, "error");
+                Swal.fire("Error al desactivar empresas", body.msg, "error");
             }
         } catch (error) {
             console.log(error);

@@ -25,6 +25,7 @@ const AddInfoEmpresa = ({
   num,
   fecha_baja,
   observaciones,
+  numEmpleados,
   id,
 }) => {
   const dispatch = useDispatch();
@@ -93,7 +94,7 @@ const AddInfoEmpresa = ({
           <label className="text-xs">{direccion}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-          <label className="text-xs">70</label>
+          <label className="text-xs">{numEmpleados}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
           <label className="text-xs">{razon_social}</label>
@@ -116,14 +117,13 @@ const AddInfoEmpresa = ({
           <button
             onClick={() => {
               Swal.fire({
-                title: "¿Está seguro que desea eliminar este empleado?",
-                text: "¡No podrás recuperar los datos!",
+                title: "¿Está seguro que desea desactivar esta empresa?",
                 type: "warning",
                 showCloseButton: true,
                 showCancelButton: true,
                 confirmButtonColor: "#F64E60",
                 cancelButtonColor: "#C4C4C4",
-                confirmButtonText: "Sí, eliminarlo!",
+                confirmButtonText: "Sí, desactivar!",
                 cancelButtonText: "Cancelar",
               }).then((result) => {
                 if (result.isConfirmed) {

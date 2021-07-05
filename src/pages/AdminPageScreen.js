@@ -160,7 +160,7 @@ const AdminPageScreen = () => {
           </div>
           <div className="text-center">
             <label className="block text-center m-0">
-              Empresas Activas/Inactivas {empresaFilter ? "(" + empresaFilter.length + ")" : "(" + state?.length + ")"}
+              Empresas Activas/Inactivas (<span className="text-red-500">{empresaFilter ?  empresaFilter.length  : state?.length }</span>)
             </label>
             {/* ,()=>{ComboBox2(form.combobox2)} */}
             <select onChange={ComboBox2} name="combobox2" className="w-2/3 sm:w-full py-2 px-4 border-2">
@@ -170,7 +170,7 @@ const AdminPageScreen = () => {
             </select>
           </div>
           <div className="text-center">
-            <label className="block text-center m-0">Localidad</label>
+            <label className="block text-center m-0">Localidad (<span className="text-red-500">{empresaFilter ?  empresaFilter.length  : state?.length }</span>) </label>
             <select onChange={ComboBox3} name="combobox3" className="w-2/3 sm:w-full  py-2 px-4 border-2">
               <option value="Todos">Todas</option>
               {localidades?.map((e, i) => {
