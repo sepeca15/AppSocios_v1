@@ -66,7 +66,10 @@ const getEmpleadosEmpresa = (idempresa) => {
 }
 const postempleadoEmpresa = (form) => {
     return async (dispatch, getState) => {
-        const { id } = getState().auth?.user?.empresaAdmin;
+        var { id } = getState().auth?.user?.empresaAdmin;
+        if (!id) {
+            id = localStorage.getItem("empresaActive")
+        }
         try {
             const resp = await fetchConToken("http://localhost:5000/empleados/newempleado", { ...form, empresa: id }, "POST");
             const body = await resp.json();
