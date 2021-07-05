@@ -14,6 +14,7 @@ const getEmpresaActive = (idempresa) => {
         try {
             const res = await fetchConToken("http://localhost:5000/empresas/getdataEmpresa/" + idempresa);
             const body = await res.json();
+            console.log(body)
             if (body.ok === true) {
                 dispatch({
                     type: types.detalleEmpresa,
