@@ -76,7 +76,7 @@ const postEmpresa = (form) => {
                 /* dispatch(createEmpresa(body.empresas)) */
                 Swal.fire({
                     title: "Se añadio correctamente",
-                    text: "La empresa se agrego " + form.name + " correctamente",
+                    text: "La empresa se agrego " + form.nombre_fantasia + " correctamente",
                     type: "success",
                 });
 
@@ -88,6 +88,27 @@ const postEmpresa = (form) => {
             Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
         }
 
+    }
+}
+const editEmpresa = (empresa) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/empresas/" + empresa.id, { ...empresa }, "PUT");
+            const body = await resp.json();
+            if (body.ok) {
+                /* dispatch(createEmpresa(body.empresas)) */
+                Swal.fire({
+                    title: "Se Actualizo correctamente su empresa ",
+                    text: "La empresa " + empresa.nombre_fantasia + " se actualizo correctamente",
+                    type: "success",
+                });
+            } else {
+                Swal.fire("Error Empresas", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
     }
 }
 
@@ -115,4 +136,4 @@ const elimiarEmpresa = (id) => {
 }
 
 
-export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive }
+export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, editEmpresa }
