@@ -2,7 +2,8 @@ import { types } from "../types/types"
 
 const initialState = {
     empresas: null,
-    activeEmpresa: null
+    activeEmpresa: null,
+    empresaAniversario: [{fecha: "", nombre: ""}]
 }
 
 export const empresasReducer = (state = initialState, action) => {
@@ -23,6 +24,9 @@ export const empresasReducer = (state = initialState, action) => {
         case types.getEmpresas:
 
             return { ...state, empresas: action.payload }
+        case types.empresaAniversario:
+
+            return { ...state, empresaAniversario: action.payload }
 
         case types.createEmpresas:
 
