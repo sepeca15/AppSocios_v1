@@ -120,7 +120,7 @@ const InfoPageEmpleado = () => {
             {/* Aqui se map los datos de los empleados */}
             {state &&
               state.map((element, i) => {
-                if(element?.estado != null){ return <AddInfoEmpleado {...element} num={i} />};
+                if(element?.empleado?.estado != null){ return <AddInfoEmpleado {...element.empleado} num={i} />};
               })}
           </div>
         </div>
