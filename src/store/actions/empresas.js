@@ -3,21 +3,21 @@ import { types } from "../types/types"
 import Swal from "sweetalert2"
 
 const getEmpresas = (empresas) => {
-    return {payload: empresas, type:types.getEmpresas}
+    return { payload: empresas, type: types.getEmpresas }
 }
 const getEmpresasSearch = (empresas) => {
-    return {payload: empresas, type:types.busquedaEmpresaText}
+    return { payload: empresas, type: types.busquedaEmpresaText }
 }
- 
+
 const getEmpresaActive = (idempresa) => {
     return async (dispatch) => {
-        try { 
-            const res = await fetchConToken("http://localhost:5000/empresas/getdataEmpresa/"+ idempresa);
+        try {
+            const res = await fetchConToken("http://localhost:5000/empresas/getdataEmpresa/" + idempresa);
             const body = await res.json();
-            if (body.ok === true) {  
+            if (body.ok === true) {
                 dispatch({
-                    type: types.detalleEmpresa, 
-                    payload: body.empresa
+                    type: types.detalleEmpresa,
+                    payload: body
                 })
             } else {
                 Swal.fire("Empresaseleccionada", "No se pudo insertar la empresa", "error");
@@ -57,7 +57,7 @@ const getbusquedaEmpresaText = (data) => {
             if (body.ok) {
                 dispatch(getEmpresasSearch(body.empresas))
             } else {
-               /*  console.log(body); */
+                /*  console.log(body); */
             }
         } catch (error) {
             /* console.log(error);
@@ -70,16 +70,16 @@ const getbusquedaEmpresaText = (data) => {
 const postEmpresa = (form) => {
     return async (dispatch) => {
         try {
-            const resp = await fetchConToken("http://localhost:5000/empresas/", {...form}, "POST");
+            const resp = await fetchConToken("http://localhost:5000/empresas/", { ...form }, "POST");
             const body = await resp.json();
             if (body.ok) {
                 /* dispatch(createEmpresa(body.empresas)) */
                 Swal.fire({
                     title: "Se añadio correctamente",
-                    text: "La empresa se agrego "+ form.name +" correctamente",
+                    text: "La empresa se agrego " + form.nombre_fantasia + " correctamente",
                     type: "success",
                 });
-                
+
             } else {
                 Swal.fire("Error Empresas", body.msg, "error");
             }
@@ -90,11 +90,32 @@ const postEmpresa = (form) => {
 
     }
 }
+const editEmpresa = (empresa) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/empresas/" + empresa.id, { ...empresa }, "PUT");
+            const body = await resp.json();
+            if (body.ok) {
+                /* dispatch(createEmpresa(body.empresas)) */
+                Swal.fire({
+                    title: "Se Actualizo correctamente su empresa ",
+                    text: "La empresa " + empresa.nombre_fantasia + " se actualizo correctamente",
+                    type: "success",
+                });
+            } else {
+                Swal.fire("Error Empresas", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+    }
+}
 
 const elimiarEmpresa = (id) => {
     return async (dispatch) => {
         try {
-            const resp = await fetchConToken("http://localhost:5000/empresas/"+id, {} ,"DELETE");
+            const resp = await fetchConToken("http://localhost:5000/empresas/" + id, {}, "DELETE");
             const body = await resp.json();
             if (body.ok) {
                 /* dispatch(createEmpresa(body.empresas)) */
@@ -102,7 +123,7 @@ const elimiarEmpresa = (id) => {
                     title: "Se elimino correctamente",
                     type: "success",
                 });
-                
+
             } else {
                 Swal.fire("Error Empresas", body.msg, "error");
             }
@@ -115,4 +136,4 @@ const elimiarEmpresa = (id) => {
 }
 
 
-export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive }
+export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, editEmpresa }

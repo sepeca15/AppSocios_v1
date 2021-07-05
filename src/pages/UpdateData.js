@@ -88,9 +88,9 @@ const UpdateData = () => {
     return (
         <div className="w-full h-full flex flex-row items-center justify-center">
             <div className=" bg-gradient-to-r from-green-500 via-green-400 to-green-300 w-full h-full flex items-center justify-center ">
-                <div className="w-1/2 bg-white h-auto p-10 rounded-xl  flex justify-center items-center">
+                <div className="md:w-1/2 w-11/12  bg-white h-auto p-10 rounded-xl  flex justify-center items-center">
                     <div className="w-full h-auto flex justify-center items-center flex-col ">
-                        <p className="text-3xl font-medium text-grayBlack1 flex items-center"><List />Actualiza Tu Informacion</p>
+                        <p className="text-3xl font-medium text-grayBlack1 flex justify-center flex-wrap items-center text-center"><List />Actualiza Tu Informacion</p>
                         <p className="my-4 text-sm font-medium text-gray-400 text-center">Notamos que tu informacion no esta actualizada , por favor complete el siguiente formulario para Continuar</p>
                         <form onSubmit={updateInfoUser} className="sm:w-3/4 w-full p-1  sm:p-4 flex flex-col items-center ">
                             <div className="w-full flex flex-row items-center justify-between">

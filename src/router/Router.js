@@ -71,14 +71,17 @@ const RouterApp = () => {
                                         <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
                                         <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                                         {/* <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter> */}
-
                                         <PrivateRouter exact path="/inicio" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
+                                        <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
+                                        <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter >
+                                        {
+                                            (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
+                                        }
                                         <PrivateRouter exact path="/adminglobal/infoempleado" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                                         <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
                                         <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
                                         <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                                         <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
-
                                         <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
                                         <Route exact path="/404" component={NotFound} />
                                     </Switch>
@@ -116,12 +119,12 @@ const RouterApp = () => {
                                                 <PublicRouter exact path="/resetpassword" isAuth={auth} component={ResetPassword} ></PublicRouter>
                                                 <PublicRouter exact path="/register" isAuth={auth} component={RegisterPage} ></PublicRouter>
                                                 <PrivateRouter exact path="/updatedata" isAuth={auth} component={UpdateData} ></PrivateRouter>
-                                                {
-                                                    (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
-                                                }
                                                 <PrivateRouter exact path="/inicio" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>
+                                                {
+                                                    (state && auth && (state?.name_user == null || state?.esemprendedor == null || state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
+                                                }
+                                                <PrivateRouter exact path="/admin/infoempresa/" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                                                 <PrivateRouter exact path="/perfil" isAuth={auth} component={PerfilPage} ></PrivateRouter>
-                                                <PrivateRouter exact path="/admin/infoempresa" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                                             </Switch>
                                         </>
                                         :

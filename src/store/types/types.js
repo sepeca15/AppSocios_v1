@@ -1,6 +1,7 @@
 export const types = {
     setUser: "[auth] setUser",
     loggout: "[auth] loggout",
+    setIsEmpresa: "[auth] setIsEmpresa",
     setEmpleado: "[empleado]",
     getEmpresas: "[empresas] getEmpresas",
     createEmpresas: "[empresas] createEmpresas",
