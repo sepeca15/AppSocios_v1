@@ -185,11 +185,12 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
     }
   };
   const addEmpresa = async (e) => {
+    e.preventDefault();
+
     if (form.localidad == "" || (form.rubroAP == form.rubroAS)) {
       Swal.fire("ERROR", "intente seleccionar los rubros y las localidades correctamente", "error")
-    }
-    e.preventDefault();
-    if (editar == true) {
+    } else {
+
       if (state?.esemprendedor == false) {
         if (!InfoPageEmpresa) {
           if (file) {
@@ -252,6 +253,7 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
         }
       }
     }
+
 
 
 
