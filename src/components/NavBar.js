@@ -17,9 +17,11 @@ const NavBar = () => {
         dispatch(clearUser());
     }
     useEffect(() => {
+        console.log("jaja")
+
         if (user?.rol?.id === 1 || user?.rol?.id === 3) {
             (async function loadNotificationsUser() {
-                const notify = await loadNotifications(null);
+                const notify = await loadNotifications(user?.empresaAdmin?.id || null);
                 if (notify.ok) {
                     setNotificaciones(notify.notificaciones)
                 }
@@ -29,7 +31,7 @@ const NavBar = () => {
         return () => {
             setNotificaciones(null);
         };
-    }, []);
+    }, [localStorage.getItem("token"), user?.empresaAdmin?.id]);
 
 
     if (!user) {

@@ -14,7 +14,7 @@ export const empleadoempresaReducer = (state = initialState, action) => {
       };
     case types.busquedaEmpleadoText:
       return { ...state, empleadosEmpresa: action.payload };
-      
+
     case types.addUIEmpleado:
       return {
         ...state,
@@ -24,10 +24,10 @@ export const empleadoempresaReducer = (state = initialState, action) => {
       console.log(state.empleadosEmpresa);
       return {
         ...state,
-        empleadosEmpresa: state.empleadosEmpresa.filter((e) =>  
-            e.user.id !== action.payload.user && e.user.cargo !== action.payload.cargo
-          ),
-      }; 
+        empleadosEmpresa: state.empleadosEmpresa.filter((e) =>
+          e.user.id !== action.payload.user && e.user.cargo !== action.payload.cargo
+        ),
+      };
     case types.activeEmpleado:
       return {
         ...state,
@@ -37,6 +37,21 @@ export const empleadoempresaReducer = (state = initialState, action) => {
       return {
         ...state,
         activeEmpleado: null
+      };
+    case types.putEmpleadosEmpresa:
+      return {
+        ...state,
+        empleadosEmpresa: state.empleadosEmpresa.map(e => {
+          if (e?.user?.id == action.payload?.id && e?.empresa?.id == action.payload.empresa && e?.cargo?.id == action.payload?.cargo) {
+            return {
+              ...e,
+              user: action.payload
+            }
+          } else {
+            return e;
+          }
+        }),
+
       };
     default:
       return {
