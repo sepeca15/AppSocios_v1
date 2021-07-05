@@ -187,12 +187,12 @@ const clearUser = () => {
     }
 }
 
-const edirtUser = (user) => {
+/* const edirtUser = (user) => {
     return {
         type: types.setUser,
         payload: user
     }
-}
+} */
 
 export {
     updateUser, signUp, signInWithGoogle, signUpBackend, signInBackend, setUser, clearUser,

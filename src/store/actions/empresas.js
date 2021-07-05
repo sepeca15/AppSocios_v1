@@ -14,9 +14,9 @@ const empresasAniversario = (empresas) => {
 const saveStateComboBox2 = (...empresas) => {
     return { payload: empresas, type: types.ComboBox2 }
 }
-const saveStateComboBox3 = (empresas) => {
+/* const saveStateComboBox3 = (empresas) => {
     return { payload: empresas, type: types.ComboBox3 }
-}
+} */
 
 const getEmpresasAniversarios = () => {
     return async (dispatch) => {
@@ -41,7 +41,7 @@ const getEmpresaActive = (idempresa) => {
         try {
             const res = await fetchConToken("http://localhost:5000/empresas/getdataEmpresa/" + idempresa);
             const body = await res.json();
-            console.log(body)
+            /* console.log(body) */
             if (body.ok === true) {
                 dispatch({
                     type: types.detalleEmpresa,

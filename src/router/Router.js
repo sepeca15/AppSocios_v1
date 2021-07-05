@@ -104,17 +104,17 @@ const RouterApp = () => {
                                                 <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter >
 
                                                 {
-                                                    (state && auth && state.esemprendedor == true) && <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
+                                                    (state && auth && state.esemprendedor === true) && <PrivateRouter exact path="/selectEmpresa" isAuth={auth} component={SelectEmpresa} ></PrivateRouter>
                                                 }
                                                 <PrivateRouter exact path="/" isAuth={auth} component={PerfilPage} ></PrivateRouter >
                                                 {
                                                     (state != null && auth != null && (state?.empresaWork?.lenght === 0)) && <Redirect to="/selectEmpresa"></Redirect>
                                                 }
                                                 {
-                                                    (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
+                                                    (state && auth && (state?.name_user === null || !state?.esemprendedor === null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
                                                 }
                                                 {
-                                                    (state && auth && state.esemprendedor == true) && <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
+                                                    (state && auth && state.esemprendedor === true) && <PrivateRouter exact path="/admin/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
                                                 }
                                                 <Route path="*" component={NotFound} />
                                             </Switch>

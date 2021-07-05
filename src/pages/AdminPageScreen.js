@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllEmpresas, getbusquedaEmpresaText, saveStateComboBox2 } from "../store/actions/empresas";
+import { getAllEmpresas, getbusquedaEmpresaText, /* saveStateComboBox2 */ } from "../store/actions/empresas";
 import { loadLocalidadescombobox, loadRubrosA } from "../helpers/loadData";
-import { useForm } from "../helpers/useForm";
+/* import { useForm } from "../helpers/useForm"; */
 /* import { useForm } from "../helpers/useForm"; */
 
 const AdminPageScreen = () => {
@@ -48,11 +48,11 @@ const AdminPageScreen = () => {
   const ComboBox1 = (e) => {
     setempresaFilter(null);
     let newData = []
-    if (e?.target?.value != "" && e.target.value != "todo") {
+    if (e?.target?.value !== "" && e.target.value !== "todo") {
       state.filter(function (element, i) {
-        if (element?.rubros?.length != 0) {
+        if (element?.rubros?.length !== 0) {
           element?.rubros?.map(rubro => {
-            if (rubro?.rubro_a.id == e.target.value) {
+            if (rubro?.rubro_a.id === e.target.value) {
               newData.push(element)
             }
           })
@@ -120,6 +120,7 @@ const AdminPageScreen = () => {
       })
     } else setempresaFilter(null)
   }
+  
   return (
     <div className=" relative w-full h-full ">
       <div className="flex justify-around flex-col text-center bg-gray-100 md:flex-row mb-2 py-4 ">

@@ -6,7 +6,7 @@ export const loadDepartamentos = async (id) => {
     try {
         const resp = await fetchConToken("http://localhost:5000/departamentos/dpto/", { id }, "POST");
         const body = await resp.json();
-        console.log(body)
+        /* console.log(body) */
         if (body.ok) {
             return { ok: true, departamentos: body.departamentos, dptoUser: body?.departamentoUser }
         } else {
@@ -72,7 +72,7 @@ export const loadRubrosA = async () => {
     try {
         const resp = await fetchConToken("http://localhost:5000/rubroA");
         const body = await resp.json();
-        console.log(body)
+        /* console.log(body) */
         if (body.ok) {
             return { ok: true, rubros: body.rubros }
         } else {
@@ -141,7 +141,7 @@ export const loadNotifications = async (empresa) => {
     try {
         const resp = await fetchConToken((empresa != null ? "http://localhost:5000/notificaciones/empresa/" + empresa : "http://localhost:5000/notificaciones/"));
         const body = await resp.json();
-        console.log(body)
+        /* console.log(body) */
         if (body.ok) {
             return { ok: true, notificaciones: body.notificaciones, notificacionesEmprendedor: body?.empEmpresa }
         } else {

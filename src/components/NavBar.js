@@ -26,7 +26,7 @@ const NavBar = () => {
             (async function loadNotificationsUser() {
                 const notify = await loadNotifications(user?.empresaAdmin?.id || null);
                 if (notify.ok) {
-                    console.log(notify)
+                    /* console.log(notify) */
                     setNotificaciones(notify.notificaciones);
                     if (notify.notificacionesEmprendedor) {
                         setnotifyEmprendedor(notify.notificacionesEmprendedor)
@@ -84,7 +84,7 @@ const NavBar = () => {
                             (user?.rol.id === 2) ?
                                 <>
                                     {
-                                        (user?.esemprendedor == false) &&
+                                        (user?.esemprendedor === false) &&
                                         <NavLink to="/selectempresa" >
                                             <p className="text-sm cursor-pointer  ">Empresa</p>
                                         </NavLink>

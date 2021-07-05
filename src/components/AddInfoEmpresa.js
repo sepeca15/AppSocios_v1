@@ -33,9 +33,9 @@ const AddInfoEmpresa = ({
     dispatch(elimiarEmpresa(id));
   };
   const state = useSelector((state) => state.auth.user);
-  const detalleEmpresaActual = useSelector(
+  /* const detalleEmpresaActual = useSelector(
     (state) => state.detalleEmpresa.detallesDeEmpresaActual
-  );
+  ); */
   const rotuer = useHistory();
   const dataUnaEmpresa = () => {
     localStorage.setItem("empresaActive", id);

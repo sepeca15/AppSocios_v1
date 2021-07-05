@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fileupload } from "../helpers/fileUpload";
 import { postEmpresa, getEmpresaActive, editEmpresa, insertempresaemprendedor } from "../store/actions/empresas";
-import { useForm } from "../helpers/useForm";
+/* import { useForm } from "../helpers/useForm"; */
 import { loadDepartamentos, loadLocalidades, loadRubrosA } from "../helpers/loadData";
 import { useLocation } from 'react-router-dom'
 import Swal from "sweetalert2";
@@ -93,7 +93,7 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
               }
             }
           } else {
-            console.log("jaja")
+            /* console.log("jaja") */
           }
 
           break;
@@ -187,11 +187,11 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
   const addEmpresa = async (e) => {
     e.preventDefault();
 
-    if (form.localidad == "" || (form.rubroAP == form.rubroAS)) {
+    if (form.localidad === "" || (form.rubroAP === form.rubroAS)) {
       Swal.fire("ERROR", "intente seleccionar los rubros y las localidades correctamente", "error")
     } else {
 
-      if (state?.esemprendedor == false) {
+      if (state?.esemprendedor === false) {
         if (!InfoPageEmpresa) {
           if (file) {
             await fileupload(file)
@@ -274,7 +274,7 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
   return (
     <div className="w-full h-full bg-white">
       {
-        console.log(form)
+        /* console.log(form) */
       }
       <form onSubmit={addEmpresa}>
         <div className="w-10/12 flex flex-col items-center my-4 mx-auto">
@@ -593,7 +593,7 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
             }}
               className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded"
             >
-              {(editar == true) ? "Editar" : " Guardar"}
+              {(editar === true) ? "Editar" : " Guardar"}
             </button>{" "}
           </div>
         )}

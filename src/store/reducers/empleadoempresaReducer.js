@@ -42,7 +42,7 @@ export const empleadoempresaReducer = (state = initialState, action) => {
       return {
         ...state,
         empleadosEmpresa: state.empleadosEmpresa.map(e => {
-          if (e?.user?.id == action.payload?.id && e?.empresa?.id == action.payload.empresa && e?.cargo?.id == action.payload?.cargo) {
+          if (e?.user?.id === action.payload?.id && e?.empresa?.id === action.payload.empresa && e?.cargo?.id === action.payload?.cargo) {
             return {
               ...e,
               user: action.payload

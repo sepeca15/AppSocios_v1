@@ -33,11 +33,11 @@ const PortadaLogoNombre = () => {
       {/*  */}
       <div className="flex items-center justify-around w-full flex-col sm:flex-row">
         <img
-          className=" h-48 p-2 md:m-4 object-contain  "
-          src={state.rol.id == 1 ? empresa?.[0]?.logo_empresa : empresaAdmin?.logo_empresa  }
+          className=" h-48 p-2 md:m-4 object-contain  " alt="logo"
+          src={state.rol.id === 1 ? empresa?.[0]?.logo_empresa : empresaAdmin?.logo_empresa  }
         />
         <span className="font-medium m-2 text-2xl p-2 md:m-4 md:text-6xl">
-          {state.rol.id == 1 ? empresa?.[0]?.nombre_fantasia : empresaAdmin?.nombre_fantasia}
+          {state.rol.id === 1 ? empresa?.[0]?.nombre_fantasia : empresaAdmin?.nombre_fantasia}
         </span>
         <div> 
            
