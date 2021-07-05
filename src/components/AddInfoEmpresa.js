@@ -93,7 +93,7 @@ const AddInfoEmpresa = ({
           <label className="text-xs">{direccion}</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
-          <label className="text-xs">100</label>
+          <label className="text-xs">70</label>
         </div>
         <div className="flex my-3 md:my-0 lg:w-1/12 justify-start md:justify-center items-center">
           <label className="text-xs">{razon_social}</label>

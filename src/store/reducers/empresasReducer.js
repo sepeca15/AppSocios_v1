@@ -15,6 +15,12 @@ export const empresasReducer = (state = initialState, action) => {
 
             return { ...state, empresas: action.payload }
 
+        case types.ComboBox2:
+            return { ...state, empresas: action.payload };
+
+        case types.ComboBox3:
+            return { ...state, empresas: action.payload };
+
         case types.getEmpresas:
 
             return { ...state, empresas: action.payload }

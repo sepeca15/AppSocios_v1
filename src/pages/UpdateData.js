@@ -115,7 +115,7 @@ const UpdateData = () => {
                             </div>
                             <div className="w-full">
                                 <select className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none" value={dptoUser} onChange={changeDepartamento} name="departamento">
-                                    <option selected={true} disabled="disable">Seleccione uno</option>
+                                    <option selected={true} required disabled="disable">Seleccione uno</option>
                                     {
                                         departamento?.map((e, i) => {
                                             return <option key={e.name + "," + i} value={`${e.id}`}>{e.name}</option>
@@ -125,7 +125,7 @@ const UpdateData = () => {
                             </div>
                             <div className="w-full">
                                 <select className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none" onChange={setForm} value={form?.localidad?.id} name="localidad">
-                                    <option selected={true} disabled="disable">Seleccione uno</option>
+                                    <option selected={true} required disabled="disable">Seleccione uno</option>
                                     {
                                         localidades?.map((e, i) => {
                                             return <option key={e.name + "," + i} value={`${e.id}`}>{e.name}</option>
