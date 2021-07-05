@@ -12,10 +12,10 @@ const empresasAniversario = (empresas) => {
     return { payload: empresas, type: types.empresaAniversario }
 }
 const saveStateComboBox2 = (...empresas) => {
-    return {payload: empresas, type:types.ComboBox2}
+    return { payload: empresas, type: types.ComboBox2 }
 }
 const saveStateComboBox3 = (empresas) => {
-    return {payload: empresas, type:types.ComboBox3}
+    return { payload: empresas, type: types.ComboBox3 }
 }
 
 const getEmpresasAniversarios = () => {
@@ -25,7 +25,7 @@ const getEmpresasAniversarios = () => {
             const body = await res.json();
             if (body.ok === true) {
                 dispatch(empresasAniversario(
-                     body.fechasAniversario
+                    body.fechasAniversario
                 ))
             } else {
                 Swal.fire("fechasAniversario", "No se pudo insertar las de fechasAniversario", "error");
@@ -118,6 +118,31 @@ const postEmpresa = (form) => {
 
     }
 }
+
+
+const insertempresaemprendedor = (form, idu) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken("http://localhost:5000/empresas/insertempresaemprendedor/" + idu, { ...form }, "POST");
+            const body = await resp.json();
+            if (body.ok) {
+                /* dispatch(createEmpresa(body.empresas)) */
+                Swal.fire({
+                    title: "Se añadio correctamente",
+                    text: "La empresa se agrego " + form.nombre_fantasia + " correctamente",
+                    type: "success",
+                });
+
+            } else {
+                Swal.fire("Error Empresas", body.msg, "error");
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+        }
+
+    }
+}
 const editEmpresa = (empresa) => {
     return async (dispatch) => {
         try {
@@ -164,4 +189,4 @@ const elimiarEmpresa = (id) => {
 }
 
 
-export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, editEmpresa, getEmpresasAniversarios, saveStateComboBox2 }
+export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, editEmpresa, getEmpresasAniversarios, saveStateComboBox2, insertempresaemprendedor }
