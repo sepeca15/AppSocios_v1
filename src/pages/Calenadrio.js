@@ -17,7 +17,7 @@ const Calendario = () => {
   const [fechas, setFechas] = useState([]);
  
   useEffect(() => {
-    console.log("estoy");
+    alert(moment(Date.now().toString() + "00:00").format('DD/MM/YYYY HH:mm'))
     dispatch(getEmpresasAniversarios());
     setFechas(empresasAniversarios);
   }, []);
@@ -25,19 +25,19 @@ const Calendario = () => {
   const event = fechas?.map((element, id) => {
     return {
       title: element.nombre,
-      start: moment(element.fecha),
-      end: moment(element.fecha).add(23, "hours")
+      start: moment(element.fecha + "00:00").format('DD/MM/YYYY HH:mm'),
+      end: moment(element.fecha + "23:59").format('DD/MM/YYYY HH:mm')
     };
   });
   const onSelectEvent = (e) => {
     console.log(e);
     Swal.fire({
-      title: "🎉Hoy es el aniversario de 🎉" + e.title ,
+      title: " "+ e.start._i +" es el aniversario de " + e.title,
       text: "🎊¡No olvides saludar!🎊",
     });
   };
   const onViewChange = (e) => {
-    console.log("hola");
+    console.log(e);
   };
 
   return (

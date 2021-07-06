@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllEmpresas, getbusquedaEmpresaText, saveStateComboBox2 } from "../store/actions/empresas";
+import { getAllEmpresas, getbusquedaEmpresaText, getEmpresasAniversarios, saveStateComboBox2 } from "../store/actions/empresas";
 import { loadLocalidadescombobox, loadRubrosA } from "../helpers/loadData";
 import { useForm } from "../helpers/useForm";
 /* import { useForm } from "../helpers/useForm"; */
@@ -16,6 +16,7 @@ const AdminPageScreen = () => {
     dispatch(getAllEmpresas());
     cargarlocadidadcombobox();
     cargarRubrosEmpresas()
+    dispatch(getEmpresasAniversarios());
   }, []);
   const state = useSelector((state) => state.empresas.empresas);
   const [empresaFilter, setempresaFilter] = useState(null)
