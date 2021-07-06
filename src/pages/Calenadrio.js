@@ -12,19 +12,10 @@ const Calendario = () => {
   const empresasAniversarios = useSelector(
     (state) => state.empresas.empresaAniversario
   );
-  const dispatch = useDispatch();
-
-  const localizer = momentLocalizer(moment);
-  /* Formato de aniversario Año-Mes-dia 2021-7-3 */
+  const dispatch = useDispatch(); 
+  const localizer = momentLocalizer(moment); 
   const [fechas, setFechas] = useState([]);
-
-  /* empresasAniversarios la data que se mapea */
-
-  /* const event = {
-      title: "Nombre empresa",
-      start:  moment(Date.now()),
-      end:    moment(Date.now()).add(2, 'hours')
-    }, */
+ 
   useEffect(() => {
     console.log("estoy");
     dispatch(getEmpresasAniversarios());
@@ -38,12 +29,11 @@ const Calendario = () => {
       end: moment(element.fecha).add(23, "hours")
     };
   });
-
   const onSelectEvent = (e) => {
+    console.log(e);
     Swal.fire({
-      title: "Hoy es el aniversario de:" + event[0].title,
-      text: "¡asdasdasd!",
-      type: "succes",
+      title: "🎉Hoy es el aniversario de 🎉" + e.title ,
+      text: "🎊¡No olvides saludar!🎊",
     });
   };
   const onViewChange = (e) => {
@@ -51,6 +41,7 @@ const Calendario = () => {
   };
 
   return (
+    
     <div className=" relative w-full h-full ">
       <div>
         <Calendar
