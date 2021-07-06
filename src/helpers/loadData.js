@@ -35,6 +35,20 @@ export const loadLocalidades = async (idD) => {
     }
 }
 
+export const loadAlllocalidades = async (idD) => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/localidades/");
+        const body = await resp.json();
+        if (body.ok) {
+            return { ok: true, localidades: body.localidades }
+        } else {
+            return { ok: false, localidades: [] }
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador [Frontend]", "error");
+    }
+}
 
 export const loadLocalidadescombobox = async () => {
     try {
@@ -267,6 +281,24 @@ export const allowEmpresaEmprendedor = async (data) => {
 export const deniedEmpresaEmprendedor = async (data) => {
     try {
         const resp = await fetchConToken("http://localhost:5000/empresas/deniedempresaemprendedor/", { ...data }, "POST");
+        const body = await resp.json();
+        console.log(body)
+        if (body.ok) {
+            return { ok: true }
+        } else {
+            return { ok: false }
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador [Frontend]", "error");
+    }
+}
+
+
+
+export const sendEmail = async (data) => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/sendemail/", { ...data }, "POST");
         const body = await resp.json();
         console.log(body)
         if (body.ok) {

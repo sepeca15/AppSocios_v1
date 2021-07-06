@@ -127,3 +127,13 @@ height: 63vh;
 a.active{
     color: green!important;
 }
+
+
+.mod{
+    z-index: 9999;
+}
+
+.fondomodal{
+    background-color: rgba(0, 0, 0, 0.545)!important;
+    z-index: 999!important;
+}
