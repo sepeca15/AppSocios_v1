@@ -24,6 +24,7 @@ const AdminPageScreen = () => {
   async function cargarlocadidadcombobox() {
     const localidad = await loadLocalidadescombobox();
     if (localidad.ok) {
+      console.log(localidad.localidades)
       setLocalidades(localidad.localidades);
     } else {
       setLocalidades([]);
@@ -34,7 +35,7 @@ const AdminPageScreen = () => {
     if (rubros.ok) {
       setRubros(rubros.rubros);
     } else {
-      setLocalidades([]);
+      setRubros([]);
     }
   }
 

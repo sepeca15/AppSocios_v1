@@ -55,7 +55,7 @@ export const loadLocalidadescombobox = async () => {
         const resp = await fetchConToken("http://localhost:5000/localidades/");
         const body = await resp.json();
         if (body.ok) {
-            return { ok: true, localidades: body.rubros }
+            return { ok: true, localidades: body.localidades }
         } else {
             return { ok: false, localidades: [] }
         }
