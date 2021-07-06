@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllEmpresas, getbusquedaEmpresaText, saveStateComboBox2 } from "../store/actions/empresas";
+import { getAllEmpresas, getbusquedaEmpresaText, getEmpresasAniversarios, saveStateComboBox2 } from "../store/actions/empresas";
 import { loadLocalidadescombobox, loadRubrosA } from "../helpers/loadData";
 import { useForm } from "../helpers/useForm";
 import ImportExcel from "../components/importExcel";
@@ -17,6 +17,7 @@ const AdminPageScreen = () => {
     dispatch(getAllEmpresas());
     cargarlocadidadcombobox();
     cargarRubrosEmpresas()
+    dispatch(getEmpresasAniversarios());
   }, []);
   const state = useSelector((state) => state.empresas.empresas);
   const [empresaFilter, setempresaFilter] = useState(null)
@@ -94,7 +95,7 @@ const AdminPageScreen = () => {
       setempresaFilter(null)
     } else {
       state.filter(function (element, i) {
-        if (element.localidad.id === parseInt(e.target.value)) {
+        if (element?.localidad?.id === parseInt(e.target.value)) {
           newData.push(element)
         }
         setempresaFilter(newData)
@@ -185,14 +186,7 @@ const AdminPageScreen = () => {
               })}
             </select>
           </div>
-          <div className=" text-center">
-            <label className="block m-0">Empresas/Emprendedores</label>
-            <select onChange={ComboBox4} name="combobox4" className="w-2/3 sm:w-full py-2 px-4 border-2">
-              <option value="volvo">Todos</option>
-              <option value="saab">Empresas</option>
-              <option value="opel">Emprendedores</option>
-            </select>
-          </div>
+          
         </div>
       </form>
       <div className=" flex md:block flex-row flex-grow">

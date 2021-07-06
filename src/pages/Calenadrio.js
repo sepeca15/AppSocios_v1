@@ -34,7 +34,7 @@ const Calendario = () => {
     dispatch(modalOpen(e));
   };
   const onViewChange = (e) => {
-    console.log("hola");
+    console.log(e);
   };
 
   return (

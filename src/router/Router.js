@@ -77,7 +77,7 @@ const RouterApp = () => {
                                         <PrivateRouter exact path="/" isAuth={auth} component={AdminPageScreen} ></PrivateRouter>
                                         {
                                             (state && auth && (state?.name_user == null || !state?.esemprendedor == null || !state?.telefono == null || state.localidad == null)) && <Redirect to="/updatedata"></Redirect>
-                                        }
+                                        } 
                                         <PrivateRouter exact path="/adminglobal/infoempleado" isAuth={auth} component={InfoPageEmpleado} ></PrivateRouter>
                                         <PrivateRouter exact path="/adminglobal/addempresa" isAuth={auth} component={AddEmpresa} ></PrivateRouter>
                                         <PrivateRouter exact path="/adminglobal/infoempresa" isAuth={auth} component={InfoPageEmpresa} ></PrivateRouter>

@@ -186,7 +186,7 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
   };
   const addEmpresa = async (e) => {
     e.preventDefault();
-
+    console.log(form);
     if (form.localidad == "" || (form.rubroAP == form.rubroAS)) {
       Swal.fire("ERROR", "intente seleccionar los rubros y las localidades correctamente", "error")
     } else {
@@ -252,7 +252,7 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
           );
         }
       }
-    }
+      }
 
 
 
