@@ -189,7 +189,6 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
       Swal.fire("ERROR", "intente seleccionar los rubros y las localidades correctamente", "error")
     }
     e.preventDefault();
-    if (editar == true) {
       if (state?.esemprendedor == false) {
         if (!InfoPageEmpresa) {
           if (file) {
@@ -251,7 +250,6 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
           );
         }
       }
-    }
 
 
 
