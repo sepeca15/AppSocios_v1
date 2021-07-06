@@ -3,7 +3,7 @@ import AddInfoEmpresa from "../components/AddInfoEmpresa";
 import QueDeseaAgregarModal from "../components/QueDeseaAgregarModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEmpresas, getbusquedaEmpresaText, saveStateComboBox2 } from "../store/actions/empresas";
-import { loadLocalidadescombobox } from "../helpers/loadData";
+import { loadLocalidadescombobox, loadRubrosA } from "../helpers/loadData";
 import { useForm } from "../helpers/useForm";
 /* import { useForm } from "../helpers/useForm"; */
 
@@ -11,17 +11,26 @@ const AdminPageScreen = () => {
   const dispatch = useDispatch();
 
   const [localidades, setLocalidades] = useState(null);
+  const [rubros, setRubros] = useState(null)
   useEffect(() => {
     dispatch(getAllEmpresas());
-    cargarlocadidadcombobox()
+    cargarlocadidadcombobox();
+    cargarRubrosEmpresas()
   }, []);
   const state = useSelector((state) => state.empresas.empresas);
   const [empresaFilter, setempresaFilter] = useState(null)
   async function cargarlocadidadcombobox() {
     const localidad = await loadLocalidadescombobox();
-    console.log(localidades);
     if (localidad.ok) {
       setLocalidades(localidad.localidades);
+    } else {
+      setLocalidades([]);
+    }
+  }
+  async function cargarRubrosEmpresas() {
+    const rubros = await loadRubrosA();
+    if (rubros.ok) {
+      setRubros(rubros.rubros);
     } else {
       setLocalidades([]);
     }
@@ -37,24 +46,23 @@ const AdminPageScreen = () => {
     }
   }
   const ComboBox1 = (e) => {
+    setempresaFilter(null);
     let newData = []
-    let activa = e.target.value === "1" ? true : false
-    let inactiva = e.target.value === "0" ? false : true
-    if (activa) {
+    if (e?.target?.value != "" && e.target.value != "todo") {
       state.filter(function (element, i) {
-        if (element.activa === activa) {
-          newData.push(element)
+        if (element?.rubros?.length != 0) {
+          element?.rubros?.map(rubro => {
+            if (rubro?.rubro_a.id == e.target.value) {
+              newData.push(element)
+            }
+          })
         }
         setempresaFilter(newData)
       })
-    } else if (!inactiva) {
-      state.filter(function (element, i) {
-        if (element.activa === inactiva) {
-          newData.push(element)
-        }
-        setempresaFilter(newData)
-      })
-    } else setempresaFilter(null)
+    }
+    else {
+      setempresaFilter(null)
+    }
   }
 
   const ComboBox2 = (e) => {
@@ -138,11 +146,16 @@ const AdminPageScreen = () => {
       <form>
         <div className="flex justify-center sm:justify-around my-2 flex-col sm:flex-row">
           <div className="text-center">
-            <label className="block text-center m-0">Rubro actividad</label>
+            <label className="block text-center m-0">Rubro actividad({empresaFilter?.length || "0"})</label>
             <select onChange={ComboBox1} name="combobox1" className="w-2/3 sm:w-full py-2 px-4 border-2">
-              <option value="">Todos</option>
-              <option value="saab">Ropa</option>
-              <option value="opel">Deporte</option>
+              <option value="todo">Todos</option>
+              {rubros?.map((e, i) => {
+                return (
+                  <option key={e.name + e.id + "," + i} value={`${e.id}`}>
+                    {e.name}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div className="text-center">

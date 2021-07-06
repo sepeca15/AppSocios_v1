@@ -70,7 +70,6 @@ const ImportExcel = () => {
                 Swal.fire("Error", "Archivo incorrecto", "error")
             }
         } catch (error) {
-            alert("jaja")
             Swal.fire("Error", "Archivo incorrecto", "error")
         }
 

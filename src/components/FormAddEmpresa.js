@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fileupload } from "../helpers/fileUpload";
-import { postEmpresa, getEmpresaActive, editEmpresa } from "../store/actions/empresas";
+import { postEmpresa, getEmpresaActive, editEmpresa, insertempresaemprendedor } from "../store/actions/empresas";
 import { useForm } from "../helpers/useForm";
-import { loadDepartamentos, loadLocalidades } from "../helpers/loadData";
+import { loadDepartamentos, loadLocalidades, loadRubrosA } from "../helpers/loadData";
 import { useLocation } from 'react-router-dom'
+import Swal from "sweetalert2";
 const initialState = {
   nombre_fantasia: '',
   telefono: '',
@@ -22,6 +23,8 @@ const initialState = {
   observaciones: '',
   logo_empresa: '',
   localidad: '',
+  rubroAP: "",
+  rubroAS: ""
 }
 const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
   let location = useLocation();
@@ -31,6 +34,7 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
   const [localidad, setLocalidad] = useState(null)
   const empresaAdmin = useSelector((state) => state.auth?.user?.empresaAdmin)
   const [departamento, setDepartamentos] = useState(null);
+  const [rubros, setRubros] = useState(null);
   const [localidades, setLocalidades] = useState(null);
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();
@@ -67,7 +71,9 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
         observaciones: detalleEmpresaActual?.[0]?.observaciones || "",
 
         logo_empresa: detalleEmpresaActual?.[0]?.logo_empresa || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8UcJiZxXc_q-Zr-1dohkW5sd8lTxvpPj-g&usqp=CAU",
-        localidad: detalleEmpresaActual?.[0]?.localidad?.id
+        localidad: detalleEmpresaActual?.[0]?.localidad?.id,
+        rubroAP: detalleEmpresaActual?.[0]?.rubros?.[0]?.rubro_a.id || "ninguno",
+        rubroAS: detalleEmpresaActual?.[0]?.rubros?.[1]?.rubro_a.id || "ninguno",
       })
     }
   }, [detalleEmpresaActual?.[0]?.id])
@@ -109,7 +115,9 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
             fecha_baja: empresaAdmin?.fecha_baja || "",
             observaciones: empresaAdmin?.observaciones || "",
             logo_empresa: empresaAdmin?.logo_empresa || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl8UcJiZxXc_q-Zr-1dohkW5sd8lTxvpPj-g&usqp=CAU",
-            localidad: empresaAdmin?.localidad?.id || dptoEmpresaActual || ""
+            localidad: empresaAdmin?.localidad?.id || dptoEmpresaActual || "",
+            rubroAP: empresaAdmin?.rubros?.[0]?.rubro_a.id || "ninguno",
+            rubroAS: empresaAdmin?.rubros?.[1]?.rubro_a.id || "ninguno"
           })
           break;
         default:
@@ -123,6 +131,10 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
         setEditar(true);
       }
       (async function loadInputsDepandLoc() {
+        const rubros = await loadRubrosA();
+        if (rubros?.ok) {
+          setRubros(rubros.rubros)
+        }
         const departamentosAll = await loadDepartamentos(state?.id);
         if (departamentosAll?.ok) {
           setDepartamentos(departamentosAll.departamentos);
@@ -173,8 +185,11 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
     }
   };
   const addEmpresa = async (e) => {
+    if (form.localidad == "" || (form.rubroAP == form.rubroAS)) {
+      Swal.fire("ERROR", "intente seleccionar los rubros y las localidades correctamente", "error")
+    }
     e.preventDefault();
-    if (editar == true) {
+    if (state?.esemprendedor == false) {
       if (!InfoPageEmpresa) {
         if (file) {
           await fileupload(file)
@@ -218,7 +233,25 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
           );
         }
       }
+    } else {
+      if (file) {
+        await fileupload(file)
+          .then((e) => {
+            dispatch(
+              insertempresaemprendedor({ ...form, logo_empresa: e, }, state?.id)
+            );
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        dispatch(
+          insertempresaemprendedor({ ...form, }, state?.id)
+        );
+      }
     }
+
+
 
   };
 
@@ -496,12 +529,52 @@ const FormAddEmpresa = ({ InfoPageEmpresa = true }) => {
                 <option value={0}>Intactiva</option>
               </select>
             </div>
+            <div className="form-group w-full">
+              <label htmlFor="Activa">Rubro Actividad Primario:</label>
+              <select
+                className="form-control text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
+                name="rubroAP"
+                onChange={setForm}
+                value={form.rubroAP}
+              >
+                <option value="">
+                  Ninguno
+                </option>
+                {
+                  rubros && rubros.map(e => {
+                    return (
+                      <option key={new Date(Date.now) + e.id} value={e?.id} >{e.name}</option>
+                    )
+                  })
+                }
+              </select>
+            </div>
+            <div className="form-group w-full">
+              <label htmlFor="Activa">Rubro Actividad Secundario:</label>
+              <select
+                className="form-control text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
+                name="rubroAS"
+                onChange={setForm}
+                value={form.rubroAS}
+              >
+                <option value="">
+                  Ninguno
+                </option>
+                {
+                  rubros && rubros.map(e => {
+                    return (
+                      <option key={new Date(Date.now) + e.id} value={e?.id} >{e.name}</option>
+                    )
+                  })
+                }
+              </select>
+            </div>
           </div>
         </div>
         {InfoPageEmpresa ? (
           <div className="flex justify-end content-end py-8 w-full">
             <button className="bg-green1 text-white font-bold py-2 px-4 mx-2 rounded">
-              Siguiente
+              Guardar
             </button>
           </div>
         ) : (
