@@ -7,42 +7,39 @@ import { CalendarEvent } from "../components/CalendarEvent";
 import Swal from "sweetalert2";
 import { getEmpresasAniversarios } from "../store/actions/empresas";
 import { useSelector, useDispatch } from "react-redux";
+import SendHappybirthdatModal from "../components/SendHappybirthdatModal";
+import { modalOpen } from "../store/actions/auth";
 
 const Calendario = () => {
   const empresasAniversarios = useSelector(
     (state) => state.empresas.empresaAniversario
   );
-  const dispatch = useDispatch(); 
-  const localizer = momentLocalizer(moment); 
+  const dispatch = useDispatch();
+  const localizer = momentLocalizer(moment);
   const [fechas, setFechas] = useState([]);
- 
   useEffect(() => {
-    alert(moment(Date.now().toString() + "00:00").format('DD/MM/YYYY HH:mm'))
     dispatch(getEmpresasAniversarios());
     setFechas(empresasAniversarios);
   }, []);
-  
+
   const event = fechas?.map((element, id) => {
     return {
       title: element.nombre,
-      start: moment(element.fecha + "00:00").format('DD/MM/YYYY HH:mm'),
-      end: moment(element.fecha + "23:59").format('DD/MM/YYYY HH:mm')
+      start: moment(` ${element.fecha.toString()} 00:00`).format("YYYY-MM-DD HH:mm"),
+      end: moment(` ${element.fecha.toString()} 23:59`).format("YYYY-MM-DD HH:mm"),
+      email: element?.email
     };
   });
   const onSelectEvent = (e) => {
-    console.log(e);
-    Swal.fire({
-      title: " "+ e.start._i +" es el aniversario de " + e.title,
-      text: "🎊¡No olvides saludar!🎊",
-    });
+    dispatch(modalOpen(e));
   };
   const onViewChange = (e) => {
     console.log(e);
   };
 
   return (
-    
     <div className=" relative w-full h-full ">
+      <SendHappybirthdatModal />
       <div>
         <Calendar
           onSelectEvent={onSelectEvent}

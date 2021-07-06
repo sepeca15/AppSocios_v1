@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllEmpresas, getbusquedaEmpresaText, getEmpresasAniversarios, saveStateComboBox2 } from "../store/actions/empresas";
 import { loadLocalidadescombobox, loadRubrosA } from "../helpers/loadData";
 import { useForm } from "../helpers/useForm";
+import ImportExcel from "../components/importExcel";
 /* import { useForm } from "../helpers/useForm"; */
 
 const AdminPageScreen = () => {
@@ -140,8 +141,9 @@ const AdminPageScreen = () => {
             placeholder="¿Estás buscando algún socio?"
           />
         </form>
-        <div className="max-w-full lg:w-4/12 xl:w-3/12 flex items-center  justify-center">
+        <div className="max-w-full lg:w-4/12 xl:w-3/12 flex items-center flex-col justify-center">
           <QueDeseaAgregarModal />
+          <ImportExcel />
         </div>
       </div>
       <form>
@@ -161,7 +163,7 @@ const AdminPageScreen = () => {
           </div>
           <div className="text-center">
             <label className="block text-center m-0">
-              Empresas Activas/Inactivas (<span className="text-red-500">{empresaFilter ?  empresaFilter.length  : state?.length }</span>)
+              Empresas Activas/Inactivas (<span className="text-red-500">{empresaFilter ? empresaFilter.length : state?.length}</span>)
             </label>
             {/* ,()=>{ComboBox2(form.combobox2)} */}
             <select onChange={ComboBox2} name="combobox2" className="w-2/3 sm:w-full py-2 px-4 border-2">
@@ -171,7 +173,7 @@ const AdminPageScreen = () => {
             </select>
           </div>
           <div className="text-center">
-            <label className="block text-center m-0">Localidad (<span className="text-red-500">{empresaFilter ?  empresaFilter.length  : state?.length }</span>) </label>
+            <label className="block text-center m-0">Localidad (<span className="text-red-500">{empresaFilter ? empresaFilter.length : state?.length}</span>) </label>
             <select onChange={ComboBox3} name="combobox3" className="w-2/3 sm:w-full  py-2 px-4 border-2">
               <option value="Todos">Todas</option>
               {localidades?.map((e, i) => {
