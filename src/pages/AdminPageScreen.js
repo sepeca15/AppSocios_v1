@@ -95,7 +95,7 @@ const AdminPageScreen = () => {
       setempresaFilter(null)
     } else {
       state.filter(function (element, i) {
-        if (element.localidad.id === parseInt(e.target.value)) {
+        if (element?.localidad?.id === parseInt(e.target.value)) {
           newData.push(element)
         }
         setempresaFilter(newData)
@@ -186,14 +186,7 @@ const AdminPageScreen = () => {
               })}
             </select>
           </div>
-          <div className=" text-center">
-            <label className="block m-0">Empresas/Emprendedores</label>
-            <select onChange={ComboBox4} name="combobox4" className="w-2/3 sm:w-full py-2 px-4 border-2">
-              <option value="volvo">Todos</option>
-              <option value="saab">Empresas</option>
-              <option value="opel">Emprendedores</option>
-            </select>
-          </div>
+          
         </div>
       </form>
       <div className=" flex md:block flex-row flex-grow">
