@@ -12,6 +12,7 @@
     "i": "^0.3.6",
     "moment": "^2.29.1",
     "npm": "^7.19.0",
+    "p-iteration": "^1.1.8",
     "react": "^17.0.2",
     "react-big-calendar": "^0.33.5",
     "react-content-loader": "^6.0.3",

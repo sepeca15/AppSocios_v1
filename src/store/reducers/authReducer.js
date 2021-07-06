@@ -3,7 +3,9 @@ import { types } from "../types/types"
 
 const initialState = {
     user: null,
-    empresaData: null
+    empresaData: null,
+    modalOpen: false,
+    modalData: null
 
 }
 
@@ -24,6 +26,12 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: null
+            }
+        case types.ModalOpen:
+            return {
+                ...state,
+                modalOpen: action.payload.open,
+                modalData: action.payload.data
             }
         default:
             return {

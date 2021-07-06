@@ -20,5 +20,7 @@ export const types = {
     busquedaEmpleadoText: "[empresaEmpleado] busquedaEmpleadoText",
     empresaAniversario: "[empresaAniversario] empresaAniversario",
     ComboBox2: "[empresas] ComboBox2",
-    ComboBox3: "[empresas] ComboBox3"
+    ComboBox3: "[empresas] ComboBox3",
+    ModalOpen: "[empresas] Modal Open"
+
 }

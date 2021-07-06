@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from 'react-elastic-carousel'
 import { ReactComponent as Partners } from '../svg/partners.svg';
 import { ReactComponent as Welcome } from '../svg/welcome.svg';
+import { NavLink } from "react-router-dom";
 /* const settings = {
     dots: true,
     infinite: true,
@@ -27,8 +28,10 @@ const WelcomeScreen = () => {
 
                     </div>
                 </Carousel>
-                <div className="flex flex-col items-center my-4  w-full md:max-w-3xl">
-                    <button className="w-full py-2 buttonIndex">Continuar Como Empresa/Emplendedor</button>
+                <div className="flex w-full flex-col items-center my-4  w-full md:max-w-3xl">
+                    <NavLink className="w-full" to="/login">
+                        <button className="w-full py-2 buttonIndex">Continuar Como Empresa/Emplendedor</button>
+                    </NavLink>
                 </div>
             </div>
         </div>

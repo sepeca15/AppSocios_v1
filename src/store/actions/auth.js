@@ -193,8 +193,29 @@ const edirtUser = (user) => {
         payload: user
     }
 }
+const modalOpen = (data) => {
+    return {
+        type: types.ModalOpen,
+        payload: {
+            open: true,
+            data: data
+        }
+    }
+}
+const modalClose = () => {
+    return {
+        type: types.ModalOpen,
+        payload: {
+            open: false,
+            data: null
+        }
+    }
+}
 
 export {
     updateUser, signUp, signInWithGoogle, signUpBackend, signInBackend, setUser, clearUser,
-    setIsEmpresa
+    setIsEmpresa, modalOpen, modalClose
 }
+
+
+

@@ -95,27 +95,66 @@ const getbusquedaEmpresaText = (data) => {
     }
 }
 
-const postEmpresa = (form) => {
+const postEmpresa = (form, message = true) => {
     return async (dispatch) => {
         try {
             const resp = await fetchConToken("http://localhost:5000/empresas/", { ...form }, "POST");
             const body = await resp.json();
+            console.log(body);
             if (body.ok) {
                 /* dispatch(createEmpresa(body.empresas)) */
+                if (message) {
+                    Swal.fire({
+                        title: "Se añadio correctamente",
+                        text: "La empresa se agrego " + form.nombre_fantasia + " correctamente",
+                        type: "success",
+                    });
+                }
+                return { ok: true }
+            } else {
+
+                console.log(body);
+                if (message) {
+                    Swal.fire("Error Empresas", body.msg, "error");
+                }
+            }
+        } catch (error) {
+            if (message) {
+                Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
+            }
+            return { ok: false }
+        }
+
+    }
+}
+
+
+const postEmpresaExcel = async (form, message = true) => {
+    try {
+        const resp = await fetchConToken("http://localhost:5000/empresas/", { ...form }, "POST");
+        const body = await resp.json();
+        console.log(body);
+        if (body.ok) {
+            /* dispatch(createEmpresa(body.empresas)) */
+            if (message) {
                 Swal.fire({
                     title: "Se añadio correctamente",
                     text: "La empresa se agrego " + form.nombre_fantasia + " correctamente",
                     type: "success",
                 });
-
-            } else {
+            }
+            return { ok: true }
+        } else {
+            if (message) {
                 Swal.fire("Error Empresas", body.msg, "error");
             }
-        } catch (error) {
-            console.log(error);
+            return { ok: false }
+        }
+    } catch (error) {
+        if (message) {
             Swal.fire("Error", "No se pudo hacer su accion, contacte con el desarrollador", "error");
         }
-
+        return { ok: false }
     }
 }
 
@@ -189,4 +228,4 @@ const elimiarEmpresa = (id) => {
 }
 
 
-export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, editEmpresa, getEmpresasAniversarios, saveStateComboBox2, insertempresaemprendedor }
+export { getAllEmpresas, postEmpresa, elimiarEmpresa, getbusquedaEmpresaText, getEmpresaActive, editEmpresa, getEmpresasAniversarios, saveStateComboBox2, insertempresaemprendedor, postEmpresaExcel }
