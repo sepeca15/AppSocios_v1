@@ -23,7 +23,7 @@ const AdminPageScreen = () => {
   async function cargarlocadidadcombobox() {
     const localidad = await loadLocalidadescombobox();
     if (localidad.ok) {
-      console.log(localidad.localidades)
+
       setLocalidades(localidad.localidades);
     } else {
       setLocalidades([]);

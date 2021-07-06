@@ -368,39 +368,41 @@ const AddEmpleadoModal = ({ modalIsOpen, closeModal, post_Put = false }) => {
               </select>
             </div>
 
+
+
             <div className="formgroup">
-              <label>Estado:</label>
+              <label>Estado</label>
               <select
                 required
+                name="estado"
+                value={form.estado}
                 onChange={setForm}
-                value={form.localidad}
                 className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
-                name="localidad"
+              >
+                <option value={true}>Activo</option>
+                <option value={false} >Inactivo</option>
+              </select>
+            </div>
+
+            <div className="formgroup">
+              <label>Cargo:</label>
+              <select
+                required
+                name="cargo"
+                onChange={setForm}
+                value={form.cargo}
+                className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
               >
                 <option selected={true} value="" disabled="disable">
                   Seleccione uno
                 </option>
-                {localidades?.map((e, i) => {
+                {cargos?.map((e, i) => {
                   return (
                     <option key={e.name + "," + i} value={`${e.id}`}>
                       {e.name}
                     </option>
                   );
                 })}
-              </select>
-            </div>
-
-            <div className="formgroup">
-              <label>Cargo</label>
-              <select
-                required
-                name="cargo"
-                value={form.estado}
-                onChange={setForm}
-                className="text-sm my-1 w-full p-2 border-2 shadow-md border-gray1 rounded-xl outline-none"
-              >
-                <option value={true}></option>
-                <option value={false} ></option>
               </select>
             </div>
 
